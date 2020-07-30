@@ -13,6 +13,10 @@ describe('User', () => {
     expect(User).to.be.a('function');
   })
 
+  it('should be an instance of User', () => {
+    expect(user).to.be.an.instanceof(User);
+  })
+
   it('should have an id', () => {
     expect(user.id).to.equal(1);
   })
@@ -20,5 +24,4 @@ describe('User', () => {
   it('should have a name', () => {
     expect(user.name).to.equal('Bill');
   })
-
 });
