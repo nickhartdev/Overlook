@@ -1,7 +1,10 @@
-class User {
+import Data from './Data.js';
+
+class User extends Data {
   constructor(userData) {
-    this.id = userData.id;
-    this.name = userData.name;
+    super();
+    this.id = super.validateDataType(userData.id, 'number');
+    this.name = super.validateDataType(userData.name, 'string');
   }
 }
 
