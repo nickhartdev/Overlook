@@ -11,4 +11,12 @@ describe('Room', () => {
   it('should be a function', () => {
     expect(Room).to.be.a('function');
   })
+
+  it('should be an instance of Room', () => {
+    expect(room).to.be.an.instanceof(Room);
+  })
+
+  it('should be a child of Data', () => {
+    expect(room.validateDataType).to.be.a('function');
+  })
 })

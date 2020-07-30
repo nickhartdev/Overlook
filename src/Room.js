@@ -1,4 +1,6 @@
-class Room {
+import Data from './Data.js';
+
+class Room extends Data {
 
 }
 
