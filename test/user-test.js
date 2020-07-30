@@ -45,11 +45,8 @@ describe('User', () => {
     expect(user.validateDataType).to.be.a('function');
   })
 
-  it('should have an id', () => {
+  it('should take in all attributes from an instance of user data', () => {
     expect(user.id).to.equal(testUserData.id);
-  })
-
-  it('should have a name', () => {
     expect(user.name).to.equal(testUserData.name);
   })
 
