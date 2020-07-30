@@ -56,4 +56,9 @@ describe('User', () => {
   it('should know about all bookings made for that user', () => {
     expect(user.bookings).to.deep.equal([testBookingsData[0], testBookingsData[2]]);
   })
+
+  it('should have an empty array if there are no matching bookings', () => {
+    const newUser = new User({name: 'Lou', id: 72}, []);
+    expect(newUser.bookings).to.deep.equal([]);
+  })
 });

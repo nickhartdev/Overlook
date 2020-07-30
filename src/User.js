@@ -9,7 +9,7 @@ class User extends Data {
     this.bookings = this.filterBookings(bookings);
   }
 
-  filterBookings(bookings) {
+  filterBookings(bookings = []) {
     return bookings.filter(booking => booking.userID === this.id);
   }
 }
