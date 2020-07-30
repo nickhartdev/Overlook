@@ -12,3 +12,8 @@ const retrieveBookingData = () => {
   return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
     .then(response => response.json());
 }
+
+const getData = () => {
+  return Promise.all([retrieveUserData(), retrieveRoomData(), retrieveBookingData()])
+    .then(dataSets => dataSets);
+}
