@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import User from '../src/User.js';
 
 describe('User', () => {
-  let user, testData;
+  let user, testUserData;
 
   beforeEach(() => {
-    testData = {id: 1, name: 'Bill'}
-    user = new User(testData);
+    testUserData = {id: 1, name: 'Bill'};
+    user = new User(testUserData);
   })
 
   it('should be a function', () => {
@@ -15,6 +15,10 @@ describe('User', () => {
 
   it('should be an instance of User', () => {
     expect(user).to.be.an.instanceof(User);
+  })
+
+  it('should be a child of Data', () => {
+    expect(user.validateDataType).to.be.a('function');
   })
 
   it('should have an id', () => {
