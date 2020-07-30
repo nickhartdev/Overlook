@@ -1,6 +1,9 @@
-class Booking {
+import Data from './Data.js';
+
+class Booking extends Data {
   constructor(bookingData) {
-    this.id = bookingData.id;
+    super();
+    this.id = super.validateDataType(bookingData.id, 'string');
   }
 }
 

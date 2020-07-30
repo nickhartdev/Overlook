@@ -23,6 +23,10 @@ describe('Booking', () => {
     expect(booking).to.be.an.instanceof(Booking);
   })
 
+  it('should be a child of Data', () => {
+    expect(booking.validateDataType).to.be.a('function');
+  })
+
   it('should have an id', () => {
     expect(booking.id).to.equal(testBookingData.id);
   })
