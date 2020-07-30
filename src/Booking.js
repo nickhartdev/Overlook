@@ -4,6 +4,10 @@ class Booking extends Data {
   constructor(bookingData) {
     super();
     this.id = super.validateDataType(bookingData.id, 'string');
+    this.userID = super.validateDataType(bookingData.userID, 'number');
+    this.date = super.validateDataType(bookingData.date, 'string');
+    this.roomNumber = super.validateDataType(bookingData.roomNumber, 'number');
+    this.roomServiceCharges = super.validateDataType(bookingData.roomServiceCharges, 'object');
   }
 }
 

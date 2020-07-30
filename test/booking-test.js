@@ -27,7 +27,11 @@ describe('Booking', () => {
     expect(booking.validateDataType).to.be.a('function');
   })
 
-  it('should have an id', () => {
+  it('should have take in all attributes from bookingData', () => {
     expect(booking.id).to.equal(testBookingData.id);
+    expect(booking.userID).to.equal(testBookingData.userID);
+    expect(booking.date).to.equal(testBookingData.date);
+    expect(booking.roomNumber).to.equal(testBookingData.roomNumber);
+    expect(booking.roomServiceCharges).to.equal(testBookingData.roomServiceCharges);
   })
 })
