@@ -22,10 +22,10 @@ describe('User', () => {
   })
 
   it('should have an id', () => {
-    expect(user.id).to.equal(1);
+    expect(user.id).to.equal(testUserData.id);
   })
 
   it('should have a name', () => {
-    expect(user.name).to.equal('Bill');
+    expect(user.name).to.equal(testUserData.name);
   })
 });
