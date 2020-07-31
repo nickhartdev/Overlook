@@ -7,10 +7,6 @@ import Booking from './Booking.js';
 import DOMUpdate from './DOMUpdates.js';
 import dataFetcher from './data-fetcher.js';
 
-window.onload = (event) => {
-  showUserInfo(49);
-};
-
 async function showUserInfo(id) {
   const domUpdate = new DOMUpdate();
   const currentUser = await dataFetcher.getUserByID(id);
