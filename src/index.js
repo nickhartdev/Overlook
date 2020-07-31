@@ -8,7 +8,7 @@ import DOMUpdate from './DOMUpdates.js';
 import helper from './helper.js';
 
 window.onload = (event) => {
-  showUserInfo(1);
+  showUserInfo(49);
 };
 
 async function showUserInfo(id) {

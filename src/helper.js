@@ -22,8 +22,8 @@ const helper = {
   },
 
   async getUserByID(id) {
-    const userData = await this.retrieveAllUserData();
-    const bookingData = await this.retrieveAllBookingData();
+    const userData = await this.retrieveUserData();
+    const bookingData = await this.retrieveBookingData();
     const currentUserData = userData.filter(user => user.id === id);
 
     return new User(currentUserData[0], bookingData);
