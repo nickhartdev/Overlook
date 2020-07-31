@@ -1,28 +1,22 @@
 const loginHandler = {
   validateLogin(username, password) {
     if (username.includes('customer')) {
-      this.validateCustomerUserName(username);
+      return this.getUserId(username) ? validatePassword : false;
     } else if (username.includes('manager2020')) {
-      validatePassword(password);
+      return validatePassword(password);
     } else {
       return false;
     }
   },
 
-  getUserId(username) {
-    let customerID;
-    if (username.length === 10) {
-      customerID = parseInt(username.slice(-2, username.length));
-    } else if (username.length === 9) {
-      customerID = parseInt(username.slice(-1));
-    }
-    return customerID;
-  }
+  validateUserId(username) {
+    const customerID = username.substr(8);
+    return customerID < 50 && customerID > 0;
+  },
 
-  // check if the username has either customer or manager
-  // if customer, check last two characters
-  // they must be between 0 and 50
-  // if they are, return that id
+  validatePassword(password) {
+    return password === 'overlook2020';
+  }
 }
 
 export default loginHandler;
