@@ -4,6 +4,8 @@ const domUpdates = {
   clickHandler(event) {
     if (event.target.id === 'log-in-btn') {
       this.displayLoginResponse();
+    } else if (event.target.id === 'username' || event.target.id === 'password') {
+      this.hideError();
     }
   },
 
@@ -17,10 +19,16 @@ const domUpdates = {
   displayError() {
     const usernameField = document.querySelector('#username');
     const passwordField = document.querySelector('#password');
+    const errorMessage = document.querySelector('#error-message');
 
-    console.log('uh oh');
-    username.value = '';
-    password.value = '';
+    errorMessage.classList.remove('hidden');
+    usernameField.value = '';
+    passwordField.value = '';
+  },
+
+  hideError() {
+    const errorMessage = document.querySelector('#error-message');
+    if (!errorMessage.classList.contains('hidden')) errorMessage.classList.add('hidden');
   },
 
   displayLandingPage(username) {
