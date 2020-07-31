@@ -24,7 +24,14 @@ describe('loginHandler', () => {
     expect(loginHandler.validatePassword(wrongPassword)).to.equal(false);
   })
 
-  // it('should return false if either credential is wrong', () => {
-  //   expect(loginHandler.validateLogin(custome9))
-  // })
+  it('should return false if either credential is wrong', () => {
+    expect(loginHandler.validateLogin(wrongUsername, password)).to.equal(false);
+    expect(loginHandler.validateLogin(customerUsername, wrongPassword)).to.equal(false);
+    expect(loginHandler.validateLogin(managerUsername, wrongPassword)).to.equal(false);
+  })
+
+  it('should return true if both credentials are correct', () => {
+    expect(loginHandler.validateLogin(customerUsername, password)).to.equal(true);
+    expect(loginHandler.validateLogin(managerUsername, password)).to.equal(true);
+  })
 })

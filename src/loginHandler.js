@@ -1,9 +1,9 @@
 const loginHandler = {
   validateLogin(username, password) {
     if (username.includes('customer')) {
-      return this.getUserId(username) ? validatePassword : false;
-    } else if (username.includes('manager2020')) {
-      return validatePassword(password);
+      return this.validateUserId(username) ? this.validatePassword(password) : false;
+    } else if (username.includes('manager')) {
+      return this.validatePassword(password);
     } else {
       return false;
     }
