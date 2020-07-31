@@ -5,7 +5,7 @@ import User from './User.js';
 import Room from './Room.js';
 import Booking from './Booking.js';
 import DOMUpdate from './DOMUpdates.js';
-import helper from './helper.js';
+import dataFetcher from './helper.js';
 
 window.onload = (event) => {
   showUserInfo(49);

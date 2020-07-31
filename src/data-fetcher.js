@@ -2,7 +2,7 @@ import User from './User.js';
 import Room from './Room.js';
 import Booking from './Booking.js';
 
-const helper = {
+const dataFetcher = {
   retrieveUserData() {
     return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
     .then(response => response.json())
