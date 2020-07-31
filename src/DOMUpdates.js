@@ -9,11 +9,11 @@ const domUpdates = {
     }
   },
 
-  displayLoginResponse() {
+  displayLoginResponse(handler = loginHandler) {
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
 
-    loginHandler.validateLogin(username, password) ? this.displayLandingPage() : this.displayError(username);
+    handler.validateLogin(username, password) ? this.displayLandingPage() : this.displayError(username);
   },
 
   displayError() {

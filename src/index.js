@@ -6,7 +6,3 @@ import Booking from './Booking.js';
 import domUpdates from './DOMUpdates.js';
 import dataFetcher from './dataFetcher.js';
 import loginHandler from './loginHandler.js';
-
-document.addEventListener('click', (event) => {
-  domUpdates.clickHandler(event);
-})
