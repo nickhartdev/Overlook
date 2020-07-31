@@ -1,6 +1,8 @@
-class DOMUpdates {
-  displayData(data) {
-    const testDisplay = document.querySelector('.data');
-    testDisplay.innerText = data;
+class DOMUpdate {
+  displayData(user, selector) {
+    const element = document.querySelector(selector);
+    element.innerText = `${user.name}`;
   }
 }
+
+export default DOMUpdate;
