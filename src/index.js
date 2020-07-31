@@ -1,10 +1,19 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
+import './images/turing-logo.png';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+import User from './User.js';
+import Room from './Room.js';
+import Booking from './Booking.js';
+import DOMUpdate from './DOMUpdates.js';
+import dataFetcher from './helper.js';
 
-console.log('This is the JavaScript entry file - your code begins here.');
+window.onload = (event) => {
+  showUserInfo(49);
+};
+
+async function showUserInfo(id) {
+  const domUpdate = new DOMUpdate();
+  const currentUser = await helper.getUserByID(id);
+
+  domUpdate.displayData(currentUser, '.data');
+}

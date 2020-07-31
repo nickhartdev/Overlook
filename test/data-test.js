@@ -8,7 +8,7 @@ describe('Data', () => {
 
   beforeEach(() => {
     userData = {name: 'Sal', id: 1};
-    badUserData1 = {name: {name: 'Sal'}, id: '1'};
+    badUserData1 = {name: {name: 'Sal'}, id: -1};
     bookingsData = [
       new Booking({
         id: 'a23wfsdov09ansoid897y',
@@ -48,5 +48,9 @@ describe('Data', () => {
   it('should validate a given data type', () => {
     expect(data.validateDataType(user.name, 'string')).to.equal(user.name);
     expect(data.validateDataType(badUser1.name, 'string')).to.equal(null);
+  })
+
+  it('should only accept positive numbers', () => {
+    expect(data.validateDataType(badUser1.id)).to.equal(null);
   })
 })
