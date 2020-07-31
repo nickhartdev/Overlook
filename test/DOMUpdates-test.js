@@ -1,18 +1,12 @@
-import { expect } from 'chai';
-import DOMUpdate from '../src/DOMUpdates.js';
+import chai from 'chai';
+const expect = chai.expect;
 
-describe('DOMUpdate', () => {
-  let domUpdate;
+import User from '../src/User.js';
 
-  beforeEach(() => {
-    domUpdate = new DOMUpdate();
-  })
+import spies from 'chai-spies';
+import domUpdates from '../src/DOMUpdates.js';
+chai.use(spies);
 
-  it('should be a function', () => {
-    expect(DOMUpdate).to.be.a('function');
-  })
+describe('domUpdate', () => {
 
-  it('should be an instance of DOMUpdate', () => {
-    expect(domUpdate).to.be.an.instanceof(DOMUpdate);
-  })
 })
