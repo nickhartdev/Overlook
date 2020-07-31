@@ -5,7 +5,7 @@ import User from './User.js';
 import Room from './Room.js';
 import Booking from './Booking.js';
 import DOMUpdate from './DOMUpdates.js';
-import dataFetcher from './helper.js';
+import dataFetcher from './data-fetcher.js';
 
 window.onload = (event) => {
   showUserInfo(49);
@@ -13,7 +13,7 @@ window.onload = (event) => {
 
 async function showUserInfo(id) {
   const domUpdate = new DOMUpdate();
-  const currentUser = await helper.getUserByID(id);
+  const currentUser = await dataFetcher.getUserByID(id);
 
   domUpdate.displayData(currentUser, '.data');
 }

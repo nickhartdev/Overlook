@@ -30,4 +30,4 @@ const dataFetcher = {
   }
 }
 
-export default helper;
+export default dataFetcher;
