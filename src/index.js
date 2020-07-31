@@ -6,6 +6,7 @@ import Room from './Room.js';
 import Booking from './Booking.js';
 import domUpdates from './DOMUpdates.js';
 import dataFetcher from './data-fetcher.js';
+import login from './login.js';
 
 document.addEventListener('click', (event) => {
   clickHandler(event);
@@ -21,5 +22,5 @@ function validateLogIn() {
   const username = document.querySelector('#username').value;
   const password = document.querySelect('#password').value;
 
-  
+
 }
