@@ -36,7 +36,7 @@ const domUpdates = {
     if (username.includes('customer')) {
       this.changeElementsVisibility('show', ['#welcome-message', '#user-expenditure', '#user-bookings']);
     } else if (username.includes('manager')) {
-      this.changeElementsVisibility('show', [])
+      this.changeElementsVisibility('show', ['#total-rooms-available', '#total-revenue', '#percentage-rooms-occupied']);
     }
   },
 

@@ -58,4 +58,13 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#user-expenditure');
     expect(document.querySelector).to.have.been.called.with('#user-bookings');
   })
+
+  it('should hide the manager\'s login screen when their credentials are correct', () => {
+    domUpdates.displayLandingPage('manager');
+    expect(document.querySelector).to.have.been.called(4);
+    expect(document.querySelector).to.have.been.called.with('#log-in-form');
+    expect(document.querySelector).to.have.been.called.with('#total-rooms-available');
+    expect(document.querySelector).to.have.been.called.with('#total-revenue');
+    expect(document.querySelector).to.have.been.called.with('#percentage-rooms-occupied');
+  })
 })
