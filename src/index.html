@@ -4,10 +4,25 @@
     <title>Webpack Starter Kit</title>
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-    <p class="data"></p>
-
+    <form id="log-in-form">
+      <fieldset >
+        <label for="username">Username:</label>
+        <input type="text" id="username"></input>
+        <label for="password">Password:</label>
+        <input type="password" id="password"></input>
+        <button id="log-in-btn" type="button">Log in</button>
+        <p id="error-message" class="hidden">Invalid username/password</p>
+      </fieldset>
+    </form>
+    <article id="user-landing-page">
+      <h1 id="welcome-message" class="hidden"></h1>
+      <p id="user-expenditure" class="hidden"></p>
+      <ul id="user-bookings" class="hidden"></ul>
+    </article>
+    <article id="manager-landing-page">
+      <h1 id="total-rooms-available" class="hidden"></h1>
+      <p id="total-revenue" class="hidden"></p>
+      <ul id="percentage-rooms-occupied" class="hidden"></ul>
+    </article>
   </body>
 </html>
