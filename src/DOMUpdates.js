@@ -43,7 +43,7 @@ const domUpdates = {
     })
   },
 
-  populateUserBookings(bookings) {
+  populateUserBookings(bookings = []) {
     const userBookings = document.querySelector('#user-bookings');
     bookings.forEach(booking => {
       userBookings.innerHTML += `
