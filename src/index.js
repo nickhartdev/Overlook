@@ -10,3 +10,11 @@ import loginHandler from './loginHandler.js';
 document.addEventListener('click', (event) => {
   clickHandler(event);
 })
+
+const clickHandler = (event) => {
+  if (event.target.id === 'log-in-btn') {
+    domUpdates.displayLoginResponse();
+  } else if (event.target.id === 'username' || event.target.id === 'password') {
+    domUpdates.hideError();
+  }
+}
