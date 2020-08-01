@@ -58,6 +58,12 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#manager-landing-page');
   })
 
+  it('should be able to show a welcome message for a given user', () => {
+    domUpdates.updateWelcomeMessage();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#welcome-message');
+  })
+
   it('should be able to populate a given user\'s booking info', () => {
     domUpdates.populateUserBookings();
     expect(document.querySelector).to.have.been.called(1);

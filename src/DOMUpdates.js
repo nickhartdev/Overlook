@@ -43,6 +43,11 @@ const domUpdates = {
     })
   },
 
+  updateWelcomeMessage(user = {name: '- Uh oh. Looks like we had an error'}) {
+    const welcomeMessage = document.querySelector('#welcome-message');
+    welcomeMessage.innerHTML = `Welcome ${user.name}`;
+  },
+
   populateUserBookings(bookings = []) {
     const userBookings = document.querySelector('#user-bookings');
     bookings.forEach(booking => {
