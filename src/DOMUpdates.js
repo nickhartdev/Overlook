@@ -43,7 +43,7 @@ const domUpdates = {
     })
   },
 
-  updateWelcomeMessage(user = {name: '- Uh oh. Looks like we had an error'}) {
+  updateWelcomeMessage(user = {name: '- uh oh. Looks like we had an error'}) {
     const welcomeMessage = document.querySelector('#welcome-message');
     welcomeMessage.innerHTML = `Welcome ${user.name}`;
   },

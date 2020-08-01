@@ -31,5 +31,7 @@ const startApp = () => {
     dataFetcher.retrieveBookingData()
   ])
     .then(dataSets => new Hotel(dataSets[0], dataSets[1], dataSets[2]))
-    .then(hotel => console.log(hotel));
+    .then(hotel => {
+      // actually don't need to do anything with current user here
+    });
 }
