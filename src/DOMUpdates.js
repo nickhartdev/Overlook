@@ -32,13 +32,13 @@ const domUpdates = {
   },
 
   displayLandingPage(username) {
+    this.changeElementsVisibility('hide', ['#log-in-form']);
     if (username.includes('customer')) {
-      this.changeElementsVisibility('hide', ['#log-in-form']);
       this.changeElementsVisibility('show', ['#welcome-message', '#user-expenditure', '#user-bookings']);
     } else if (username.includes('manager')) {
-
+      this.changeElementsVisibility('show', [])
     }
- },
+  },
 
   changeElementsVisibility(visibilityChange, elementSelectors) {
     elementSelectors.forEach(elementSelector => {
