@@ -1,14 +1,6 @@
 import loginHandler from './loginHandler.js';
 
 const domUpdates = {
-  clickHandler(event) {
-    if (event.target.id === 'log-in-btn') {
-      this.displayLoginResponse();
-    } else if (event.target.id === 'username' || event.target.id === 'password') {
-      this.hideError();
-    }
-  },
-
   displayLoginResponse(handler = loginHandler) {
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
@@ -51,8 +43,16 @@ const domUpdates = {
     })
   },
 
-  displayUserBookings(bookings) {
-
+  populateUserBookings(bookings) {
+    const userBookings = document.querySelector('#user-bookings');
+    bookings.forEach(booking => {
+      userBookings.innerHTML += `
+      <p>On ${booking.date}:</p>
+      <ul>
+        <li>${booking.roomNumber}</li>
+      </ul>
+      `
+    })
   }
 }
 

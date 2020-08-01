@@ -8,5 +8,5 @@ import dataFetcher from './dataFetcher.js';
 import loginHandler from './loginHandler.js';
 
 document.addEventListener('click', (event) => {
-  domUpdates.clickHandler(event);
+  clickHandler(event);
 })
