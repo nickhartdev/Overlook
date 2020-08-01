@@ -13,7 +13,7 @@ const domUpdates = {
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
 
-    handler.validateLogin(username, password) ? this.displayLandingPage() : this.displayError(username);
+    handler.validateLogin(username, password) ? this.displayLandingPage(username) : this.displayError(username);
   },
 
   displayError() {
@@ -43,10 +43,13 @@ const domUpdates = {
   changeElementsVisibility(visibilityChange, elementSelectors) {
     elementSelectors.forEach(elementSelector => {
       const element = document.querySelector(elementSelector);
+      console.log(element);
       if (visibilityChange === 'show') {
-        element.classList.add('hidden')
-      } else if (visibilityChange === 'hide') {
         element.classList.remove('hidden');
+        console.log(element.classList);
+      } else if (visibilityChange === 'hide') {
+        element.classList.add('hidden');
+        console.log(element.classList);
       }
     })
   }
