@@ -11,7 +11,7 @@ const loginHandler = {
 
   validateUserId(username) {
     const customerID = username.substr(8);
-    return customerID < 50 && customerID > 0;
+    return customerID <= 50 && customerID > 0;
   },
 
   validatePassword(password) {

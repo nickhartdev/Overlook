@@ -34,9 +34,9 @@ const domUpdates = {
   displayLandingPage(username) {
     this.changeElementsVisibility('hide', ['#log-in-form']);
     if (username.includes('customer')) {
-      this.changeElementsVisibility('show', ['#welcome-message', '#user-expenditure', '#user-bookings']);
+      this.changeElementsVisibility('show', ['#user-landing-page']);
     } else if (username.includes('manager')) {
-      this.changeElementsVisibility('show', ['#total-rooms-available', '#total-revenue', '#percentage-rooms-occupied']);
+      this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
   },
 
@@ -49,9 +49,11 @@ const domUpdates = {
         element.classList.add('hidden');
       }
     })
+  },
+
+  displayUserBookings(bookings) {
+
   }
-
-
 }
 
 export default domUpdates;
