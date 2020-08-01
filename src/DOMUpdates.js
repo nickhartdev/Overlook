@@ -43,16 +43,15 @@ const domUpdates = {
   changeElementsVisibility(visibilityChange, elementSelectors) {
     elementSelectors.forEach(elementSelector => {
       const element = document.querySelector(elementSelector);
-      console.log(element);
       if (visibilityChange === 'show') {
         element.classList.remove('hidden');
-        console.log(element.classList);
       } else if (visibilityChange === 'hide') {
         element.classList.add('hidden');
-        console.log(element.classList);
       }
     })
   }
+
+
 }
 
 export default domUpdates;
