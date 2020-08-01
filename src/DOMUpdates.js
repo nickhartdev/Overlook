@@ -32,7 +32,8 @@ const domUpdates = {
   },
 
   displayLandingPage(username) {
-    console.log('success!');
+   const loginForm = document.querySelector('#log-in-form');
+   loginForm.classList.add('hidden');
   }
 }
 
