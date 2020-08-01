@@ -6,7 +6,7 @@ const dataFetcher = {
   retrieveUserData() {
     return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
     .then(response => response.json())
-    .then(userData => userData.users);
+    .then(userData => userData.users.map(user => new User(user)));
   },
 
   retrieveRoomData() {
