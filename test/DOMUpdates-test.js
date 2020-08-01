@@ -17,6 +17,11 @@ describe('domUpdate', () => {
     chai.spy.on(mockLoginHandler, ['validateLogin'], () => {});
   })
 
+  it('should hide a list of given elements', () => {
+    domUpdates.hideElements(['element1', 'element2']);
+    expect(document.querySelector).to.have.been.called(2);
+  })
+
   it('should use validate login from the loginHandler to validate credentials', () => {
     domUpdates.displayLoginResponse(mockLoginHandler);
     expect(mockLoginHandler.validateLogin).to.have.been.called(1);
@@ -41,7 +46,7 @@ describe('domUpdate', () => {
 
   it('should hide the login screen when the credentials are correct', () => {
     domUpdates.displayLandingPage();
-    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called(4);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
   })
 })

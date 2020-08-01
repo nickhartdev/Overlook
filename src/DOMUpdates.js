@@ -33,7 +33,18 @@ const domUpdates = {
 
   displayLandingPage(username) {
    const loginForm = document.querySelector('#log-in-form');
+   const welcomeMessage = document.querySelector('#welcome-message');
+   const userExpenditure = document.querySelector('#user-expenditure');
+   const userBookings = document.querySelector('#user-bookings');
+
    loginForm.classList.add('hidden');
+ },
+
+  hideElements(elementSelectors) {
+    elementSelectors.forEach(elementSelector => {
+      const element = document.querySelector(elementSelector);
+      element.classList.add('hidden');
+    })
   }
 }
 
