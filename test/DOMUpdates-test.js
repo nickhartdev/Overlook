@@ -17,8 +17,8 @@ describe('domUpdate', () => {
     chai.spy.on(mockLoginHandler, ['validateLogin'], () => {});
   })
 
-  it('should hide a list of given elements', () => {
-    domUpdates.hideElements(['element1', 'element2']);
+  it('should be able to change the visibiltiy of a list of given elements', () => {
+    domUpdates.changeElementsVisibility('hide', ['element1', 'element2']);
     expect(document.querySelector).to.have.been.called(2);
   })
 
@@ -44,9 +44,18 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#error-message');
   })
 
-  it('should hide the login screen when the credentials are correct', () => {
-    domUpdates.displayLandingPage();
+  it('should hide the user\'s login screen when their credentials are correct', () => {
+    domUpdates.displayLandingPage('customer');
     expect(document.querySelector).to.have.been.called(4);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
+  })
+
+  it('should hide the user\'s login screen when their credentials are correct', () => {
+    domUpdates.displayLandingPage('customer');
+    expect(document.querySelector).to.have.been.called(4);
+    expect(document.querySelector).to.have.been.called.with('#log-in-form');
+    expect(document.querySelector).to.have.been.called.with('#welcome-message');
+    expect(document.querySelector).to.have.been.called.with('#user-expenditure');
+    expect(document.querySelector).to.have.been.called.with('#user-bookings');
   })
 })

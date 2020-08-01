@@ -32,18 +32,22 @@ const domUpdates = {
   },
 
   displayLandingPage(username) {
-   const loginForm = document.querySelector('#log-in-form');
-   const welcomeMessage = document.querySelector('#welcome-message');
-   const userExpenditure = document.querySelector('#user-expenditure');
-   const userBookings = document.querySelector('#user-bookings');
+    if (username.includes('customer')) {
+      this.changeElementsVisibility('hide', ['#log-in-form']);
+      this.changeElementsVisibility('show', ['#welcome-message', '#user-expenditure', '#user-bookings']);
+    } else if (username.includes('manager')) {
 
-   loginForm.classList.add('hidden');
+    }
  },
 
-  hideElements(elementSelectors) {
+  changeElementsVisibility(visibilityChange, elementSelectors) {
     elementSelectors.forEach(elementSelector => {
       const element = document.querySelector(elementSelector);
-      element.classList.add('hidden');
+      if (visibilityChange === 'show') {
+        element.classList.add('hidden')
+      } else if (visibilityChange === 'hide') {
+        element.classList.remove('hidden');
+      }
     })
   }
 }
