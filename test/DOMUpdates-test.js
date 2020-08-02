@@ -14,7 +14,6 @@ describe('domUpdate', () => {
     chai.spy.on(document, ['querySelector'], () => {
       return {
         value: '',
-        moment: () => {},
         classList: {
           remove: () => {},
           contains: () => {},

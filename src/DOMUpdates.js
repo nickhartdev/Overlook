@@ -69,7 +69,7 @@ const domUpdates = {
 
   displayTodaysDate() {
     const todaysDate = document.querySelector('#todays-date');
-    todaysDate.innerHTML = `${moment().format('DD/MM/YYYY')}`;
+    todaysDate.innerHTML = `${moment().format('MM/DD/YYYY')}`;
   },
 
   displayRoomsAvailableForDay(numberOfRooms = 0) {
