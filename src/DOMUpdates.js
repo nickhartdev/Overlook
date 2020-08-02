@@ -64,6 +64,11 @@ const domUpdates = {
       </section>
       `
     })
+  },
+
+  displayNumberOfRoomsAvailableForDay(numberOfRooms = 0) {
+    const totalRoomsAvailable = document.querySelector('#total-rooms-available');
+    totalRoomsAvailable.innerHTML = `As of today, there are ${numberOfRooms} rooms still available.`;
   }
 }
 

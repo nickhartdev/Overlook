@@ -75,4 +75,10 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#customer-expenditure');
   })
+
+  it('should be able to show the number of rooms available for the day', () => {
+    domUpdates.displayNumberOfRoomsAvailableForDay();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#total-rooms-available');
+  })
 })
