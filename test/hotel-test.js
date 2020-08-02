@@ -69,7 +69,7 @@ describe('Hotel', () => {
         roomServiceCharges: []
       })
     ]
-    hotel = new Hotel(testRooms, testBookings);
+    hotel = new Hotel(testRooms, testBookings, '2020/08/02');
   })
 
   it('should be a function', () => {
@@ -90,18 +90,18 @@ describe('Hotel', () => {
   })
 
   it('should hold an array of all bookings for a given date', () => {
-    expect(hotel.findBookingsForDay('2020/08/02')).to.deep.equal([testBookings[2]])
+    expect(hotel.bookingsForDay).to.deep.equal([testBookings[2]])
   })
 
   it('should know the total number of rooms available for a given day', () => {
-    expect(hotel.findNumberOfRoomsAvailableForDay('2020/08/02')).to.equal(2);
+    expect(hotel.numberOfAvailableRoomsForDay).to.equal(2);
   })
 
   it('should know the percentage of rooms booked for a given day', () => {
-    expect(hotel.findPercentageOfRoomsBookedForDay('2020/08/02')).to.equal(33);
+    expect(hotel.occupationPercentageForDay).to.equal(33);
   })
 
   it('should be able to find the total revenue for a given day', () => {
-    expect(hotel.findRevenueForDay('2020/08/02')).to.equal(500);
+    expect(hotel.revenueForDay).to.equal(500);
   })
 })

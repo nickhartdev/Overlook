@@ -1,9 +1,13 @@
 import moment from 'moment';
 
 class Hotel {
-  constructor(rooms, bookings) {
+  constructor(rooms, bookings, date) {
     this.rooms = this.filterAndSortData(rooms);
     this.bookings = this.filterAndSortData(bookings, 'needsToBeSorted');
+    this.bookingsForDay = this.findBookingsForDay(date);
+    this.occupationPercentageForDay = this.findPercentageOfRoomsBookedForDay(date);
+    this.revenueForDay = this.findRevenueForDay(date);
+    this.numberOfAvailableRoomsForDay = this.findNumberOfRoomsAvailableForDay(date);
   }
 
   filterAndSortData(dataSet, needsToBeSorted) {
