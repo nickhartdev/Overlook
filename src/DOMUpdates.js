@@ -1,11 +1,11 @@
 import loginHandler from './loginHandler.js';
 
 const domUpdates = {
-  displayLoginResponse(handler = loginHandler) {
+  checkLoginResponse(handler = loginHandler) {
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
 
-    handler.validateLogin(username, password) ? this.displayLandingPage(username) : this.displayError(username);
+    return handler.validateLogin(username, password);
   },
 
   displayError() {

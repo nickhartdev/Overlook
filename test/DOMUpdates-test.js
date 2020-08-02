@@ -23,9 +23,9 @@ describe('domUpdate', () => {
   })
 
   it('should use validate login from the loginHandler to validate credentials', () => {
-    domUpdates.displayLoginResponse(mockLoginHandler);
+    domUpdates.checkLoginResponse(mockLoginHandler);
     expect(mockLoginHandler.validateLogin).to.have.been.called(1);
-    expect(document.querySelector).to.have.been.called(5);
+    expect(document.querySelector).to.have.been.called(2);
     expect(document.querySelector).to.have.been.called.with('#username');
     expect(document.querySelector).to.have.been.called.with('#password');
   })
