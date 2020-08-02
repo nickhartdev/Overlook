@@ -9,14 +9,14 @@ class User extends Data {
     this.id = super.validateDataType(userData.id, 'number');
     this.name = super.validateDataType(userData.name, 'string');
     this.bookings = this.filterBookings(bookings);
-    this.totalExpenditures = this.calculateTotalExpenditures(roomsData);
+    this.totalExpenditures = parseFloat(this.calculateTotalExpenditures(roomsData).toFixed(2));
   }
 
   filterBookings(bookings = []) {
     return bookings.filter(booking => booking.userID === this.id);
   }
 
-  calculateTotalExpenditures(roomsData) {
+  calculateTotalExpenditures(roomsData = []) {
     return this.bookings.reduce((totalSpent, booking) => {
       let roomMatch = roomsData.find(room => room.number === booking.roomNumber);
       if (!roomMatch) {

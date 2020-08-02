@@ -34,6 +34,7 @@ const startCustomerApp = async (username) => {
   domUpdates.displayLandingPage('customer');
   domUpdates.updateWelcomeMessage(currentCustomer);
   domUpdates.populateUserBookings(currentCustomer.bookings);
+  domUpdates.displayUserExpenditures(currentCustomer);
 }
 
 const startManagerApp = () => {
@@ -42,10 +43,10 @@ const startManagerApp = () => {
 
 const getCurrentCustomer = async (username) => {
   const allUsers = await dataFetcher.retrieveUserData();
-  const allRooms = await dataFetcher.retrieveAndInstantiateRoomData();
   const allBookings = await dataFetcher.retrieveAndInstantiateBookingData();
+  const allRooms = await dataFetcher.retrieveAndInstantiateRoomData();
   const userID = loginHandler.validateCustomerID(username).customerID;
   const userMatch = allUsers.find(user => user.id === userID);
 
-  return new User(userMatch, allBookings);
+  return new User(userMatch, allBookings, allRooms);
 }
