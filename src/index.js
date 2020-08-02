@@ -37,9 +37,9 @@ const logIn = () => {
 }
 
 const startCustomerApp = () => {
-  console.log('customer');
+  domUpdates.displayLandingPage('customer');
 }
 
 const startManagerApp = () => {
-  console.log('manager');
+  domUpdates.displayLandingPage('manager');
 }

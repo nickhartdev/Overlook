@@ -23,11 +23,11 @@ const domUpdates = {
     if (!errorMessage.classList.contains('hidden')) errorMessage.classList.add('hidden');
   },
 
-  displayLandingPage(username) {
+  displayLandingPage(userType) {
     this.changeElementsVisibility('hide', ['#log-in-form']);
-    if (username.includes('customer')) {
+    if (userType === 'customer') {
       this.changeElementsVisibility('show', ['#user-landing-page']);
-    } else if (username.includes('manager')) {
+    } else if (userType === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
   },
