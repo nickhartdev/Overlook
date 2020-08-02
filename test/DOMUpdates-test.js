@@ -69,4 +69,10 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#user-bookings');
   })
+
+  it('should be able to show the total amount a given user has spent', () => {
+    domUpdates.displayUserExpenditures();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#customer-expenditure');
+  })
 })

@@ -48,7 +48,7 @@ const domUpdates = {
     welcomeMessage.innerHTML = `Welcome ${user.name}`;
   },
 
-  displayUserExpenditures(user) {
+  displayUserExpenditures(user = {totalExpenditures: 0}) {
     const customerExpenditure = document.querySelector('#customer-expenditure');
     customerExpenditure.innerHTML = `Your total for all bookings is ${user.totalExpenditures}`
   },
