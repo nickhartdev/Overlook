@@ -55,7 +55,6 @@ const domUpdates = {
   },
 
   populateCustomerBookings(bookedRooms = []) {
-    console.log(bookedRooms);
     const customerBookings = document.querySelector('#customer-bookings');
     bookedRooms.forEach(bookedRoom => {
       customerBookings.innerHTML += `
