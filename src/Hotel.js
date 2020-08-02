@@ -25,6 +25,15 @@ class Hotel {
   findPercentageOfRoomsBookedForDay(date = moment().format('YYYY/MM/DD')) {
     return parseInt((this.findBookingsForDay(date).length / this.rooms.length) * 100);
   }
+
+  findRevenueForDay(date = moment().format('YYYY/MM/DD')) {
+    const bookingsForDay = this.findBookingsForDay(date);
+    return bookingsForDay.reduce((totalRevenue, booking) => {
+      const roomMatch = this.rooms.find(room => room.number = booking.roomNumber);
+      totalRevenue += roomMatch.costPerNight;
+      return totalRevenue
+    }, 0);
+  }
 }
 
 export default Hotel;

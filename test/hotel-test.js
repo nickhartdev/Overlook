@@ -53,7 +53,7 @@ describe('Hotel', () => {
         id: '0n98ph9navdp009un0',
         userID: 1,
         date: '2020/08/02',
-        roomNumber: 14,
+        roomNumber: 1,
         roomServiceCharges: []
       }),
       new Booking({
@@ -81,8 +81,7 @@ describe('Hotel', () => {
     expect(hotel).to.be.an.instanceof(Hotel);
   })
 
-  it('should contain all instances of User, Room, and Booking', () => {
-    expect(hotel.users).to.deep.equal(testUsers);
+  it('should contain all instances of Room and Booking', () => {
     expect(hotel.rooms).to.deep.equal(testRooms);
     expect(hotel.bookings).to.deep.equal(testBookings.slice(0, -1));
   })
@@ -97,5 +96,9 @@ describe('Hotel', () => {
 
   it('should know the percentage of rooms booked for a given day', () => {
     expect(hotel.findPercentageOfRoomsBookedForDay('2020/08/02')).to.equal(33);
+  })
+
+  it('should be able to find the total revenue for a given day', () => {
+    expect(hotel.findRevenueForDay('2020/08/02')).to.equal(500);
   })
 })
