@@ -32,8 +32,7 @@ const dataFetcher = {
     return new User(customerMatch, bookingData, roomData);
   },
 
-  async retrieveHotelDataForDay(date = new Date()) {
-    console.log(date);
+  async retrieveHotelDataForDay(date = moment().format('YYYY/MM/DD')) {
     const roomData = await this.retrieveAndInstantiateRoomData();
     const bookingData = await this.retrieveAndInstantiateBookingData();
 
