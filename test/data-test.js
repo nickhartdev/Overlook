@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import Data from '../src/Data.js';
 import User from '../src/User.js';
 import Booking from '../src/Booking.js';
+import Room from '../src/Room.js';
 
 describe('Data', () => {
   let userData, badUserData1, bookingsData, data, user, badUser1;

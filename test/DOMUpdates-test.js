@@ -48,7 +48,7 @@ describe('domUpdate', () => {
     domUpdates.displayLandingPage('customer');
     expect(document.querySelector).to.have.been.called(2);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
-    expect(document.querySelector).to.have.been.called.with('#user-landing-page');
+    expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
   })
 
   it('should show the manager\'s login screen when their credentials are correct', () => {
