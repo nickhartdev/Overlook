@@ -12,7 +12,15 @@ describe('domUpdate', () => {
     global.document = {};
     mockLoginHandler = {};
     chai.spy.on(document, ['querySelector'], () => {
-      return {value: '', classList: {remove: () => {}, contains: () => {}, add: () => {}}};
+      return {
+        value: '',
+        moment: () => {},
+        classList: {
+          remove: () => {},
+          contains: () => {},
+          add: () => {}
+        }
+      };
     });
     chai.spy.on(mockLoginHandler, ['validateLogin'], () => {});
   })
@@ -64,17 +72,24 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#welcome-message');
   })
 
+  it('should be able to show the total amount a given user has spent', () => {
+    domUpdates.displayCustomerExpenditures();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#customer-expenditure');
+  })
+
   it('should be able to populate a given user\'s booking info', () => {
     domUpdates.populateCustomerBookings();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#customer-bookings');
   })
 
-  it('should be able to show the total amount a given user has spent', () => {
-    domUpdates.displayCustomerExpenditures();
+  it('should be able to display today\'s date', () => {
+    domUpdates.displayTodaysDate();
     expect(document.querySelector).to.have.been.called(1);
-    expect(document.querySelector).to.have.been.called.with('#customer-expenditure');
+    expect(document.querySelector).to.have.been.called.with('#todays-date');
   })
+
 
   it('should be able to show the number of rooms available for the day', () => {
     domUpdates.displayRoomsAvailableForDay();

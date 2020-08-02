@@ -1,4 +1,5 @@
 import loginHandler from './loginHandler.js';
+import moment from 'moment';
 
 const domUpdates = {
   checkLoginResponse(handler = loginHandler) {
@@ -64,6 +65,11 @@ const domUpdates = {
       </section>
       `
     })
+  },
+
+  displayTodaysDate() {
+    const todaysDate = document.querySelector('#todays-date');
+    todaysDate.innerHTML = `${moment().format('DD/MM/YYYY')}`;
   },
 
   displayRoomsAvailableForDay(numberOfRooms = 0) {
