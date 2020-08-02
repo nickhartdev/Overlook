@@ -34,6 +34,10 @@ class Hotel {
       return totalRevenue
     }, 0);
   }
+
+  findNumberOfRoomsAvailableForDay(date = moment().format('YYYY/MM/DD')) {
+    return this.rooms.length - this.findBookingsForDay(date).length;
+  }
 }
 
 export default Hotel;

@@ -1,11 +1,10 @@
 import { expect } from 'chai';
-import User from '../src/User.js';
 import Room from '../src/Room.js';
 import Booking from '../src/Booking.js';
 import Hotel from '../src/Hotel.js';
 
 describe('Hotel', () => {
-  let testUsers, testRooms, testBookings, hotel;
+  let testRooms, testBookings, hotel;
 
   beforeEach(() => {
     testRooms = [
@@ -53,7 +52,7 @@ describe('Hotel', () => {
         id: '0n98ph9navdp009un0',
         userID: 1,
         date: '2020/08/02',
-        roomNumber: 1,
+        roomNumber: 14,
         roomServiceCharges: []
       }),
       new Booking({
@@ -92,6 +91,10 @@ describe('Hotel', () => {
 
   it('should hold an array of all bookings for a given date', () => {
     expect(hotel.findBookingsForDay('2020/08/02')).to.deep.equal([testBookings[2]])
+  })
+
+  it('should know the total number of rooms available for a given day', () => {
+    expect(hotel.findNumberOfRoomsAvailableForDay('2020/08/02')).to.equal(2);
   })
 
   it('should know the percentage of rooms booked for a given day', () => {
