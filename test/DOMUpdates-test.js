@@ -77,7 +77,7 @@ describe('domUpdate', () => {
   })
 
   it('should be able to show the number of rooms available for the day', () => {
-    domUpdates.displayNumberOfRoomsAvailableForDay();
+    domUpdates.displayRoomsAvailableForDay();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#total-rooms-available');
   })
@@ -86,6 +86,12 @@ describe('domUpdate', () => {
     domUpdates.displayTotalRevenueForDay();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#total-revenue');
+  })
+
+  it('should be able to show the number of rooms available for the day', () => {
+    domUpdates.displayOccupationPercentageForDay();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#occupation-percentage');
   })
 
 })

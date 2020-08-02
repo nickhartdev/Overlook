@@ -39,6 +39,5 @@ const startCustomerApp = async (username) => {
 
 const startManagerApp = async () => {
   const hotelInfo = await dataFetcher.retrieveHotelDataForDay();
-  console.log(hotelInfo);
   domUpdates.displayLandingPage('manager');
 }

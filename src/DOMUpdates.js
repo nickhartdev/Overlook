@@ -66,14 +66,19 @@ const domUpdates = {
     })
   },
 
-  displayNumberOfRoomsAvailableForDay(numberOfRooms = 0) {
+  displayRoomsAvailableForDay(numberOfRooms = 0) {
     const totalRoomsAvailable = document.querySelector('#total-rooms-available');
-    totalRoomsAvailable.innerHTML = `As of today, there are ${numberOfRooms} rooms still available.`;
+    totalRoomsAvailable.innerHTML = `${numberOfRooms} are still available for today.`;
   },
 
   displayTotalRevenueForDay(revenueForDay = 0) {
     const totalRevenue = document.querySelector('#total-revenue');
     totalRevenue.innerHTML = `Total revenue for the day so far is $${totalRevenue}`;
+  },
+
+  displayOccupationPercentageForDay(percentage = 0) {
+    const occupationPercentage = document.querySelector('#occupation-percentage');
+    occupationPercentage.innerHTML = `${percentage}% of rooms are occupied for today`;
   }
 }
 
