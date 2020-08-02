@@ -19,6 +19,15 @@ const dataFetcher = {
     return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
     .then(response => response.json())
     .then(bookingData => bookingData.bookings.map(booking => new Booking(booking)));
+  },
+
+  async retrieveCustomerByID(customerID) {
+    const customerData = await this.retrieveUserData();
+    const bookingData = await this.retrieveAndInstantiateBookingData();
+    const roomData = await this.retrieveAndInstantiateRoomData()
+    const customerMatch = customerData.find(customer => customer.id === customerID);
+
+    return new User(customerMatch, bookingData, roomData);
   }
 }
 

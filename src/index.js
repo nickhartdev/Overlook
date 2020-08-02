@@ -1,5 +1,4 @@
 import './css/base.scss';
-
 import User from './User.js';
 import Room from './Room.js';
 import Booking from './Booking.js';
@@ -30,23 +29,14 @@ const logIn = async () => {
 }
 
 const startCustomerApp = async (username) => {
-  const currentCustomer = await getCurrentCustomer(username);
+  const userID = loginHandler.validateCustomerID(username).customerID;
+  const currentCustomer = await dataFetcher.retrieveCustomerByID(userID);
   domUpdates.displayLandingPage('customer');
   domUpdates.updateWelcomeMessage(currentCustomer);
-  domUpdates.populateUserBookings(currentCustomer.bookings);
-  domUpdates.displayUserExpenditures(currentCustomer);
+  domUpdates.populateCustomerBookings(currentCustomer.bookings);
+  domUpdates.displayCustomerExpenditures(currentCustomer);
 }
 
 const startManagerApp = () => {
   domUpdates.displayLandingPage('manager');
-}
-
-const getCurrentCustomer = async (username) => {
-  const allUsers = await dataFetcher.retrieveUserData();
-  const allBookings = await dataFetcher.retrieveAndInstantiateBookingData();
-  const allRooms = await dataFetcher.retrieveAndInstantiateRoomData();
-  const userID = loginHandler.validateCustomerID(username).customerID;
-  const userMatch = allUsers.find(user => user.id === userID);
-
-  return new User(userMatch, allBookings, allRooms);
 }

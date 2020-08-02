@@ -43,23 +43,23 @@ const domUpdates = {
     })
   },
 
-  updateWelcomeMessage(user = {name: '- uh oh. Looks like we had an error'}) {
+  updateWelcomeMessage(customer = {name: '- uh oh. Looks like we had an error'}) {
     const welcomeMessage = document.querySelector('#welcome-message');
-    welcomeMessage.innerHTML = `Welcome ${user.name}`;
+    welcomeMessage.innerHTML = `Welcome ${customer.name}`;
   },
 
-  displayUserExpenditures(user = {totalExpenditures: 0}) {
+  displayCustomerExpenditures(customer = {totalExpenditures: 0}) {
     const customerExpenditure = document.querySelector('#customer-expenditure');
-    customerExpenditure.innerHTML = `Your total for all bookings is ${user.totalExpenditures}`
+    customerExpenditure.innerHTML = `Your total for all bookings is ${customer.totalExpenditures}`
   },
 
-  populateUserBookings(bookings = []) {
-    const userBookings = document.querySelector('#user-bookings');
-    bookings.forEach(booking => {
-      userBookings.innerHTML += `
-      <p>On ${booking.date}:</p>
+  populateCustomerBookings(bookedRooms) {
+    const customerBookings = document.querySelector('#customer-bookings');
+    bookedRooms.forEach(bookedRoom => {
+      customerBookings.innerHTML += `
+      <p>On ${bookedRoom.roomType}:</p>
       <ul>
-        <li>${booking.roomNumber}</li>
+        <li>${bookedRoom.roomNumber}</li>
       </ul>
       `
     })

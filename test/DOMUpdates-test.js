@@ -65,13 +65,13 @@ describe('domUpdate', () => {
   })
 
   it('should be able to populate a given user\'s booking info', () => {
-    domUpdates.populateUserBookings();
+    domUpdates.populateCustomerBookings();
     expect(document.querySelector).to.have.been.called(1);
-    expect(document.querySelector).to.have.been.called.with('#user-bookings');
+    expect(document.querySelector).to.have.been.called.with('#customer-bookings');
   })
 
   it('should be able to show the total amount a given user has spent', () => {
-    domUpdates.displayUserExpenditures();
+    domUpdates.displayCustomerExpenditures();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#customer-expenditure');
   })
