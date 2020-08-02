@@ -53,7 +53,7 @@ const domUpdates = {
     customerExpenditure.innerHTML = `Your total for all bookings is ${customer.totalExpenditures}`
   },
 
-  populateCustomerBookings(bookedRooms) {
+  populateCustomerBookings(bookedRooms = []) {
     const customerBookings = document.querySelector('#customer-bookings');
     bookedRooms.forEach(bookedRoom => {
       customerBookings.innerHTML += `

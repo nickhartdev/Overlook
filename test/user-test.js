@@ -89,4 +89,25 @@ describe('User', () => {
   it('should know how much the user has spent on bookings in total', () => {
     expect(user.totalExpenditures).to.equal(550.00);
   })
+
+  it('should know all info for rooms that a given user has booked', () => {
+    expect(user.bookedRoomInfo).to.deep.equal([{
+      bedSize: 'california king',
+      bidet: false,
+      costPerNight: 500.00,
+      dateBooked: '2020/08/01',
+      numBeds: 1,
+      number: 1,
+      roomType: 'residential suite'
+    },
+    {
+      bedSize: 'hammock',
+      bidet: false,
+      costPerNight: 50.0,
+      dateBooked: '2020/08/02',
+      numBeds: 0,
+      number: 3,
+      roomType: 'bungalow'
+    }])
+  })
 });

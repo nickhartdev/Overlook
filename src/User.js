@@ -10,6 +10,7 @@ class User extends Data {
     this.name = super.validateDataType(userData.name, 'string');
     this.bookings = this.filterBookings(bookings);
     this.totalExpenditures = parseFloat(this.calculateTotalExpenditures(roomsData).toFixed(2));
+    this.bookedRoomInfo = this.createBookedRoomInfo(this.bookings, roomsData);
   }
 
   filterBookings(bookings = []) {
@@ -25,6 +26,15 @@ class User extends Data {
       totalSpent += roomMatch.costPerNight;
       return totalSpent;
     }, 0)
+  }
+
+  createBookedRoomInfo(bookings, roomsData) {
+    return this.bookings.reduce((roomsList, booking) => {
+      const roomData = roomsData.find(room => room.number === booking.roomNumber);
+      roomData.dateBooked = booking.date;
+      roomsList.push(roomData);
+      return roomsList;
+    }, [])
   }
 }
 
