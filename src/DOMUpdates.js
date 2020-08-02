@@ -57,10 +57,11 @@ const domUpdates = {
     const customerBookings = document.querySelector('#customer-bookings');
     bookedRooms.forEach(bookedRoom => {
       customerBookings.innerHTML += `
-      <p>On ${bookedRoom.roomType}:</p>
-      <ul>
-        <li>${bookedRoom.roomNumber}</li>
-      </ul>
+      <section role="figure">
+        <p role="heading">On ${bookedRoom.dateBooked}:</p>
+        <p>Room ${bookedRoom.number}</p>
+        <p>${bookedRoom.roomType}</p>
+      </section>
       `
     })
   }

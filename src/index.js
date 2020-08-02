@@ -33,7 +33,7 @@ const startCustomerApp = async (username) => {
   const currentCustomer = await dataFetcher.retrieveCustomerByID(userID);
   domUpdates.displayLandingPage('customer');
   domUpdates.updateWelcomeMessage(currentCustomer);
-  domUpdates.populateCustomerBookings(currentCustomer.bookings);
+  domUpdates.populateCustomerBookings(currentCustomer.bookedRoomInfo);
   domUpdates.displayCustomerExpenditures(currentCustomer);
 }
 
