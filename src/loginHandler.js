@@ -11,7 +11,7 @@ const loginHandler = {
 
   validateCustomerID(username) {
     const customerID = parseInt(username.substr(8));
-    const isValid = customerID <= 50 && customerID > 0;
+    const isValid = customerID <= 50 && customerID > 0 && username.length === 9 || username.length === 10;
 
     return !isValid ? {isValid: isValid} : {isValid: isValid, customerID: customerID};
   },
