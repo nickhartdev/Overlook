@@ -1,6 +1,5 @@
 class Hotel {
-  constructor(users, rooms, bookings) {
-    this.users = this.filterInvalidData(users);
+  constructor(rooms, bookings) {
     this.rooms = this.filterInvalidData(rooms);
     this.bookings = this.filterInvalidData(bookings);
   }

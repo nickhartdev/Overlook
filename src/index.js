@@ -29,14 +29,16 @@ const logIn = async () => {
 }
 
 const startCustomerApp = async (username) => {
-  const userID = loginHandler.validateCustomerID(username).customerID;
-  const currentCustomer = await dataFetcher.retrieveCustomerByID(userID);
+  const customerID = loginHandler.validateCustomerID(username).customerID;
+  const currentCustomer = await dataFetcher.retrieveCustomerByID(customerID);
   domUpdates.displayLandingPage('customer');
   domUpdates.updateWelcomeMessage(currentCustomer);
   domUpdates.populateCustomerBookings(currentCustomer.bookedRoomInfo);
   domUpdates.displayCustomerExpenditures(currentCustomer);
 }
 
-const startManagerApp = () => {
+const startManagerApp = async () => {
+  const hotelInfo = await dataFetcher.retrieveHotelDataForDay();
+  console.log(hotelInfo);
   domUpdates.displayLandingPage('manager');
 }

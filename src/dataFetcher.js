@@ -1,6 +1,8 @@
+import moment from 'moment';
 import User from './User.js';
 import Room from './Room.js';
 import Booking from './Booking.js';
+import Hotel from './Hotel.js';
 
 const dataFetcher = {
   retrieveUserData() {
@@ -28,6 +30,14 @@ const dataFetcher = {
     const customerMatch = customerData.find(customer => customer.id === customerID);
 
     return new User(customerMatch, bookingData, roomData);
+  },
+
+  async retrieveHotelDataForDay(date = new Date()) {
+    console.log(date);
+    const roomData = await this.retrieveAndInstantiateRoomData();
+    const bookingData = await this.retrieveAndInstantiateBookingData();
+
+    return new Hotel(roomData, bookingData);
   }
 }
 
