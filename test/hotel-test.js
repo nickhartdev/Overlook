@@ -94,7 +94,7 @@ describe('Hotel', () => {
   })
 
   it('should know the total number of rooms available for a given day', () => {
-    expect(hotel.numberOfAvailableRoomsForDay).to.equal(2);
+    expect(hotel.roomsAvailableForDay).to.equal(2);
   })
 
   it('should know the percentage of rooms booked for a given day', () => {

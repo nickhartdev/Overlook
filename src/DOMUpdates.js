@@ -68,17 +68,17 @@ const domUpdates = {
 
   displayRoomsAvailableForDay(numberOfRooms = 0) {
     const totalRoomsAvailable = document.querySelector('#total-rooms-available');
-    totalRoomsAvailable.innerHTML = `${numberOfRooms} are still available for today.`;
+    totalRoomsAvailable.innerHTML = `${numberOfRooms} rooms are still available for today.`;
   },
 
   displayTotalRevenueForDay(revenueForDay = 0) {
     const totalRevenue = document.querySelector('#total-revenue');
-    totalRevenue.innerHTML = `Total revenue for the day so far is $${totalRevenue}`;
+    totalRevenue.innerHTML = `Total revenue for the day so far is $${revenueForDay}.`;
   },
 
   displayOccupationPercentageForDay(percentage = 0) {
     const occupationPercentage = document.querySelector('#occupation-percentage');
-    occupationPercentage.innerHTML = `${percentage}% of rooms are occupied for today`;
+    occupationPercentage.innerHTML = `${percentage}% of rooms are occupied for today.`;
   }
 }
 

@@ -40,4 +40,7 @@ const startCustomerApp = async (username) => {
 const startManagerApp = async () => {
   const hotelInfo = await dataFetcher.retrieveHotelDataForDay();
   domUpdates.displayLandingPage('manager');
+  domUpdates.displayRoomsAvailableForDay(hotelInfo.roomsAvailableForDay);
+  domUpdates.displayOccupationPercentageForDay(hotelInfo.occupationPercentageForDay);
+  domUpdates.displayTotalRevenueForDay(hotelInfo.revenueForDay);
 }

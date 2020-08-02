@@ -7,7 +7,7 @@ class Hotel {
     this.bookingsForDay = this.findBookingsForDay(date);
     this.occupationPercentageForDay = this.findPercentageOfRoomsBookedForDay(date);
     this.revenueForDay = this.findRevenueForDay(date);
-    this.numberOfAvailableRoomsForDay = this.findNumberOfRoomsAvailableForDay(date);
+    this.roomsAvailableForDay = this.findNumberOfRoomsAvailableForDay(date);
   }
 
   filterAndSortData(dataSet, needsToBeSorted) {
@@ -35,7 +35,7 @@ class Hotel {
     return bookingsForDay.reduce((totalRevenue, booking) => {
       const roomMatch = this.rooms.find(room => room.number = booking.roomNumber);
       totalRevenue += roomMatch.costPerNight;
-      return totalRevenue
+      return totalRevenue;
     }, 0);
   }
 
