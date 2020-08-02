@@ -69,6 +69,11 @@ const domUpdates = {
   displayNumberOfRoomsAvailableForDay(numberOfRooms = 0) {
     const totalRoomsAvailable = document.querySelector('#total-rooms-available');
     totalRoomsAvailable.innerHTML = `As of today, there are ${numberOfRooms} rooms still available.`;
+  },
+
+  displayTotalRevenueForDay(revenueForDay = 0) {
+    const totalRevenue = document.querySelector('#total-revenue');
+    totalRevenue.innerHTML = `Total revenue for the day so far is $${totalRevenue}`;
   }
 }
 
