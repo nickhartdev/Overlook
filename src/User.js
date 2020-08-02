@@ -8,13 +8,14 @@ class User extends Data {
     super();
     this.id = super.validateDataType(userData.id, 'number');
     this.name = super.validateDataType(userData.name, 'string');
-    this.bookings = this.filterBookings(bookings);
+    this.bookings = this.filterAndSortBookings(bookings);
     this.totalExpenditures = parseFloat(this.calculateTotalExpenditures(roomsData).toFixed(2));
     this.bookedRoomInfo = this.createBookedRoomInfo(this.bookings, roomsData);
   }
 
-  filterBookings(bookings = []) {
-    return bookings.filter(booking => booking.userID === this.id);
+  filterAndSortBookings(bookings = []) {
+    const filteredBookings = bookings.filter(booking => booking.userID === this.id);
+    return filteredBookings.sort((a, b) => b.date - a.date);
   }
 
   calculateTotalExpenditures(roomsData = []) {

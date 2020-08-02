@@ -88,10 +88,14 @@ describe('Hotel', () => {
   })
 
   it('should filter out any invalid data', () => {
-    expect(hotel.filterInvalidData(testBookings)).to.deep.equal(testBookings.slice(0, -1));
+    expect(hotel.filterAndSortData(testBookings)).to.deep.equal(testBookings.slice(0, -1));
   })
 
   it('should hold an array of all bookings for a given date', () => {
     expect(hotel.findBookingsForDay('2020/08/02')).to.deep.equal([testBookings[2]])
+  })
+
+  it('should know the percentage of rooms booked for a given day', () => {
+    expect(hotel.findPercentageOfRoomsBookedForDay('2020/08/02')).to.equal(33);
   })
 })
