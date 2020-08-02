@@ -12,13 +12,6 @@ document.addEventListener('click', (event) => {
   clickHandler(event);
 })
 
-
-// All starts when the log in button is clicked
-// Based on whether or not the username includes manager or customer
-// run a different startApp function with different fetch requests
-
-// start with how to identify the user type
-
 const clickHandler = (event) => {
   if (event.target.id === 'log-in-btn') {
     logIn();
@@ -27,19 +20,31 @@ const clickHandler = (event) => {
   }
 }
 
-const logIn = () => {
+const logIn = async () => {
   const loginCredentials = domUpdates.checkLoginResponse();
   if (loginCredentials.isValid) {
-    loginCredentials.username.includes('customer') ? startCustomerApp() : startManagerApp();
+    loginCredentials.username.includes('customer') ? await startCustomerApp(loginCredentials.username) : await startManagerApp();
   } else {
     domUpdates.displayError();
   }
 }
 
-const startCustomerApp = () => {
+const startCustomerApp = async (username) => {
+  const currentCustomer = await getCurrentCustomer(username);
   domUpdates.displayLandingPage('customer');
+  domUpdates.updateWelcomeMessage(currentCustomer);
+  domUpdates.populateUserBookings(currentCustomer.bookings);
 }
 
 const startManagerApp = () => {
   domUpdates.displayLandingPage('manager');
+}
+
+const getCurrentCustomer = async (username) => {
+  const allUsers = await dataFetcher.retrieveUserData();
+  const allBookings = await dataFetcher.retrieveAndInstantiateBookingData();
+  const userID = loginHandler.validateCustomerID(username).customerID;
+  const userMatch = allUsers.find(user => user.id === userID);
+
+  return new User(userMatch, allBookings);
 }

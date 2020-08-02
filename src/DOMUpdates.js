@@ -26,7 +26,7 @@ const domUpdates = {
   displayLandingPage(userType) {
     this.changeElementsVisibility('hide', ['#log-in-form']);
     if (userType === 'customer') {
-      this.changeElementsVisibility('show', ['#user-landing-page']);
+      this.changeElementsVisibility('show', ['#customer-landing-page']);
     } else if (userType === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
