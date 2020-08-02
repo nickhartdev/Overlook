@@ -2,7 +2,7 @@ const loginHandler = {
   validateLogin(username, password) {
     if (username.includes('customer')) {
       return this.validateCustomerID(username).isValid ? this.validatePassword(password) : false;
-    } else if (username.includes('manager')) {
+    } else if (username === 'manager') {
       return this.validatePassword(password);
     } else {
       return false;
