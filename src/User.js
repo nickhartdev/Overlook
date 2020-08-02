@@ -30,12 +30,13 @@ class User extends Data {
   }
 
   createBookedRoomInfo(bookings, roomsData) {
-    return this.bookings.reduce((roomsList, booking) => {
+    const bookedRooms = this.bookings.reduce((roomsList, booking) => {
       const roomData = roomsData.find(room => room.number === booking.roomNumber);
       roomData.dateBooked = booking.date;
       roomsList.push(roomData);
       return roomsList;
-    }, [])
+    }, []);
+    return bookedRooms.sort((a, b) => new Date(a.dateBooked) - new Date(b.dateBooked));
   }
 }
 
