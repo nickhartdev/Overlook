@@ -5,7 +5,7 @@ const domUpdates = {
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
 
-    return handler.validateLogin(username, password);
+    return {isValid: handler.validateLogin(username, password), username: username};
   },
 
   displayError() {

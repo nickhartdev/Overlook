@@ -21,16 +21,25 @@ document.addEventListener('click', (event) => {
 
 const clickHandler = (event) => {
   if (event.target.id === 'log-in-btn') {
-    domUpdates.displayLoginResponse();
-    if (loginHandler.validateLogin()) {
-      // set the user type
-      // based on the user type, start the corresponding app version
-    }
+    logIn();
   } else if (event.target.id === 'username' || event.target.id === 'password') {
     domUpdates.hideError();
   }
 }
 
-const startCustomerApp = () => {
+const logIn = () => {
+  const loginCredentials = domUpdates.checkLoginResponse();
+  if (loginCredentials.isValid) {
+    loginCredentials.username.includes('customer') ? startCustomerApp() : startManagerApp();
+  } else {
+    domUpdates.displayError();
+  }
+}
 
+const startCustomerApp = () => {
+  console.log('customer');
+}
+
+const startManagerApp = () => {
+  console.log('manager');
 }
