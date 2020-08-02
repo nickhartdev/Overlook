@@ -5,7 +5,7 @@ import Booking from '../src/Booking.js';
 import Room from '../src/Room.js';
 
 describe('Data', () => {
-  let userData, badUserData1, bookingsData, data, user, badUser1;
+  let userData, badUserData1, bookingsData, roomsData, data, user, badUser1;
 
   beforeEach(() => {
     userData = {name: 'Sal', id: 1};
@@ -33,9 +33,35 @@ describe('Data', () => {
         roomServiceCharges: []
       })
     ]
+    roomsData = [
+      new Room({
+        number: 1,
+        roomType: 'residential suite',
+        bidet: false,
+        bedSize: 'california king',
+        numBeds: 1,
+        costPerNight: 500.00
+      }),
+      new Room({
+        number: 2,
+        roomType: 'yes',
+        bidet: true,
+        bedSize: 'twin',
+        numBeds: 3,
+        costPerNight: 250.00
+      }),
+      new Room({
+        number: 14,
+        roomType: 'bungalow',
+        bidet: false,
+        bedSize: 'hammock',
+        numBeds: 0,
+        costPerNight: 50.0
+      })
+    ]
     data = new Data();
-    user = new User(userData, bookingsData);
-    badUser1 = new User(badUserData1, bookingsData);
+    user = new User(userData, bookingsData, roomsData);
+    badUser1 = new User(badUserData1, bookingsData, roomsData);
   })
 
   it('should be a function', () => {

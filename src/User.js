@@ -9,6 +9,7 @@ class User extends Data {
     this.id = super.validateDataType(userData.id, 'number');
     this.name = super.validateDataType(userData.name, 'string');
     this.bookings = this.filterBookings(bookings);
+    this.totalExpenditures = this.calculateTotalExpenditures(roomsData);
   }
 
   filterBookings(bookings = []) {
@@ -17,7 +18,10 @@ class User extends Data {
 
   calculateTotalExpenditures(roomsData) {
     return this.bookings.reduce((totalSpent, booking) => {
-      const roomMatch = roomsData.find(room => room.number === booking.roomNumber);
+      let roomMatch = roomsData.find(room => room.number === booking.roomNumber);
+      if (!roomMatch) {
+        roomMatch = {costPerNight: 0};
+      }
       totalSpent += roomMatch.costPerNight;
       return totalSpent;
     }, 0)

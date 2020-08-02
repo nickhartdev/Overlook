@@ -48,6 +48,11 @@ const domUpdates = {
     welcomeMessage.innerHTML = `Welcome ${user.name}`;
   },
 
+  displayUserExpenditures(user) {
+    const customerExpenditure = document.querySelector('#customer-expenditure');
+    customerExpenditure.innerHTML = `Your total for all bookings is ${user.totalExpenditures}`
+  },
+
   populateUserBookings(bookings = []) {
     const userBookings = document.querySelector('#user-bookings');
     bookings.forEach(booking => {

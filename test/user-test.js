@@ -57,7 +57,7 @@ describe('User', () => {
         costPerNight: 50.0
       })
     ]
-    user = new User(testUserData, testBookingsData);
+    user = new User(testUserData, testBookingsData, testRoomsData);
   })
 
   it('should be a function', () => {
@@ -87,6 +87,6 @@ describe('User', () => {
   })
 
   it('should know how much the user has spent on bookings in total', () => {
-    expect(user.calculateTotalExpenditures(testRoomsData)).to.equal(550.00);
+    expect(user.totalExpenditures).to.equal(550.00);
   })
 });
