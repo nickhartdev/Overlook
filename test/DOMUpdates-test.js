@@ -92,31 +92,31 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#customer-expenditure');
   })
 
-  it('should be able to populate a given user\'s booking info', () => {
+  it('should populate a given user\'s booking info', () => {
     domUpdates.populateCustomerBookings();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#customer-bookings');
   })
 
-  it('should be able to display today\'s date', () => {
+  it('should display today\'s date', () => {
     domUpdates.displayTodaysDate();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#todays-date');
   })
 
-  it('should be able to show the number of rooms available for the day', () => {
+  it('should show the number of rooms available for the day', () => {
     domUpdates.displayRoomsAvailableForDay();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#total-rooms-available');
   })
 
-  it('should be able to show the number of rooms available for the day', () => {
+  it('should show the total revenue for the day', () => {
     domUpdates.displayTotalRevenueForDay();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#total-revenue');
   })
 
-  it('should be able to show the number of rooms available for the day', () => {
+  it('should show the occupation percentage for the day', () => {
     domUpdates.displayOccupationPercentageForDay();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#occupation-percentage');

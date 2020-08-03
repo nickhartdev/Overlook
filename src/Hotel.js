@@ -7,7 +7,7 @@ class Hotel {
     this.bookingsForDay = this.findBookingsForDay(date);
     this.occupationPercentageForDay = this.findPercentageOfRoomsBookedForDay(date);
     this.revenueForDay = this.findRevenueForDay(date);
-    this.roomsAvailableForDay = this.findNumberOfRoomsAvailableForDay(date);
+    this.roomsAvailableForDay = this.findRoomsAvailableForDay(date);
   }
 
   filterData(dataSet, needsToBeSorted) {
@@ -34,8 +34,12 @@ class Hotel {
     }, 0);
   }
 
-  findNumberOfRoomsAvailableForDay(date = moment().format('YYYY/MM/DD')) {
-    return this.rooms.length - this.findBookingsForDay(date).length;
+  findRoomsAvailableForDay(date = moment().format('YYYY/MM/DD')) {
+    return this.rooms.filter(room => {
+      return this.bookingsForDay.every(booking => {
+        return booking.roomNumber !== room.number;
+      })
+    })
   }
 }
 
