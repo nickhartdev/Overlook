@@ -30,6 +30,7 @@ const domUpdates = {
       this.changeElementsVisibility('show', ['#customer-landing-page', 'nav']);
     } else if (userType === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page', 'nav']);
+      this.changeElementsVisibility('hide', ['#user-booking-link']);
     }
   },
 
