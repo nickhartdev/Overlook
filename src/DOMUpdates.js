@@ -28,10 +28,15 @@ const domUpdates = {
     this.changeElementsVisibility('hide', ['#log-in-form']);
     if (userType === 'customer') {
       this.changeElementsVisibility('show', ['#customer-landing-page', 'nav']);
+      this.changeElementsVisibility('hide', ['#home-link']);
     } else if (userType === 'manager') {
-      this.changeElementsVisibility('show', ['#manager-landing-page', 'nav']);
-      this.changeElementsVisibility('hide', ['#user-booking-link']);
+      this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
+  },
+
+  displayUserBookingPage() {
+    this.changeElementsVisibility('show', ['#customer-booking-page', '#home-link']);
+    this.changeElementsVisibility('hide', ['#customer-landing-page', '#customer-booking-link']);
   },
 
   changeElementsVisibility(visibilityChange, elementSelectors) {

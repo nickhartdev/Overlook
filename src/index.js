@@ -16,6 +16,8 @@ const clickHandler = (event) => {
     logIn();
   } else if (event.target.id === 'username' || event.target.id === 'password') {
     domUpdates.hideError();
+  } else if (event.target.id === 'user-booking-link') {
+    domUpdates.displayUserBookingPage();
   }
 }
 

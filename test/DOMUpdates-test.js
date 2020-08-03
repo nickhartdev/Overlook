@@ -24,6 +24,10 @@ describe('domUpdate', () => {
     chai.spy.on(mockLoginHandler, ['validateLogin'], () => {});
   })
 
+  afterEach(() => {
+    chai.spy.restore();
+  })
+
   it('should be able to change the visibiltiy of a list of given elements', () => {
     domUpdates.changeElementsVisibility('hide', ['element1', 'element2']);
     expect(document.querySelector).to.have.been.called(2);
@@ -53,19 +57,18 @@ describe('domUpdate', () => {
 
   it('should show the user\'s login screen when their credentials are correct', () => {
     domUpdates.displayLandingPage('customer');
-    expect(document.querySelector).to.have.been.called(3);
+    expect(document.querySelector).to.have.been.called(4);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
     expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
     expect(document.querySelector).to.have.been.called.with('nav');
+    expect(document.querySelector).to.have.been.called.with('#home-link');
   })
 
   it('should show the manager\'s login screen when their credentials are correct', () => {
     domUpdates.displayLandingPage('manager');
-    expect(document.querySelector).to.have.been.called(4);
+    expect(document.querySelector).to.have.been.called(3);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
     expect(document.querySelector).to.have.been.called.with('#manager-landing-page');
-    expect(document.querySelector).to.have.been.called.with('nav');
-    expect(document.querySelector).to.have.been.called.with('#user-booking-link');
   })
 
   it('should be able to show a welcome message for a given user', () => {
@@ -111,4 +114,12 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#occupation-percentage');
   })
 
+  it('should display the user booking page when the correct button is clicked', () => {
+    domUpdates.displayUserBookingPage();
+    expect(document.querySelector).to.have.been.called(4);
+    expect(document.querySelector).to.have.been.called.with('#customer-booking-page');
+    expect(document.querySelector).to.have.been.called.with('#home-link');
+    expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
+    expect(document.querySelector).to.have.been.called.with('#customer-booking-link');
+  })
 })
