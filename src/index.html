@@ -4,6 +4,10 @@
     <title>Webpack Starter Kit</title>
   </head>
   <body>
+    <nav class="hidden">
+        <button type="button" id="user-booking-link">Book a room</button>
+        <button type="button" id="home-link">Home</button>
+    </nav>
     <form id="log-in-form">
       <fieldset>
         <label for="username">Username:</label>
@@ -18,6 +22,9 @@
       <h1 id="welcome-message"></h1>
       <p id="customer-expenditure"></p>
       <article id="customer-bookings">Your Bookings:</article>
+    </section>
+    <section id="customer-booking-page" class="hidden">
+      <p>Oh hey</p>
     </section>
     <section id="manager-landing-page" class="hidden">
       <p id="todays-date"></p>
