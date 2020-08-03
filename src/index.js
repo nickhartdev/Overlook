@@ -16,8 +16,10 @@ const clickHandler = (event) => {
     logIn();
   } else if (event.target.id === 'username' || event.target.id === 'password') {
     domUpdates.hideError();
-  } else if (event.target.id === 'user-booking-link') {
+  } else if (event.target.id === 'customer-booking-link') {
     domUpdates.displayUserBookingPage();
+  } else if (event.target.id === 'home-link') {
+    domUpdates.displayHomePage();
   }
 }
 

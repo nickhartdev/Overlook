@@ -2,13 +2,14 @@ import chai from 'chai';
 const expect = chai.expect;
 
 import spies from 'chai-spies';
-import domUpdates from '../src/DOMUpdates.js';
+import DOMUpdates from '../src/DOMUpdates.js';
 chai.use(spies);
 
 describe('domUpdate', () => {
-  let mockLoginHandler;
+  let domUpdates, mockLoginHandler;
 
   beforeEach(() => {
+    domUpdates = new DOMUpdates();
     global.document = {};
     mockLoginHandler = {};
     chai.spy.on(document, ['querySelector'], () => {
@@ -66,7 +67,7 @@ describe('domUpdate', () => {
 
   it('should show the manager\'s login screen when their credentials are correct', () => {
     domUpdates.displayLandingPage('manager');
-    expect(document.querySelector).to.have.been.called(3);
+    expect(document.querySelector).to.have.been.called(2);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
     expect(document.querySelector).to.have.been.called.with('#manager-landing-page');
   })
