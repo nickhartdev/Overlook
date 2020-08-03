@@ -22,6 +22,8 @@ const clickHandler = (event) => {
     domUpdates.displayUserBookingPage();
   } else if (event.target.id === 'home-link') {
     domUpdates.displayLandingPage();
+  } else if (event.target.id === 'date-selector') {
+    domUpdates.logDate();
   }
 }
 

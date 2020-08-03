@@ -86,7 +86,7 @@ describe('Hotel', () => {
   })
 
   it('should filter out any invalid data', () => {
-    expect(hotel.filterAndSortData(testBookings)).to.deep.equal(testBookings.slice(0, -1));
+    expect(hotel.filterData(testBookings)).to.deep.equal(testBookings.slice(0, -1));
   })
 
   it('should hold an array of all bookings for a given date', () => {

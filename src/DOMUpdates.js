@@ -54,6 +54,14 @@ class DOMUpdates {
     })
   }
 
+  logDate() {
+    const datePicker = document.querySelector('#date-selector');
+    datePicker.addEventListener('input', () => {
+      const timeStamp = moment(datePicker.value).format('YYYY/MM/DD')
+      console.log(timeStamp);
+    })
+  }
+
   updateWelcomeMessage(customer = {name: '- uh oh. Looks like we had an error'}) {
     const welcomeMessage = document.querySelector('#welcome-message');
     welcomeMessage.innerHTML = `Welcome ${customer.name}`;
