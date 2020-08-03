@@ -32,7 +32,7 @@ class DOMUpdates {
     this.changeElementsVisibility('hide', ['#log-in-form']);
     if (this.currentUser.includes('customer')) {
       this.changeElementsVisibility('show', ['#customer-landing-page', 'nav']);
-      this.changeElementsVisibility('hide', ['#home-link']);
+      this.changeElementsVisibility('hide', ['#customer-booking-page', '#home-link']);
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
@@ -41,10 +41,6 @@ class DOMUpdates {
   displayUserBookingPage() {
     this.changeElementsVisibility('show', ['#customer-booking-page', '#home-link']);
     this.changeElementsVisibility('hide', ['#customer-landing-page', '#customer-booking-link']);
-  }
-
-  displayHomePage(userType) {
-    this.changeElementsVisibility('show', )
   }
 
   changeElementsVisibility(visibilityChange, elementSelectors) {

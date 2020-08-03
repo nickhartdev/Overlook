@@ -21,7 +21,7 @@ const clickHandler = (event) => {
   } else if (event.target.id === 'customer-booking-link') {
     domUpdates.displayUserBookingPage();
   } else if (event.target.id === 'home-link') {
-    domUpdates.displayHomePage(domUpdates.currentUser);
+    domUpdates.displayLandingPage();
   }
 }
 
