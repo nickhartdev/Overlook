@@ -34,6 +34,10 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called(2);
   })
 
+  it('should keep track of the current user', () => {
+    expect(domUpdates.currentUser).to.equal(null);
+  })
+
   it('should use validate login from the loginHandler to validate credentials', () => {
     domUpdates.checkLoginResponse(mockLoginHandler);
     expect(mockLoginHandler.validateLogin).to.have.been.called(1);
@@ -57,7 +61,8 @@ describe('domUpdate', () => {
   })
 
   it('should show the user\'s login screen when their credentials are correct', () => {
-    domUpdates.displayLandingPage('customer');
+    domUpdates.currentUser = 'customer';
+    domUpdates.displayLandingPage();
     expect(document.querySelector).to.have.been.called(4);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
     expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
@@ -66,7 +71,8 @@ describe('domUpdate', () => {
   })
 
   it('should show the manager\'s login screen when their credentials are correct', () => {
-    domUpdates.displayLandingPage('manager');
+    domUpdates.currentUser = 'manager';
+    domUpdates.displayLandingPage();
     expect(document.querySelector).to.have.been.called(2);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
     expect(document.querySelector).to.have.been.called.with('#manager-landing-page');
@@ -95,7 +101,6 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#todays-date');
   })
-
 
   it('should be able to show the number of rooms available for the day', () => {
     domUpdates.displayRoomsAvailableForDay();

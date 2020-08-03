@@ -2,6 +2,10 @@ import loginHandler from './loginHandler.js';
 import moment from 'moment';
 
 class DOMUpdates {
+  constructor() {
+    this.currentUser = null;
+  }
+
   checkLoginResponse(handler = loginHandler) {
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
@@ -24,12 +28,12 @@ class DOMUpdates {
     if (!errorMessage.classList.contains('hidden')) errorMessage.classList.add('hidden');
   }
 
-  displayLandingPage(userType) {
+  displayLandingPage() {
     this.changeElementsVisibility('hide', ['#log-in-form']);
-    if (userType === 'customer') {
+    if (this.currentUser.includes('customer')) {
       this.changeElementsVisibility('show', ['#customer-landing-page', 'nav']);
       this.changeElementsVisibility('hide', ['#home-link']);
-    } else if (userType === 'manager') {
+    } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
   }
