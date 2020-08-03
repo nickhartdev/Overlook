@@ -1,19 +1,12 @@
 import loginHandler from './loginHandler.js';
+import moment from 'moment';
 
 const domUpdates = {
-  clickHandler(event) {
-    if (event.target.id === 'log-in-btn') {
-      this.displayLoginResponse();
-    } else if (event.target.id === 'username' || event.target.id === 'password') {
-      this.hideError();
-    }
-  },
-
-  displayLoginResponse(handler = loginHandler) {
+  checkLoginResponse(handler = loginHandler) {
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
 
-    handler.validateLogin(username, password) ? this.displayLandingPage(username) : this.displayError(username);
+    return {isValid: handler.validateLogin(username, password), username: username};
   },
 
   displayError() {
@@ -31,12 +24,12 @@ const domUpdates = {
     if (!errorMessage.classList.contains('hidden')) errorMessage.classList.add('hidden');
   },
 
-  displayLandingPage(username) {
+  displayLandingPage(userType) {
     this.changeElementsVisibility('hide', ['#log-in-form']);
-    if (username.includes('customer')) {
-      this.changeElementsVisibility('show', ['#welcome-message', '#user-expenditure', '#user-bookings']);
-    } else if (username.includes('manager')) {
-      this.changeElementsVisibility('show', ['#total-rooms-available', '#total-revenue', '#percentage-rooms-occupied']);
+    if (userType === 'customer') {
+      this.changeElementsVisibility('show', ['#customer-landing-page']);
+    } else if (userType === 'manager') {
+      this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
   },
 
@@ -49,9 +42,50 @@ const domUpdates = {
         element.classList.add('hidden');
       }
     })
+  },
+
+  updateWelcomeMessage(customer = {name: '- uh oh. Looks like we had an error'}) {
+    const welcomeMessage = document.querySelector('#welcome-message');
+    welcomeMessage.innerHTML = `Welcome ${customer.name}`;
+  },
+
+  displayCustomerExpenditures(customer = {totalExpenditures: 0}) {
+    const customerExpenditure = document.querySelector('#customer-expenditure');
+    customerExpenditure.innerHTML = `Your total for all bookings is ${customer.totalExpenditures}`
+  },
+
+  populateCustomerBookings(bookedRooms = []) {
+    const customerBookings = document.querySelector('#customer-bookings');
+    bookedRooms.forEach(bookedRoom => {
+      customerBookings.innerHTML += `
+      <section role="figure">
+        <p role="heading">On ${bookedRoom.dateBooked}:</p>
+        <p>Room ${bookedRoom.number}</p>
+        <p>${bookedRoom.roomType}</p>
+      </section>
+      `
+    })
+  },
+
+  displayTodaysDate() {
+    const todaysDate = document.querySelector('#todays-date');
+    todaysDate.innerHTML = `${moment().format('MM/DD/YYYY')}`;
+  },
+
+  displayRoomsAvailableForDay(numberOfRooms = 0) {
+    const totalRoomsAvailable = document.querySelector('#total-rooms-available');
+    totalRoomsAvailable.innerHTML = `${numberOfRooms} rooms are still available for today.`;
+  },
+
+  displayTotalRevenueForDay(revenueForDay = 0) {
+    const totalRevenue = document.querySelector('#total-revenue');
+    totalRevenue.innerHTML = `Total revenue for the day so far is $${revenueForDay}.`;
+  },
+
+  displayOccupationPercentageForDay(percentage = 0) {
+    const occupationPercentage = document.querySelector('#occupation-percentage');
+    occupationPercentage.innerHTML = `${percentage}% of rooms are occupied for today.`;
   }
-
-
 }
 
 export default domUpdates;

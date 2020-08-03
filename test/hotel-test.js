@@ -1,18 +1,12 @@
 import { expect } from 'chai';
-import User from '../src/User.js';
 import Room from '../src/Room.js';
 import Booking from '../src/Booking.js';
 import Hotel from '../src/Hotel.js';
 
 describe('Hotel', () => {
-  let testUsers, testRooms, testBookings, hotel;
+  let testRooms, testBookings, hotel;
 
   beforeEach(() => {
-    testUsers = [
-      new User({id: 1, name: 'Benedict'}),
-      new User({id: 2, name: 'Cristina'}),
-      new User({id: 3, name: 'Anna'})
-    ];
     testRooms = [
       new Room({
         number: 1,
@@ -75,7 +69,7 @@ describe('Hotel', () => {
         roomServiceCharges: []
       })
     ]
-    hotel = new Hotel(testUsers, testRooms, testBookings);
+    hotel = new Hotel(testRooms, testBookings, '2020/08/02');
   })
 
   it('should be a function', () => {
@@ -86,13 +80,28 @@ describe('Hotel', () => {
     expect(hotel).to.be.an.instanceof(Hotel);
   })
 
-  it('should contain all instances of User, Room, and Booking', () => {
-    expect(hotel.users).to.deep.equal(testUsers);
+  it('should contain all instances of Room and Booking', () => {
     expect(hotel.rooms).to.deep.equal(testRooms);
     expect(hotel.bookings).to.deep.equal(testBookings.slice(0, -1));
   })
 
   it('should filter out any invalid data', () => {
-    expect(hotel.filterInvalidData(testBookings)).to.deep.equal(testBookings.slice(0, -1));
+    expect(hotel.filterAndSortData(testBookings)).to.deep.equal(testBookings.slice(0, -1));
+  })
+
+  it('should hold an array of all bookings for a given date', () => {
+    expect(hotel.bookingsForDay).to.deep.equal([testBookings[2]])
+  })
+
+  it('should know the total number of rooms available for a given day', () => {
+    expect(hotel.roomsAvailableForDay).to.equal(2);
+  })
+
+  it('should know the percentage of rooms booked for a given day', () => {
+    expect(hotel.occupationPercentageForDay).to.equal(33);
+  })
+
+  it('should be able to find the total revenue for a given day', () => {
+    expect(hotel.revenueForDay).to.equal(500);
   })
 })

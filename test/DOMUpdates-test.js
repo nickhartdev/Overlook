@@ -12,7 +12,14 @@ describe('domUpdate', () => {
     global.document = {};
     mockLoginHandler = {};
     chai.spy.on(document, ['querySelector'], () => {
-      return {value: '', classList: {remove: () => {}, contains: () => {}, add: () => {}}};
+      return {
+        value: '',
+        classList: {
+          remove: () => {},
+          contains: () => {},
+          add: () => {}
+        }
+      };
     });
     chai.spy.on(mockLoginHandler, ['validateLogin'], () => {});
   })
@@ -23,9 +30,9 @@ describe('domUpdate', () => {
   })
 
   it('should use validate login from the loginHandler to validate credentials', () => {
-    domUpdates.displayLoginResponse(mockLoginHandler);
+    domUpdates.checkLoginResponse(mockLoginHandler);
     expect(mockLoginHandler.validateLogin).to.have.been.called(1);
-    expect(document.querySelector).to.have.been.called(5);
+    expect(document.querySelector).to.have.been.called(2);
     expect(document.querySelector).to.have.been.called.with('#username');
     expect(document.querySelector).to.have.been.called.with('#password');
   })
@@ -44,27 +51,61 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#error-message');
   })
 
-  it('should hide the user\'s login screen when their credentials are correct', () => {
+  it('should show the user\'s login screen when their credentials are correct', () => {
     domUpdates.displayLandingPage('customer');
-    expect(document.querySelector).to.have.been.called(4);
+    expect(document.querySelector).to.have.been.called(2);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
+    expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
   })
 
-  it('should hide the user\'s login screen when their credentials are correct', () => {
-    domUpdates.displayLandingPage('customer');
-    expect(document.querySelector).to.have.been.called(4);
-    expect(document.querySelector).to.have.been.called.with('#log-in-form');
-    expect(document.querySelector).to.have.been.called.with('#welcome-message');
-    expect(document.querySelector).to.have.been.called.with('#user-expenditure');
-    expect(document.querySelector).to.have.been.called.with('#user-bookings');
-  })
-
-  it('should hide the manager\'s login screen when their credentials are correct', () => {
+  it('should show the manager\'s login screen when their credentials are correct', () => {
     domUpdates.displayLandingPage('manager');
-    expect(document.querySelector).to.have.been.called(4);
+    expect(document.querySelector).to.have.been.called(2);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
-    expect(document.querySelector).to.have.been.called.with('#total-rooms-available');
-    expect(document.querySelector).to.have.been.called.with('#total-revenue');
-    expect(document.querySelector).to.have.been.called.with('#percentage-rooms-occupied');
+    expect(document.querySelector).to.have.been.called.with('#manager-landing-page');
   })
+
+  it('should be able to show a welcome message for a given user', () => {
+    domUpdates.updateWelcomeMessage();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#welcome-message');
+  })
+
+  it('should be able to show the total amount a given user has spent', () => {
+    domUpdates.displayCustomerExpenditures();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#customer-expenditure');
+  })
+
+  it('should be able to populate a given user\'s booking info', () => {
+    domUpdates.populateCustomerBookings();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#customer-bookings');
+  })
+
+  it('should be able to display today\'s date', () => {
+    domUpdates.displayTodaysDate();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#todays-date');
+  })
+
+
+  it('should be able to show the number of rooms available for the day', () => {
+    domUpdates.displayRoomsAvailableForDay();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#total-rooms-available');
+  })
+
+  it('should be able to show the number of rooms available for the day', () => {
+    domUpdates.displayTotalRevenueForDay();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#total-revenue');
+  })
+
+  it('should be able to show the number of rooms available for the day', () => {
+    domUpdates.displayOccupationPercentageForDay();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called.with('#occupation-percentage');
+  })
+
 })
