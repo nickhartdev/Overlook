@@ -7,3 +7,11 @@
   height: 100px;
   border: 1px solid black;
 }
+
+@mixin card--sm() {
+  .card {
+    width: 80%;
+    margin: auto;
+    margin-top: 1em;
+  }
+}

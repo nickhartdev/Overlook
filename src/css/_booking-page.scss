@@ -41,3 +41,10 @@
 input[type="radio"] {
   margin-left: 1em;
 }
+
+@mixin customer-booking-page--sm() {
+  #customer-booking-page {
+    display: flex;
+    flex-flow: column;
+  }
+}
