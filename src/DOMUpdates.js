@@ -30,30 +30,86 @@ class DOMUpdates {
   }
 
   displayLandingPage() {
-    this.changeElementsVisibility('hide', ['#log-in-form']);
     if (this.currentUser.includes('customer')) {
-      this.changeElementsVisibility('show', ['#customer-landing-page', 'nav', '#customer-booking-link']);
-      this.changeElementsVisibility('hide', ['#customer-booking-page', '#home-link', '#back-to-search-link', '#room-booking-page']);
+      this.changeElementsVisibility('show', [
+        '#customer-landing-page',
+        'nav',
+        '#customer-booking-link',
+        '#customer-bookings',
+        '#customer-expenditure'
+      ]);
+      this.changeElementsVisibility('hide', [
+        '#log-in-form',
+        '#customer-booking-page',
+        '#home-link',
+        '#back-to-search-link',
+        '#room-booking-page',
+        'fieldset',
+        '#search-page-header',
+        '#date-selector',
+        '#booking-search-btn',
+        '#room-search-form',
+        '#available-rooms',
+        '#clear-search-btn'
+      ]);
+      this.hideAllCards('.available-room-card');
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
+      this.changeElementsVisibility('hide', [
+        '#log-in-form',
+        'fieldset'
+      ]);
     }
   }
 
   displayUserBookingPage() {
-    this.changeElementsVisibility('show', ['#customer-booking-page', '#home-link', '#available-rooms']);
-    this.changeElementsVisibility('hide', ['#customer-landing-page', '#customer-booking-link', '#room-booking-page']);
+    this.changeElementsVisibility('show', [
+      '#customer-booking-page',
+      '#home-link',
+      '#available-rooms',
+      '#search-page-header',
+      '#date-selector',
+      '#booking-search-btn',
+      '#room-search-form',
+      '#clear-search-btn'
+    ]);
+    this.changeElementsVisibility('hide', [
+      '#customer-landing-page',
+      '#customer-booking-link',
+      '#room-booking-page',
+      '#customer-bookings',
+      '#customer-expenditure',
+      '#available-rooms',
+      '#back-to-search-link'
+    ]);
   }
 
   displayRoomBookingPage(room = {roomType: 'Uh oh. Looks like we had an error'}) {
     const roomBookingPage = document.querySelector('#room-booking-page');
-    this.changeElementsVisibility('show', ['#room-booking-page', '#back-to-search-link']);
-    this.changeElementsVisibility('hide', ['#customer-booking-page', '#available-rooms']);
+    this.changeElementsVisibility('show', [
+      '#room-booking-page',
+      '#back-to-search-link'
+    ]);
+    this.changeElementsVisibility('hide', [
+      '#customer-booking-page',
+      '#available-rooms',
+      '#clear-search-btn',
+      '#search-page-header',
+      '#room-search-form'
+    ]);
+    this.hideAllCards('.available-room-card');
 
     roomBookingPage.innerHTML =
-    ` <h1>For ${moment(this.date).format('dddd, MMMM do YYYY')}</h1>
-      <p>${room.roomType}</p>
-      <p>${room.number}</p>
-      <button class="room-booking-btn" id="${room.number}">Book</button>`
+    ` <h1 id="booking-page-header">For ${moment(this.date).format('dddd, MMMM do YYYY')}</h1>
+      <p class="booking-page-text">${room.roomType}</p>
+      <button class="room-booking-btn" id="${room.number}">Book</button>`;
+  }
+
+  hideAllCards(cardSelector) {
+    const cards = document.querySelectorAll(cardSelector);
+    cards.forEach(card => {
+      card.classList.add('hidden');
+    })
   }
 
   displayApologyPage() {
@@ -79,15 +135,16 @@ class DOMUpdates {
 
   displayCustomerExpenditures(customer = {totalExpenditures: 0}) {
     const customerExpenditure = document.querySelector('#customer-expenditure');
-    customerExpenditure.innerHTML = `Your total for all bookings is ${customer.totalExpenditures}`
+    customerExpenditure.innerHTML = `Your total for all bookings is ${customer.totalExpenditures}.`
   }
 
   populateCustomerBookings(bookedRooms = []) {
     const customerBookings = document.querySelector('#customer-bookings');
+    customerBookings.innerHTML = '';
     bookedRooms.forEach(bookedRoom => {
       customerBookings.innerHTML += `
-      <section role="figure">
-        <p role="heading">On ${bookedRoom.dateBooked}:</p>
+      <section role="figure" class="customer-booking booking-card card">
+        <p role="heading">${bookedRoom.dateBooked}</p>
         <p>Room ${bookedRoom.number}</p>
         <p>${bookedRoom.roomType}</p>
       </section>
@@ -117,15 +174,29 @@ class DOMUpdates {
     return roomType;
   }
 
+  resetSearchForm() {
+    const roomTypeButtons = document.querySelectorAll('input[name="room-type"]');
+    const datePicker = document.querySelector('#date-selector');
+
+    this.changeElementsVisibility('hide', ['#available-rooms']);
+    this.hideAllCards('.available-room-card')
+    datePicker.value = '';
+    roomTypeButtons.forEach(button => {
+      button.checked = false;
+    });
+  }
+
   populateAvailableRooms(availableRooms = []) {
+    this.changeElementsVisibility('show', ['#available-rooms']);
     const availableRoomsSection = document.querySelector('#available-rooms');
     availableRoomsSection.innerHTML = '';
-    console.log(availableRooms);
     availableRooms.forEach(room => {
       availableRoomsSection.innerHTML += `
+      <section role="figure" class="available-room-card card">
         <h1>${room.roomType}</h1>
         <p>${room.number}</p>
         <button type="button" class="more-info-btn" id="${room.number}">More Info</button>
+      </section>
       `
     })
   }

@@ -1,0 +1,19 @@
+#welcome-message {
+  font-size: 1.5em;
+  padding: 1em 1.5em;
+}
+
+#booking-header {
+  padding: 1em 1.5em;
+}
+
+#customer-expenditure {
+  padding: 0em 2.35em;
+}
+
+#customer-bookings {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+  margin: 0 3em;
+}

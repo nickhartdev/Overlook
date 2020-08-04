@@ -19,7 +19,7 @@ const buttonHandler = async (event) => {
   } else if (event.target.id === 'customer-booking-link') {
     domUpdates.displayUserBookingPage();
   } else if (event.target.id === 'home-link') {
-    domUpdates.displayLandingPage();
+    refreshCustomerApp(domUpdates.currentUser);
   } else if (event.target.id === 'booking-search-btn') {
     domUpdates.date = domUpdates.getDateFromForm();
     const roomType = domUpdates.getRoomTypeFromForm();
@@ -30,13 +30,15 @@ const buttonHandler = async (event) => {
     domUpdates.displayUserBookingPage();
   } else if (event.target.classList.contains('room-booking-btn')) {
     bookRoom(event);
+  } else if (event.target.id === 'clear-search-btn') {
+    domUpdates.resetSearchForm()
   }
 }
 
 const logIn = async () => {
   const loginCredentials = domUpdates.checkLoginResponse();
   if (loginCredentials.isValid) {
-    loginCredentials.username.includes('customer') ? await startCustomerApp(loginCredentials.username) : await startManagerApp();
+    loginCredentials.username.includes('customer') ? await refreshCustomerApp(loginCredentials.username) : await startManagerApp();
   } else {
     domUpdates.displayError();
   }
@@ -46,10 +48,10 @@ const checkAndDisplayAvailableRooms = async (date, roomType) => {
   const hotelData = await dataHandler.retrieveHotelDataForDay(date);
   if (roomType) {
     const roomsByType = hotelData.filterRoomsByType(roomType);
-    roomsByType === [] ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(roomsByType);
+    roomsByType === [] ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(roomsByType, date);
   } else {
     const availableRooms = hotelData.roomsAvailableForDay;
-    availableRooms === [] ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(availableRooms);
+    availableRooms === [] ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(availableRooms, date);
   }
 }
 
@@ -68,7 +70,7 @@ const bookRoom = (event) => {
   alert(`Room ${roomNumber} booked!`);
 }
 
-const startCustomerApp = async (username) => {
+const refreshCustomerApp = async (username) => {
   const customerID = loginHandler.validateCustomerID(username).customerID;
   const currentCustomer = await dataHandler.retrieveCustomerByID(customerID);
   domUpdates.currentUser = username;

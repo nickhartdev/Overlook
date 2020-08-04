@@ -124,6 +124,12 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#customer-bookings');
   })
 
+  it('should reset the room search form when the correct button is clicked', () => {
+    domUpdates.resetSearchForm();
+    expect(document.querySelector).to.have.been.called(1);
+    expect(document.querySelectorAll).to.have.been.called(1);
+  })
+
   it('should display today\'s date', () => {
     domUpdates.displayTodaysDate();
     expect(document.querySelector).to.have.been.called(1);

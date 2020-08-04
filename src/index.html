@@ -2,6 +2,7 @@
 <html lang="en-US">
   <head>
     <title>Webpack Starter Kit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
     <nav class="hidden">
@@ -11,44 +12,66 @@
     </nav>
     <form id="log-in-form">
       <fieldset>
-        <label for="username">Username:</label>
-        <input type="text" id="username" value="customer20"></input>
-        <label for="password" value="overlook2020">Password:</label>
-        <input type="password" id="password"></input>
+        <legend>Welcome to Overlook</legend>
+        <label for="username" class="log-in-label">Username:</label>
+        <input type="text" id="username" class="log-in-field"></input>
+        <label for="password" value="overlook2020" class="log-in-label">Password:</label>
+        <input type="password" id="password" class="log-in-field"></input>
         <button id="log-in-btn" type="button">Log in</button>
         <p id="error-message" class="hidden">Invalid username/password</p>
       </fieldset>
     </form>
-    <article id="customer-landing-page" class="hidden">
-      <h1 id="welcome-message"></h1>
-      <p id="customer-expenditure"></p>
-      <article id="customer-bookings">Your Bookings:</article>
-    </article>
-    <article id="customer-booking-page" class="hidden">
-      <label for="date-selector">Search by date</label>
-      <input type="date" id="date-selector"></input>
-      <button type="button" id="booking-search-btn">Search</button>
-      <form id="room-type-tags">
-        <input type="radio" class="room-type-btn" name="room-type" value="suite"></input>
-        <label for="suite">Suite</label>
-        <input type="radio" class="room-type-btn" name="room-type" value="residential suite"></input>
-        <label for="residential">Residential Suite</label>
-        <input type="radio" class="room-type-btn" name="room-type" value="junior suite"></input>
-        <label for="junior">Junior Suite</label>
-        <input type="radio" class="room-type-btn" name="room-type" value="single room"></input>
-        <label for="single">Single Room</label>
-      </form>
-      <section id="available-rooms"></section>
-    </article>
-    <article id="room-booking-page" class="hidden"></article>
-    <article id="apology-page" class="hidden">
-      <h1>So sorry! Looks like we don't have an available rooms that fit your criteria. Please try another search.</h1>
-    </article>
-    <article id="manager-landing-page" class="hidden">
-      <p id="todays-date"></p>
-      <p id="total-rooms-available"></p>
-      <p id="total-revenue"></p>
-      <p id="occupation-percentage"></p>
-    </article>
+    <main>
+      <article id="customer-landing-page" class="hidden">
+        <h1 id="welcome-message"></h1>
+        <p id="customer-expenditure"></p>
+        <h2 id="booking-header">Your Bookings:</h2>
+        <article id="customer-bookings" class="hidden"></article>
+      </article>
+      <article id="customer-booking-page" class="hidden">
+        <h1 id="search-page-header" class="hidden">Search our Rooms</h1>
+        <form id="room-search-form" class="hidden">
+          <fieldset>
+            <legend>Choose a date</legend>
+            <label for="date-selector" class="hidden">Search by Day</label>
+            <input type="date" id="date-selector" class="hidden"></input>
+          </fieldset>
+          <fieldset>
+            <legend>Choose a room type</legend>
+            <div role="switch">
+              <input type="radio" class="room-type-btn" name="room-type" value="suite"></input>
+              <label for="suite">Suite</label>
+            </div>
+            <div role="switch">
+              <input type="radio" class="room-type-btn" name="room-type" value="residential suite"></input>
+              <label for="residential">Residential Suite</label>
+            </div>
+            <div role="switch">
+              <input type="radio" class="room-type-btn" name="room-type" value="junior suite"></input>
+              <label for="junior">Junior Suite</label>
+            </div>
+            <div role="switch">
+              <input type="radio" class="room-type-btn" name="room-type" value="single room"></input>
+              <label for="single">Single Room</label>
+            </div>
+          </fieldset>
+          <div role="group">
+            <button type="button" id="booking-search-btn" class="hidden">Search</button>
+            <button type="button" id="clear-search-btn" class="hidden">Clear Search</button>
+          </div>
+        </form>
+        <section id="available-rooms" class="hidden"></section>
+      </article>
+      <article id="room-booking-page" class="hidden"></article>
+      <article id="apology-page" class="hidden">
+        <h1>So sorry! Looks like we don't have an available rooms that fit your criteria. Please try another search.</h1>
+      </article>
+      <article id="manager-landing-page" class="hidden">
+        <p id="todays-date"></p>
+        <p id="total-rooms-available"></p>
+        <p id="total-revenue"></p>
+        <p id="occupation-percentage"></p>
+      </article>
+  </main>
   </body>
 </html>
