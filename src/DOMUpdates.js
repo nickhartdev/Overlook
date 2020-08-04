@@ -39,8 +39,8 @@ class DOMUpdates {
   }
 
   displayUserBookingPage() {
-    this.changeElementsVisibility('show', ['#customer-booking-page', '#home-link']);
-    this.changeElementsVisibility('hide', ['#customer-landing-page', '#customer-booking-link']);
+    this.changeElementsVisibility('show', ['#customer-booking-page', '#home-link', '#available-rooms']);
+    this.changeElementsVisibility('hide', ['#customer-landing-page', '#customer-booking-link', '#room-booking-page']);
   }
 
   displayRoomBookingPage(room = {roomType: 'Uh oh. Looks like we had an error'}) {
@@ -90,7 +90,12 @@ class DOMUpdates {
 
   getDateFromForm() {
     const datePicker = document.querySelector('#date-selector');
-    const date = moment(datePicker.value).format('YYYY/MM/DD');
+    let date;
+    if (datePicker.value) {
+      date = moment(datePicker.value).format('YYYY/MM/DD');
+    } else {
+      date = moment().format('YYYY/MM/DD');
+    }
     return date;
   }
 
@@ -108,6 +113,7 @@ class DOMUpdates {
   populateAvailableRooms(availableRooms = []) {
     const availableRoomsSection = document.querySelector('#available-rooms');
     availableRoomsSection.innerHTML = '';
+    console.log(availableRooms);
     availableRooms.forEach(room => {
       availableRoomsSection.innerHTML += `
         <h1>${room.roomType}</h1>

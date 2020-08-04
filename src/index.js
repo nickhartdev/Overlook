@@ -29,6 +29,8 @@ const buttonHandler = async (event) => {
     checkAndDisplayAvailableRooms(date, roomType);
   } else if (event.target.classList.contains('more-info-btn')) {
     getAndDisplayRoomMatch(event.target.id);
+  } else if (event.target.id === 'back-to-search-link') {
+    domUpdates.displayUserBookingPage();
   }
 }
 
@@ -41,10 +43,10 @@ const logIn = async () => {
   }
 }
 
-const checkAndDisplayAvailableRooms = async (date, types) => {
+const checkAndDisplayAvailableRooms = async (date, roomType) => {
   const hotelData = await dataFetcher.retrieveHotelDataForDay(date);
-  if (types) {
-    domUpdates.populateAvailableRooms(hotelData.filterRoomsByType(types));
+  if (roomType) {
+    domUpdates.populateAvailableRooms(hotelData.filterRoomsByType(roomType));
   } else {
     domUpdates.populateAvailableRooms(hotelData.roomsAvailableForDay);
   }
