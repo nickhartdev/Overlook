@@ -54,14 +54,6 @@ class DOMUpdates {
     })
   }
 
-  logDate() {
-    const datePicker = document.querySelector('#date-selector');
-    datePicker.addEventListener('input', () => {
-      const timeStamp = moment(datePicker.value).format('YYYY/MM/DD')
-      console.log(timeStamp);
-    })
-  }
-
   updateWelcomeMessage(customer = {name: '- uh oh. Looks like we had an error'}) {
     const welcomeMessage = document.querySelector('#welcome-message');
     welcomeMessage.innerHTML = `Welcome ${customer.name}`;
@@ -85,12 +77,29 @@ class DOMUpdates {
     })
   }
 
+  getDateFromForm() {
+    const datePicker = document.querySelector('#date-selector');
+    const date = moment(datePicker.value).format('YYYY/MM/DD');
+    console.log(typeof date);
+    return date;
+  }
+
+  populateAvailableRooms(availableRooms) {
+    const availableRoomsSection = document.querySelector('#available-rooms');
+    availableRoomsSection.innerHTML = '';
+    availableRooms.forEach(room => {
+      availableRoomsSection.innerHTML += `
+        <h1>${room.roomType}</h1>
+      `
+    })
+  }
+
   displayTodaysDate() {
     const todaysDate = document.querySelector('#todays-date');
     todaysDate.innerHTML = `${moment().format('MM/DD/YYYY')}`;
   }
 
-  displayRoomsAvailableForDay(numberOfRooms = 0) {
+  displayNumberOfRoomsAvailableForDay(numberOfRooms = 0) {
     const totalRoomsAvailable = document.querySelector('#total-rooms-available');
     totalRoomsAvailable.innerHTML = `${numberOfRooms} rooms are still available for today.`;
   }

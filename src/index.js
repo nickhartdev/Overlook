@@ -6,6 +6,7 @@ import Hotel from './Hotel.js';
 import DOMUpdates from './DOMUpdates.js';
 import dataFetcher from './dataFetcher.js';
 import loginHandler from './loginHandler.js';
+import moment from 'moment';
 
 const domUpdates = new DOMUpdates();
 
@@ -22,8 +23,9 @@ const clickHandler = (event) => {
     domUpdates.displayUserBookingPage();
   } else if (event.target.id === 'home-link') {
     domUpdates.displayLandingPage();
-  } else if (event.target.id === 'date-selector') {
-    domUpdates.logDate();
+  } else if (event.target.id === 'booking-search-btn') {
+    let date = domUpdates.getDateFromForm();
+    checkAndDisplayAvailableRooms(date);
   }
 }
 
@@ -34,6 +36,11 @@ const logIn = async () => {
   } else {
     domUpdates.displayError();
   }
+}
+
+const checkAndDisplayAvailableRooms = async (date) => {
+  const hotelData = await dataFetcher.retrieveHotelDataForDay(date);
+  domUpdates.populateAvailableRooms(hotelData.roomsAvailableForDay);
 }
 
 const startCustomerApp = async (username) => {
@@ -51,7 +58,7 @@ const startManagerApp = async () => {
   domUpdates.currentUser = 'manager';
   domUpdates.displayLandingPage();
   domUpdates.displayTodaysDate();
-  domUpdates.displayRoomsAvailableForDay(hotelInfo.roomsAvailableForDay);
+  domUpdates.displayNumberOfRoomsAvailableForDay(hotelInfo.roomsAvailableForDay.length);
   domUpdates.displayOccupationPercentageForDay(hotelInfo.occupationPercentageForDay);
   domUpdates.displayTotalRevenueForDay(hotelInfo.revenueForDay);
 }

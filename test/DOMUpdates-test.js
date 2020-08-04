@@ -105,7 +105,7 @@ describe('domUpdate', () => {
   })
 
   it('should show the number of rooms available for the day', () => {
-    domUpdates.displayRoomsAvailableForDay();
+    domUpdates.displayNumberOfRoomsAvailableForDay();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#total-rooms-available');
   })
@@ -130,4 +130,13 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
     expect(document.querySelector).to.have.been.called.with('#customer-booking-link');
   })
+
+  // Spent forever figuring out how to mock addEventListener for this one - I'll need to
+  // revisit this
+
+  // it('should keep track of what date a user selects from the datePicker', () => {
+  //   domUpdates.retrieveDateFromForm();
+  //   expect(document.querySelector).to.have.been.called(1);
+  //   expect(document.querySelector).to.have.been.called.with('#date-selector');
+  // })
 })
