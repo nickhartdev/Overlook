@@ -20,36 +20,39 @@
         <p id="error-message" class="hidden">Invalid username/password</p>
       </fieldset>
     </form>
-    <article id="customer-landing-page" class="hidden">
-      <h1 id="welcome-message"></h1>
-      <p id="customer-expenditure"></p>
-      <article id="customer-bookings">Your Bookings:</article>
-    </article>
-    <article id="customer-booking-page" class="hidden">
-      <label for="date-selector">Search by date</label>
-      <input type="date" id="date-selector"></input>
-      <button type="button" id="booking-search-btn">Search</button>
-      <form id="room-type-tags">
-        <input type="radio" class="room-type-btn" name="room-type" value="suite"></input>
-        <label for="suite">Suite</label>
-        <input type="radio" class="room-type-btn" name="room-type" value="residential suite"></input>
-        <label for="residential">Residential Suite</label>
-        <input type="radio" class="room-type-btn" name="room-type" value="junior suite"></input>
-        <label for="junior">Junior Suite</label>
-        <input type="radio" class="room-type-btn" name="room-type" value="single room"></input>
-        <label for="single">Single Room</label>
-      </form>
-      <section id="available-rooms"></section>
-    </article>
-    <article id="room-booking-page" class="hidden"></article>
-    <article id="apology-page" class="hidden">
-      <h1>So sorry! Looks like we don't have an available rooms that fit your criteria. Please try another search.</h1>
-    </article>
-    <article id="manager-landing-page" class="hidden">
-      <p id="todays-date"></p>
-      <p id="total-rooms-available"></p>
-      <p id="total-revenue"></p>
-      <p id="occupation-percentage"></p>
-    </article>
+    <main>
+      <section id="customer-landing-page" class="hidden">
+        <h1 id="welcome-message"></h1>
+        <p id="customer-expenditure"></p>
+        <h2 id="booking-header">Your Bookings:</h2>
+        <article id="customer-bookings" class="hidden"></article>
+      </section>
+      <article id="customer-booking-page" class="hidden">
+        <label for="date-selector">Search by date</label>
+        <input type="date" id="date-selector"></input>
+        <button type="button" id="booking-search-btn">Search</button>
+        <form id="room-type-tags">
+          <input type="radio" class="room-type-btn" name="room-type" value="suite"></input>
+          <label for="suite">Suite</label>
+          <input type="radio" class="room-type-btn" name="room-type" value="residential suite"></input>
+          <label for="residential">Residential Suite</label>
+          <input type="radio" class="room-type-btn" name="room-type" value="junior suite"></input>
+          <label for="junior">Junior Suite</label>
+          <input type="radio" class="room-type-btn" name="room-type" value="single room"></input>
+          <label for="single">Single Room</label>
+        </form>
+        <section id="available-rooms"></section>
+      </article>
+      <article id="room-booking-page" class="hidden"></article>
+      <article id="apology-page" class="hidden">
+        <h1>So sorry! Looks like we don't have an available rooms that fit your criteria. Please try another search.</h1>
+      </article>
+      <article id="manager-landing-page" class="hidden">
+        <p id="todays-date"></p>
+        <p id="total-rooms-available"></p>
+        <p id="total-revenue"></p>
+        <p id="occupation-percentage"></p>
+      </article>
+  </main>
   </body>
 </html>

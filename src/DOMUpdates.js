@@ -32,8 +32,20 @@ class DOMUpdates {
   displayLandingPage() {
     this.changeElementsVisibility('hide', ['#log-in-form']);
     if (this.currentUser.includes('customer')) {
-      this.changeElementsVisibility('show', ['#customer-landing-page', 'nav', '#customer-booking-link']);
-      this.changeElementsVisibility('hide', ['#customer-booking-page', '#home-link', '#back-to-search-link', '#room-booking-page', 'fieldset']);
+      this.changeElementsVisibility('show', [
+        '#customer-landing-page',
+        'nav',
+        '#customer-booking-link',
+        '#customer-bookings',
+        '#customer-expenditure'
+      ]);
+      this.changeElementsVisibility('hide', [
+        '#customer-booking-page',
+        '#home-link',
+        '#back-to-search-link',
+        '#room-booking-page',
+        'fieldset'
+      ]);
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
@@ -41,7 +53,13 @@ class DOMUpdates {
 
   displayUserBookingPage() {
     this.changeElementsVisibility('show', ['#customer-booking-page', '#home-link', '#available-rooms']);
-    this.changeElementsVisibility('hide', ['#customer-landing-page', '#customer-booking-link', '#room-booking-page']);
+    this.changeElementsVisibility('hide', [
+      '#customer-landing-page',
+      '#customer-booking-link',
+      '#room-booking-page',
+      '#customer-bookings',
+      '#customer-expenditure'
+    ]);
   }
 
   displayRoomBookingPage(room = {roomType: 'Uh oh. Looks like we had an error'}) {
@@ -79,15 +97,15 @@ class DOMUpdates {
 
   displayCustomerExpenditures(customer = {totalExpenditures: 0}) {
     const customerExpenditure = document.querySelector('#customer-expenditure');
-    customerExpenditure.innerHTML = `Your total for all bookings is ${customer.totalExpenditures}`
+    customerExpenditure.innerHTML = `Your total for all bookings is ${customer.totalExpenditures}.`
   }
 
   populateCustomerBookings(bookedRooms = []) {
     const customerBookings = document.querySelector('#customer-bookings');
     bookedRooms.forEach(bookedRoom => {
       customerBookings.innerHTML += `
-      <section role="figure">
-        <p role="heading">On ${bookedRoom.dateBooked}:</p>
+      <section role="figure" class="customer-booking">
+        <p role="heading">${bookedRoom.dateBooked}</p>
         <p>Room ${bookedRoom.number}</p>
         <p>${bookedRoom.roomType}</p>
       </section>

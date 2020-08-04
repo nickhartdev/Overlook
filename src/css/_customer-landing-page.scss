@@ -1,8 +1,28 @@
-#customer-landing-page {
-  display: flex;
-}
-
 #welcome-message {
   font-size: 1.5em;
-  padding: 1em .5em;
+  padding: 1em 1.5em;
+}
+
+#booking-header {
+  padding: 1em 1.5em;
+}
+
+#customer-expenditure {
+  padding: 0em 2.35em;
+}
+
+#customer-bookings {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+  margin: 0 3em;
+}
+
+.customer-booking {
+  display: flex;
+  flex-direction: column;
+  margin: .5em;
+  padding: 1em;
+  width: 125px;
+  border: 1px solid black;
 }
