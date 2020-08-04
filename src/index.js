@@ -4,7 +4,7 @@ import Room from './Room.js';
 import Booking from './Booking.js';
 import Hotel from './Hotel.js';
 import DOMUpdates from './DOMUpdates.js';
-import dataFetcher from './dataFetcher.js';
+import dataHandler from './dataHandler.js';
 import loginHandler from './loginHandler.js';
 import moment from 'moment';
 
@@ -44,7 +44,7 @@ const logIn = async () => {
 }
 
 const checkAndDisplayAvailableRooms = async (date, roomType) => {
-  const hotelData = await dataFetcher.retrieveHotelDataForDay(date);
+  const hotelData = await dataHandler.retrieveHotelDataForDay(date);
   if (roomType) {
     domUpdates.populateAvailableRooms(hotelData.filterRoomsByType(roomType));
   } else {
@@ -53,7 +53,7 @@ const checkAndDisplayAvailableRooms = async (date, roomType) => {
 }
 
 const getAndDisplayRoomMatch = async (roomNumber) => {
-  const rooms = await dataFetcher.retrieveAndInstantiateRoomData();
+  const rooms = await dataHandler.retrieveAndInstantiateRoomData();
   const roomMatch = rooms.find(room => room.number == roomNumber);
 
   domUpdates.displayRoomBookingPage(roomMatch);
@@ -61,7 +61,7 @@ const getAndDisplayRoomMatch = async (roomNumber) => {
 
 const startCustomerApp = async (username) => {
   const customerID = loginHandler.validateCustomerID(username).customerID;
-  const currentCustomer = await dataFetcher.retrieveCustomerByID(customerID);
+  const currentCustomer = await dataHandler.retrieveCustomerByID(customerID);
   domUpdates.currentUser = username;
   domUpdates.displayLandingPage();
   domUpdates.updateWelcomeMessage(currentCustomer);
@@ -70,7 +70,7 @@ const startCustomerApp = async (username) => {
 }
 
 const startManagerApp = async () => {
-  const hotelInfo = await dataFetcher.retrieveHotelDataForDay();
+  const hotelInfo = await dataHandler.retrieveHotelDataForDay();
   domUpdates.currentUser = 'manager';
   domUpdates.displayLandingPage();
   domUpdates.displayTodaysDate();

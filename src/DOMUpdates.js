@@ -50,6 +50,7 @@ class DOMUpdates {
 
     roomBookingPage.innerHTML = `
       <h1>${room.roomType}</h1>
+      <p>${room.roomNumber}</p>
       <button id="room-booking-btn">Book</button>
     `
   }

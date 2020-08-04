@@ -4,7 +4,7 @@ import Room from './Room.js';
 import Booking from './Booking.js';
 import Hotel from './Hotel.js';
 
-const dataFetcher = {
+const dataHandler = {
   retrieveUserData() {
     return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
     .then(response => response.json())
@@ -40,4 +40,4 @@ const dataFetcher = {
   }
 }
 
-export default dataFetcher;
+export default dataHandler;
