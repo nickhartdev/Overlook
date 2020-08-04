@@ -1,6 +1,11 @@
 @import 'nav';
 @import 'login-page';
 
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .hidden {
   display: none;
 }
