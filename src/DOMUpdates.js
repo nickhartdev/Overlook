@@ -56,6 +56,11 @@ class DOMUpdates {
       <button class="room-booking-btn" id="${room.number}">Book</button>`
   }
 
+  displayApologyPage() {
+    this.changeElementsVisibility('show', ['#apology-page', '#back-to-search-link']);
+    this.changeElementsVisibility('hide', ['#available-rooms', '#customer-booking-page']);
+  }
+
   changeElementsVisibility(visibilityChange, elementSelectors) {
     elementSelectors.forEach(elementSelector => {
       const element = document.querySelector(elementSelector);

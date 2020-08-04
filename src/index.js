@@ -45,9 +45,11 @@ const logIn = async () => {
 const checkAndDisplayAvailableRooms = async (date, roomType) => {
   const hotelData = await dataHandler.retrieveHotelDataForDay(date);
   if (roomType) {
-    domUpdates.populateAvailableRooms(hotelData.filterRoomsByType(roomType));
+    const roomsByType = hotelData.filterRoomsByType(roomType);
+    roomsByType === [] ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(roomsByType);
   } else {
-    domUpdates.populateAvailableRooms(hotelData.roomsAvailableForDay);
+    const availableRooms = hotelData.roomsAvailableForDay;
+    availableRooms === [] ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(availableRooms);
   }
 }
 
