@@ -8,9 +8,13 @@
   padding: 1em 1.5em .5em 1.5em;
 }
 
-#booking-search-btn {
+#booking-search-btn, #clear-search-btn {
   width: 200px;
   margin-left: 2.8em;
+}
+
+#clear-search-btn {
+  margin-top: 1em;
 }
 
 #room-type-tags > fieldset {
