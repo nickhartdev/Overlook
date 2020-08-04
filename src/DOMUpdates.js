@@ -45,11 +45,12 @@ class DOMUpdates {
         '#back-to-search-link',
         '#room-booking-page',
         'fieldset',
-        '#date-selector-header',
+        '#search-page-header',
         '#date-selector',
         '#booking-search-btn',
-        '#room-type-tags',
-        '#available-rooms'
+        '#room-search-form',
+        '#available-rooms',
+        '#clear-search-btn'
       ]);
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
@@ -61,10 +62,10 @@ class DOMUpdates {
       '#customer-booking-page',
       '#home-link',
       '#available-rooms',
-      '#date-selector-header',
+      '#search-page-header',
       '#date-selector',
       '#booking-search-btn',
-      '#room-type-tags',
+      '#room-search-form',
       '#clear-search-btn'
     ]);
     this.changeElementsVisibility('hide', [
@@ -72,8 +73,11 @@ class DOMUpdates {
       '#customer-booking-link',
       '#room-booking-page',
       '#customer-bookings',
-      '#customer-expenditure'
+      '#customer-expenditure',
+      '#available-rooms',
+      '#back-to-search-link'
     ]);
+    this.hideAllCards();
   }
 
   displayRoomBookingPage(room = {roomType: 'Uh oh. Looks like we had an error'}) {
@@ -85,14 +89,24 @@ class DOMUpdates {
     this.changeElementsVisibility('hide', [
       '#customer-booking-page',
       '#available-rooms',
-      '#clear-search-btn'
+      '#clear-search-btn',
+      '#search-page-header',
+      '#room-search-form'
     ]);
+    this.hideAllCards('.available-room-card');
 
     roomBookingPage.innerHTML =
     ` <h1>For ${moment(this.date).format('dddd, MMMM do YYYY')}</h1>
       <p>${room.roomType}</p>
       <p>${room.number}</p>
       <button class="room-booking-btn" id="${room.number}">Book</button>`;
+  }
+
+  hideAllCards(cardSelector) {
+    const cards = document.querySelectorAll(cardSelector);
+    cards.forEach(card => {
+      card.classList.add('hidden');
+    })
   }
 
   displayApologyPage() {
@@ -125,7 +139,7 @@ class DOMUpdates {
     const customerBookings = document.querySelector('#customer-bookings');
     bookedRooms.forEach(bookedRoom => {
       customerBookings.innerHTML += `
-      <section role="figure" class="customer-booking">
+      <section role="figure" class="customer-booking booking-card card">
         <p role="heading">${bookedRoom.dateBooked}</p>
         <p>Room ${bookedRoom.number}</p>
         <p>${bookedRoom.roomType}</p>
@@ -160,11 +174,12 @@ class DOMUpdates {
     const roomTypeButtons = document.querySelectorAll('input[name="room-type"]');
     const datePicker = document.querySelector('#date-selector');
 
+    this.changeElementsVisibility('hide', ['#available-rooms']);
+    this.hideAllCards('.available-room-card')
     datePicker.value = '';
     roomTypeButtons.forEach(button => {
       button.checked = false;
     });
-    this.changeElementsVisibility('hide', ['#available-rooms']);
   }
 
   populateAvailableRooms(availableRooms = []) {
@@ -173,9 +188,11 @@ class DOMUpdates {
     availableRoomsSection.innerHTML = '';
     availableRooms.forEach(room => {
       availableRoomsSection.innerHTML += `
+      <section role="figure" class="available-room-card card">
         <h1>${room.roomType}</h1>
         <p>${room.number}</p>
         <button type="button" class="more-info-btn" id="${room.number}">More Info</button>
+      </section>
       `
     })
   }

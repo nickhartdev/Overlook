@@ -28,8 +28,8 @@
         <article id="customer-bookings" class="hidden"></article>
       </article>
       <article id="customer-booking-page" class="hidden">
-        <h1 id="date-selector-header" class="hidden">Search our Rooms</h1>
-        <form id="room-type-tags" class="hidden">
+        <h1 id="search-page-header" class="hidden">Search our Rooms</h1>
+        <form id="room-search-form" class="hidden">
           <fieldset>
             <legend>Choose a date</legend>
             <label for="date-selector" class="hidden">Search by Day</label>
@@ -54,9 +54,11 @@
               <label for="single">Single Room</label>
             </div>
           </fieldset>
+          <div role="group">
+            <button type="button" id="booking-search-btn" class="hidden">Search</button>
+            <button type="button" id="clear-search-btn" class="hidden">Clear Search</button>
+          </div>
         </form>
-        <button type="button" id="booking-search-btn" class="hidden">Search</button>
-        <button type="button" id="clear-search-btn" class="hidden">Clear Search</button>
         <section id="available-rooms" class="hidden"></section>
       </article>
       <article id="room-booking-page" class="hidden"></article>
