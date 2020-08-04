@@ -5,8 +5,8 @@ import Room from './Room.js';
 class User extends Data {
   constructor(userData, bookings, roomsData) {
     super();
-    this.id = super.validateDataType(userData.id, 'number');
-    this.name = super.validateDataType(userData.name, 'string');
+    this.id = super.validateDataType(userData.id, ['number']);
+    this.name = super.validateDataType(userData.name, ['string']);
     this.bookings = this.filterAndSortBookings(bookings);
     this.totalExpenditures = parseFloat(this.calculateTotalExpenditures(roomsData).toFixed(2));
     this.bookedRoomInfo = this.createBookedRoomInfo(this.bookings, roomsData);
@@ -14,7 +14,7 @@ class User extends Data {
 
   filterAndSortBookings(bookings = []) {
     const filteredBookings = bookings.filter(booking => booking.userID === this.id);
-    return filteredBookings.sort((a, b) => b.date - a.date);
+    return filteredBookings.sort((a, b) => a.date - b.date);
   }
 
   calculateTotalExpenditures(roomsData = []) {

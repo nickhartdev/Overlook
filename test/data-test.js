@@ -73,11 +73,7 @@ describe('Data', () => {
   })
 
   it('should validate a given data type', () => {
-    expect(data.validateDataType(user.name, 'string')).to.equal(user.name);
-    expect(data.validateDataType(badUser1.name, 'string')).to.equal(null);
-  })
-
-  it('should only accept positive numbers', () => {
-    expect(data.validateDataType(badUser1.id)).to.equal(null);
+    expect(data.validateDataType(user.name, ['string'])).to.equal(user.name);
+    expect(data.validateDataType(badUser1.name, ['string'])).to.equal(null);
   })
 })

@@ -26,7 +26,7 @@ const dataHandler = {
   async retrieveCustomerByID(customerID) {
     const customerData = await this.retrieveUserData();
     const bookingData = await this.retrieveAndInstantiateBookingData();
-    const roomData = await this.retrieveAndInstantiateRoomData()
+    const roomData = await this.retrieveAndInstantiateRoomData();
     const customerMatch = customerData.find(customer => customer.id === customerID);
 
     return new User(customerMatch, bookingData, roomData);
@@ -40,7 +40,6 @@ const dataHandler = {
   },
 
   async postBookingData(userID, date, roomNumber) {
-    console.log('posting');
     const bookingData = {userID: userID, date: date, roomNumber: roomNumber};
     return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
       method: 'POST',
