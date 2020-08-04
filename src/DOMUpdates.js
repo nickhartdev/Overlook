@@ -55,6 +55,10 @@ class DOMUpdates {
       this.hideAllCards('.available-room-card');
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
+      this.changeElementsVisibility('hide', [
+        '#log-in-form',
+        'fieldset'
+      ]);
     }
   }
 
@@ -136,6 +140,7 @@ class DOMUpdates {
 
   populateCustomerBookings(bookedRooms = []) {
     const customerBookings = document.querySelector('#customer-bookings');
+    customerBookings.innerHTML = '';
     bookedRooms.forEach(bookedRoom => {
       customerBookings.innerHTML += `
       <section role="figure" class="customer-booking booking-card card">

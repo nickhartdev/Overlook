@@ -8,6 +8,8 @@
   border: 1px solid black;
 }
 
+// Mobile view
+
 @mixin card--sm() {
   .card {
     width: 80%;

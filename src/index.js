@@ -19,7 +19,7 @@ const buttonHandler = async (event) => {
   } else if (event.target.id === 'customer-booking-link') {
     domUpdates.displayUserBookingPage();
   } else if (event.target.id === 'home-link') {
-    domUpdates.displayLandingPage();
+    refreshCustomerApp(domUpdates.currentUser);
   } else if (event.target.id === 'booking-search-btn') {
     domUpdates.date = domUpdates.getDateFromForm();
     const roomType = domUpdates.getRoomTypeFromForm();
@@ -38,7 +38,7 @@ const buttonHandler = async (event) => {
 const logIn = async () => {
   const loginCredentials = domUpdates.checkLoginResponse();
   if (loginCredentials.isValid) {
-    loginCredentials.username.includes('customer') ? await startCustomerApp(loginCredentials.username) : await startManagerApp();
+    loginCredentials.username.includes('customer') ? await refreshCustomerApp(loginCredentials.username) : await startManagerApp();
   } else {
     domUpdates.displayError();
   }
@@ -70,7 +70,7 @@ const bookRoom = (event) => {
   alert(`Room ${roomNumber} booked!`);
 }
 
-const startCustomerApp = async (username) => {
+const refreshCustomerApp = async (username) => {
   const customerID = loginHandler.validateCustomerID(username).customerID;
   const currentCustomer = await dataHandler.retrieveCustomerByID(customerID);
   domUpdates.currentUser = username;
