@@ -1,10 +1,12 @@
 @import 'nav';
 @import 'login-page';
 @import 'customer-landing-page';
+@import 'booking-page';
 
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 .hidden {

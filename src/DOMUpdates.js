@@ -44,7 +44,12 @@ class DOMUpdates {
         '#home-link',
         '#back-to-search-link',
         '#room-booking-page',
-        'fieldset'
+        'fieldset',
+        '#date-selector-header',
+        '#date-selector',
+        '#booking-search-btn',
+        '#room-type-tags',
+        '#available-rooms'
       ]);
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
@@ -52,7 +57,15 @@ class DOMUpdates {
   }
 
   displayUserBookingPage() {
-    this.changeElementsVisibility('show', ['#customer-booking-page', '#home-link', '#available-rooms']);
+    this.changeElementsVisibility('show', [
+      '#customer-booking-page',
+      '#home-link',
+      '#available-rooms',
+      '#date-selector-header',
+      '#date-selector',
+      '#booking-search-btn',
+      '#room-type-tags'
+    ]);
     this.changeElementsVisibility('hide', [
       '#customer-landing-page',
       '#customer-booking-link',
@@ -64,14 +77,20 @@ class DOMUpdates {
 
   displayRoomBookingPage(room = {roomType: 'Uh oh. Looks like we had an error'}) {
     const roomBookingPage = document.querySelector('#room-booking-page');
-    this.changeElementsVisibility('show', ['#room-booking-page', '#back-to-search-link']);
-    this.changeElementsVisibility('hide', ['#customer-booking-page', '#available-rooms']);
+    this.changeElementsVisibility('show', [
+      '#room-booking-page',
+      '#back-to-search-link'
+    ]);
+    this.changeElementsVisibility('hide', [
+      '#customer-booking-page',
+      '#available-rooms'
+    ]);
 
     roomBookingPage.innerHTML =
     ` <h1>For ${moment(this.date).format('dddd, MMMM do YYYY')}</h1>
       <p>${room.roomType}</p>
       <p>${room.number}</p>
-      <button class="room-booking-btn" id="${room.number}">Book</button>`
+      <button class="room-booking-btn" id="${room.number}">Book</button>`;
   }
 
   displayApologyPage() {
@@ -138,7 +157,6 @@ class DOMUpdates {
   populateAvailableRooms(availableRooms = []) {
     const availableRoomsSection = document.querySelector('#available-rooms');
     availableRoomsSection.innerHTML = '';
-    console.log(availableRooms);
     availableRooms.forEach(room => {
       availableRoomsSection.innerHTML += `
         <h1>${room.roomType}</h1>
