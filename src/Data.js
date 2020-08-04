@@ -1,10 +1,6 @@
 class Data {
-  validateDataType(data, dataType) {
-    if (dataType === 'number') {
-      return typeof data === dataType && data >= 0 ? data : null;
-    } else {
-      return typeof data === dataType ? data : null;
-    }
+  validateDataType(data, dataTypes) {
+    return dataTypes.includes(typeof data) ? data : null;
   }
 }
 

@@ -9,7 +9,7 @@ describe('Hotel', () => {
   beforeEach(() => {
     testRooms = [
       new Room({
-        number: 1,
+        number: 14,
         roomType: 'residential suite',
         bidet: false,
         bedSize: 'california king',
@@ -86,7 +86,7 @@ describe('Hotel', () => {
   })
 
   it('should filter out any invalid data', () => {
-    expect(hotel.filterData(testBookings)).to.deep.equal(testBookings.slice(0, -1));
+    expect(hotel.filterData(testBookings, 'Booking')).to.deep.equal(testBookings.slice(0, -1));
   })
 
   it('should hold an array of all bookings for a given date', () => {
