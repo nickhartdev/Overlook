@@ -39,9 +39,9 @@ const dataHandler = {
     return new Hotel(roomData, bookingData, date);
   },
 
-  async bookRoom(user, date, room) {
-    // const bookingData = {userID: , date: , roomNumber: }
-    return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms', {
+  async bookRoom(userID, date, roomNumber) {
+    const bookingData = {userID: userID, date: date, roomNumber: roomNumber};
+    return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

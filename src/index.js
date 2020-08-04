@@ -30,9 +30,10 @@ const buttonHandler = async (event) => {
     domUpdates.displayUserBookingPage();
   } else if (event.target.classList.contains('room-booking-btn')) {
     const userID = loginHandler.validateCustomerID(domUpdates.currentUser).customerID;
-    const roomNumber = event.target.id;
     const date = domUpdates.date;
-    // dataHandler.bookRoom();
+    const roomNumber = parseInt(event.target.id);
+    dataHandler.bookRoom(userID, date, roomNumber);
+    alert(`Room ${roomNumber} booked!`);
   }
 }
 

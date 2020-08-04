@@ -52,7 +52,7 @@ class DOMUpdates {
     roomBookingPage.innerHTML =
     ` <h1>For ${moment(this.date).format('dddd, MMMM do YYYY')}</h1>
       <p>${room.roomType}</p>
-      <p>${room.roomNumber}</p>
+      <p>${room.number}</p>
       <button class="room-booking-btn" id="${room.number}">Book</button>`
   }
 
