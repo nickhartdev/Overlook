@@ -67,7 +67,7 @@ describe('domUpdate', () => {
   it('should show the user\'s login screen when their credentials are correct', () => {
     domUpdates.currentUser = 'customer';
     domUpdates.displayLandingPage();
-    expect(document.querySelector).to.have.been.called(8);
+    expect(document.querySelector).to.have.been.called(17);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
     expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
     expect(document.querySelector).to.have.been.called.with('#customer-booking-page');
@@ -81,14 +81,15 @@ describe('domUpdate', () => {
   it('should show the manager\'s login screen when their credentials are correct', () => {
     domUpdates.currentUser = 'manager';
     domUpdates.displayLandingPage();
-    expect(document.querySelector).to.have.been.called(2);
+    expect(document.querySelector).to.have.been.called(3);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
     expect(document.querySelector).to.have.been.called.with('#manager-landing-page');
+    expect(document.querySelector).to.have.been.called.with('fieldset');
   })
 
   it('should display the user booking page when the correct button is clicked', () => {
     domUpdates.displayUserBookingPage();
-    expect(document.querySelector).to.have.been.called(6);
+    expect(document.querySelector).to.have.been.called(15);
     expect(document.querySelector).to.have.been.called.with('#customer-booking-page');
     expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
     expect(document.querySelector).to.have.been.called.with('#customer-booking-link');
@@ -99,11 +100,14 @@ describe('domUpdate', () => {
 
   it('should display a page with more info about a room when the correct button is clicked', () => {
     domUpdates.displayRoomBookingPage();
-    expect(document.querySelector).to.have.been.called(5);
+    expect(document.querySelector).to.have.been.called(8);
     expect(document.querySelector).to.have.been.called.with('#room-booking-page');
     expect(document.querySelector).to.have.been.called.with('#customer-booking-page');
     expect(document.querySelector).to.have.been.called.with('#available-rooms');
     expect(document.querySelector).to.have.been.called.with('#back-to-search-link');
+    expect(document.querySelector).to.have.been.called.with('#clear-search-btn');
+    expect(document.querySelector).to.have.been.called.with('#search-page-header');
+    expect(document.querySelector).to.have.been.called.with('#room-search-form');
   })
 
   it('should be able to show a welcome message for a given user', () => {
@@ -126,8 +130,12 @@ describe('domUpdate', () => {
 
   it('should reset the room search form when the correct button is clicked', () => {
     domUpdates.resetSearchForm();
-    expect(document.querySelector).to.have.been.called(1);
-    expect(document.querySelectorAll).to.have.been.called(1);
+    expect(document.querySelector).to.have.been.called(2);
+    expect(document.querySelectorAll).to.have.been.called(2);
+    expect(document.querySelector).to.have.been.called.with('#date-selector');
+    expect(document.querySelector).to.have.been.called.with('#available-rooms');
+    expect(document.querySelectorAll).to.have.been.called.with('input[name="room-type"]');
+    expect(document.querySelectorAll).to.have.been.called.with('.available-room-card');
   })
 
   it('should display today\'s date', () => {
