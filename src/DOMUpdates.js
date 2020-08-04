@@ -32,7 +32,7 @@ class DOMUpdates {
     this.changeElementsVisibility('hide', ['#log-in-form']);
     if (this.currentUser.includes('customer')) {
       this.changeElementsVisibility('show', ['#customer-landing-page', 'nav', '#customer-booking-link']);
-      this.changeElementsVisibility('hide', ['#customer-booking-page', '#home-link']);
+      this.changeElementsVisibility('hide', ['#customer-booking-page', '#home-link', '#back-to-search-link']);
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
@@ -41,6 +41,17 @@ class DOMUpdates {
   displayUserBookingPage() {
     this.changeElementsVisibility('show', ['#customer-booking-page', '#home-link']);
     this.changeElementsVisibility('hide', ['#customer-landing-page', '#customer-booking-link']);
+  }
+
+  displayRoomBookingPage(room = {roomType: 'Uh oh. Looks like we had an error'}) {
+    const roomBookingPage = document.querySelector('#room-booking-page');
+    this.changeElementsVisibility('show', ['#room-booking-page', '#back-to-search-link']);
+    this.changeElementsVisibility('hide', ['#customer-booking-page', '#available-rooms']);
+
+    roomBookingPage.innerHTML = `
+      <h1>${room.roomType}</h1>
+      <button id="room-booking-btn">Book</button>
+    `
   }
 
   changeElementsVisibility(visibilityChange, elementSelectors) {
@@ -100,6 +111,7 @@ class DOMUpdates {
     availableRooms.forEach(room => {
       availableRoomsSection.innerHTML += `
         <h1>${room.roomType}</h1>
+        <button type="button" class="more-info-btn" id="${room.number}">More Info</button>
       `
     })
   }

@@ -6,6 +6,7 @@
   <body>
     <nav class="hidden">
       <button type="button" id="customer-booking-link">Book a room</button>
+      <button type="button" id="back-to-search-link">Back to your search</button>
       <button type="button" id="home-link">Home</button>
     </nav>
     <form id="log-in-form">
@@ -18,11 +19,11 @@
         <p id="error-message" class="hidden">Invalid username/password</p>
       </fieldset>
     </form>
-    <section id="customer-landing-page" class="hidden">
+    <article id="customer-landing-page" class="hidden">
       <h1 id="welcome-message"></h1>
       <p id="customer-expenditure"></p>
       <article id="customer-bookings">Your Bookings:</article>
-    </section>
+    </article>
     <article id="customer-booking-page" class="hidden">
       <label for="date-selector">Search by date</label>
       <input type="date" id="date-selector"></input>
@@ -39,6 +40,7 @@
       </form>
       <section id="available-rooms"></section>
     </article>
+    <article id="room-booking-page" class="hidden"></article>
     <section id="manager-landing-page" class="hidden">
       <p id="todays-date"></p>
       <p id="total-rooms-available"></p>

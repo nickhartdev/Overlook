@@ -84,6 +84,23 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#manager-landing-page');
   })
 
+  it('should display the user booking page when the correct button is clicked', () => {
+    domUpdates.displayUserBookingPage();
+    expect(document.querySelector).to.have.been.called(4);
+    expect(document.querySelector).to.have.been.called.with('#customer-booking-page');
+    expect(document.querySelector).to.have.been.called.with('#home-link');
+    expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
+    expect(document.querySelector).to.have.been.called.with('#customer-booking-link');
+  })
+
+  it('should display a page with more info about a room when the correct button is clicked', () => {
+    domUpdates.displayRoomBookingPage();
+    expect(document.querySelector).to.have.been.called(4);
+    expect(document.querySelector).to.have.been.called.with('#room-booking-page');
+    expect(document.querySelector).to.have.been.called.with('#customer-booking-page');
+    expect(document.querySelector).to.have.been.called.with('#available-rooms');
+  })
+
   it('should be able to show a welcome message for a given user', () => {
     domUpdates.updateWelcomeMessage();
     expect(document.querySelector).to.have.been.called(1);
@@ -124,15 +141,6 @@ describe('domUpdate', () => {
     domUpdates.displayOccupationPercentageForDay();
     expect(document.querySelector).to.have.been.called(1);
     expect(document.querySelector).to.have.been.called.with('#occupation-percentage');
-  })
-
-  it('should display the user booking page when the correct button is clicked', () => {
-    domUpdates.displayUserBookingPage();
-    expect(document.querySelector).to.have.been.called(4);
-    expect(document.querySelector).to.have.been.called.with('#customer-booking-page');
-    expect(document.querySelector).to.have.been.called.with('#home-link');
-    expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
-    expect(document.querySelector).to.have.been.called.with('#customer-booking-link');
   })
 
   it('should return the value of a checked button from the user search form', () => {

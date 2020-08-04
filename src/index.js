@@ -14,7 +14,7 @@ document.addEventListener('click', (event) => {
   buttonHandler(event);
 })
 
-const buttonHandler = (event) => {
+const buttonHandler = async (event) => {
   if (event.target.id === 'log-in-btn') {
     logIn();
   } else if (event.target.id === 'username' || event.target.id === 'password') {
@@ -26,8 +26,9 @@ const buttonHandler = (event) => {
   } else if (event.target.id === 'booking-search-btn') {
     const date = domUpdates.getDateFromForm();
     const roomType = domUpdates.getRoomTypeFromForm();
-    console.log(roomType);
     checkAndDisplayAvailableRooms(date, roomType);
+  } else if (event.target.classList.contains('more-info-btn')) {
+    getAndDisplayRoomMatch(event.target.id);
   }
 }
 
@@ -47,6 +48,13 @@ const checkAndDisplayAvailableRooms = async (date, types) => {
   } else {
     domUpdates.populateAvailableRooms(hotelData.roomsAvailableForDay);
   }
+}
+
+const getAndDisplayRoomMatch = async (roomNumber) => {
+  const rooms = await dataFetcher.retrieveAndInstantiateRoomData();
+  const roomMatch = rooms.find(room => room.number == roomNumber);
+
+  domUpdates.displayRoomBookingPage(roomMatch);
 }
 
 const startCustomerApp = async (username) => {
