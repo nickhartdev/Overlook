@@ -30,7 +30,6 @@ class DOMUpdates {
   }
 
   displayLandingPage() {
-    this.changeElementsVisibility('hide', ['#log-in-form']);
     if (this.currentUser.includes('customer')) {
       this.changeElementsVisibility('show', [
         '#customer-landing-page',
@@ -40,6 +39,7 @@ class DOMUpdates {
         '#customer-expenditure'
       ]);
       this.changeElementsVisibility('hide', [
+        '#log-in-form',
         '#customer-booking-page',
         '#home-link',
         '#back-to-search-link',
@@ -52,6 +52,7 @@ class DOMUpdates {
         '#available-rooms',
         '#clear-search-btn'
       ]);
+      this.hideAllCards('.available-room-card');
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
@@ -77,7 +78,6 @@ class DOMUpdates {
       '#available-rooms',
       '#back-to-search-link'
     ]);
-    this.hideAllCards();
   }
 
   displayRoomBookingPage(room = {roomType: 'Uh oh. Looks like we had an error'}) {
@@ -96,9 +96,8 @@ class DOMUpdates {
     this.hideAllCards('.available-room-card');
 
     roomBookingPage.innerHTML =
-    ` <h1>For ${moment(this.date).format('dddd, MMMM do YYYY')}</h1>
-      <p>${room.roomType}</p>
-      <p>${room.number}</p>
+    ` <h1 id="booking-page-header">For ${moment(this.date).format('dddd, MMMM do YYYY')}</h1>
+      <p class="booking-page-text">${room.roomType}</p>
       <button class="room-booking-btn" id="${room.number}">Book</button>`;
   }
 
