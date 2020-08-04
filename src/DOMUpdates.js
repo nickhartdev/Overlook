@@ -33,7 +33,7 @@ class DOMUpdates {
     this.changeElementsVisibility('hide', ['#log-in-form']);
     if (this.currentUser.includes('customer')) {
       this.changeElementsVisibility('show', ['#customer-landing-page', 'nav', '#customer-booking-link']);
-      this.changeElementsVisibility('hide', ['#customer-booking-page', '#home-link', '#back-to-search-link']);
+      this.changeElementsVisibility('hide', ['#customer-booking-page', '#home-link', '#back-to-search-link', '#room-booking-page']);
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page']);
     }
@@ -119,6 +119,7 @@ class DOMUpdates {
     availableRooms.forEach(room => {
       availableRoomsSection.innerHTML += `
         <h1>${room.roomType}</h1>
+        <p>${room.number}</p>
         <button type="button" class="more-info-btn" id="${room.number}">More Info</button>
       `
     })

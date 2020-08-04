@@ -10,7 +10,7 @@ class Hotel {
     this.roomsAvailableForDay = this.findRoomsAvailableForDay(date);
   }
 
-  filterData(dataSet, needsToBeSorted) {
+  filterData(dataSet) {
     return dataSet.filter(data => !Object.values(data).includes(null));
   }
 

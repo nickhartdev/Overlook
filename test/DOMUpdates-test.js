@@ -67,12 +67,13 @@ describe('domUpdate', () => {
   it('should show the user\'s login screen when their credentials are correct', () => {
     domUpdates.currentUser = 'customer';
     domUpdates.displayLandingPage();
-    expect(document.querySelector).to.have.been.called(7);
+    expect(document.querySelector).to.have.been.called(8);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
     expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
     expect(document.querySelector).to.have.been.called.with('#customer-booking-page');
     expect(document.querySelector).to.have.been.called.with('#customer-booking-link');
     expect(document.querySelector).to.have.been.called.with('nav');
+    expect(document.querySelector).to.have.been.called.with('#room-booking-page');
     expect(document.querySelector).to.have.been.called.with('#home-link');
     expect(document.querySelector).to.have.been.called.with('#back-to-search-link');
   })

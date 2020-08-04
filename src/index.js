@@ -29,11 +29,7 @@ const buttonHandler = async (event) => {
   } else if (event.target.id === 'back-to-search-link') {
     domUpdates.displayUserBookingPage();
   } else if (event.target.classList.contains('room-booking-btn')) {
-    const userID = loginHandler.validateCustomerID(domUpdates.currentUser).customerID;
-    const date = domUpdates.date;
-    const roomNumber = parseInt(event.target.id);
-    dataHandler.bookRoom(userID, date, roomNumber);
-    alert(`Room ${roomNumber} booked!`);
+    bookRoom(event);
   }
 }
 
@@ -60,6 +56,14 @@ const getAndDisplayRoomMatch = async (roomNumber) => {
   const roomMatch = rooms.find(room => room.number == roomNumber);
 
   domUpdates.displayRoomBookingPage(roomMatch);
+}
+
+const bookRoom = (event) => {
+  const userID = loginHandler.validateCustomerID(domUpdates.currentUser).customerID;
+  const date = domUpdates.date;
+  const roomNumber = parseInt(event.target.id);
+  dataHandler.postBookingData(userID, date, roomNumber);
+  alert(`Room ${roomNumber} booked!`);
 }
 
 const startCustomerApp = async (username) => {
