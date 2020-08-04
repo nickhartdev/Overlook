@@ -1,7 +1,6 @@
 import Data from './Data.js';
 import Booking from './Booking.js';
 import Room from './Room.js';
-import dataFetcher from './dataFetcher.js';
 
 class User extends Data {
   constructor(userData, bookings, roomsData) {

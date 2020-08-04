@@ -1,7 +1,4 @@
 import './css/base.scss';
-import User from './User.js';
-import Room from './Room.js';
-import Booking from './Booking.js';
 import Hotel from './Hotel.js';
 import DOMUpdates from './DOMUpdates.js';
 import dataHandler from './dataHandler.js';
