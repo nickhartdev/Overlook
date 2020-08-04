@@ -9,7 +9,6 @@
   margin-top: 150px;
   padding: 1em;
   width: 300px;
-  height: 200px;
   border: 1px solid black;
   border-radius: 2%;
 }
@@ -26,6 +25,9 @@
 #log-in-btn {
   width: 78%;
   height: 30px;
-  margin-top: .75em;
-  margin-left: 2em;
+  margin: 1em 0em 1em 2em;
+}
+
+#error-message {
+  margin-left: 1.5em;
 }
