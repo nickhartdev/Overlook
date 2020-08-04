@@ -6,12 +6,16 @@ import DOMUpdates from '../src/DOMUpdates.js';
 chai.use(spies);
 
 describe('domUpdate', () => {
-  let domUpdates, mockLoginHandler;
+  let domUpdates, mockLoginHandler, button;
 
   beforeEach(() => {
+    button = {};
     domUpdates = new DOMUpdates();
     global.document = {};
     mockLoginHandler = {};
+    chai.spy.on(document, ['querySelectorAll'], () => {
+      return []
+    })
     chai.spy.on(document, ['querySelector'], () => {
       return {
         value: '',
@@ -129,6 +133,12 @@ describe('domUpdate', () => {
     expect(document.querySelector).to.have.been.called.with('#home-link');
     expect(document.querySelector).to.have.been.called.with('#customer-landing-page');
     expect(document.querySelector).to.have.been.called.with('#customer-booking-link');
+  })
+
+  it('should return the value of a checked button from the user search form', () => {
+    domUpdates.getRoomTypeFromForm();
+    expect(document.querySelectorAll).to.have.been.called(1);
+    expect(document.querySelectorAll).to.have.been.called.with('input[name="room-type"]');
   })
 
   // Spent forever figuring out how to mock addEventListener for this one - I'll need to

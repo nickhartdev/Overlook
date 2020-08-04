@@ -80,11 +80,21 @@ class DOMUpdates {
   getDateFromForm() {
     const datePicker = document.querySelector('#date-selector');
     const date = moment(datePicker.value).format('YYYY/MM/DD');
-    console.log(typeof date);
     return date;
   }
 
-  populateAvailableRooms(availableRooms) {
+  getRoomTypeFromForm() {
+    const roomTypeButtons = document.querySelectorAll('input[name="room-type"]');
+    let roomType;
+    roomTypeButtons.forEach(button => {
+      if (button.checked) {
+        roomType = button.value;
+      }
+    })
+    return roomType;
+  }
+
+  populateAvailableRooms(availableRooms = []) {
     const availableRoomsSection = document.querySelector('#available-rooms');
     availableRoomsSection.innerHTML = '';
     availableRooms.forEach(room => {

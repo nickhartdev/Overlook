@@ -11,10 +11,10 @@ import moment from 'moment';
 const domUpdates = new DOMUpdates();
 
 document.addEventListener('click', (event) => {
-  clickHandler(event);
+  buttonHandler(event);
 })
 
-const clickHandler = (event) => {
+const buttonHandler = (event) => {
   if (event.target.id === 'log-in-btn') {
     logIn();
   } else if (event.target.id === 'username' || event.target.id === 'password') {
@@ -24,8 +24,10 @@ const clickHandler = (event) => {
   } else if (event.target.id === 'home-link') {
     domUpdates.displayLandingPage();
   } else if (event.target.id === 'booking-search-btn') {
-    let date = domUpdates.getDateFromForm();
-    checkAndDisplayAvailableRooms(date);
+    const date = domUpdates.getDateFromForm();
+    const roomType = domUpdates.getRoomTypeFromForm();
+    console.log(roomType);
+    checkAndDisplayAvailableRooms(date, roomType);
   }
 }
 
@@ -38,9 +40,13 @@ const logIn = async () => {
   }
 }
 
-const checkAndDisplayAvailableRooms = async (date) => {
+const checkAndDisplayAvailableRooms = async (date, types) => {
   const hotelData = await dataFetcher.retrieveHotelDataForDay(date);
-  domUpdates.populateAvailableRooms(hotelData.roomsAvailableForDay);
+  if (types) {
+    domUpdates.populateAvailableRooms(hotelData.filterRoomsByType(types));
+  } else {
+    domUpdates.populateAvailableRooms(hotelData.roomsAvailableForDay);
+  }
 }
 
 const startCustomerApp = async (username) => {
