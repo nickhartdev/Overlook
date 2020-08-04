@@ -4,26 +4,51 @@
     <title>Webpack Starter Kit</title>
   </head>
   <body>
+    <nav class="hidden">
+      <button type="button" id="home-link">Home</button>
+      <button type="button" id="customer-booking-link">Book a room</button>
+      <button type="button" id="back-to-search-link">Back to your search</button>
+    </nav>
     <form id="log-in-form">
       <fieldset>
         <label for="username">Username:</label>
-        <input type="text" id="username"></input>
-        <label for="password">Password:</label>
+        <input type="text" id="username" value="customer20"></input>
+        <label for="password" value="overlook2020">Password:</label>
         <input type="password" id="password"></input>
         <button id="log-in-btn" type="button">Log in</button>
         <p id="error-message" class="hidden">Invalid username/password</p>
       </fieldset>
     </form>
-    <section id="customer-landing-page" class="hidden">
+    <article id="customer-landing-page" class="hidden">
       <h1 id="welcome-message"></h1>
       <p id="customer-expenditure"></p>
       <article id="customer-bookings">Your Bookings:</article>
-    </section>
-    <section id="manager-landing-page" class="hidden">
+    </article>
+    <article id="customer-booking-page" class="hidden">
+      <label for="date-selector">Search by date</label>
+      <input type="date" id="date-selector"></input>
+      <button type="button" id="booking-search-btn">Search</button>
+      <form id="room-type-tags">
+        <input type="radio" class="room-type-btn" name="room-type" value="suite"></input>
+        <label for="suite">Suite</label>
+        <input type="radio" class="room-type-btn" name="room-type" value="residential suite"></input>
+        <label for="residential">Residential Suite</label>
+        <input type="radio" class="room-type-btn" name="room-type" value="junior suite"></input>
+        <label for="junior">Junior Suite</label>
+        <input type="radio" class="room-type-btn" name="room-type" value="single room"></input>
+        <label for="single">Single Room</label>
+      </form>
+      <section id="available-rooms"></section>
+    </article>
+    <article id="room-booking-page" class="hidden"></article>
+    <article id="apology-page" class="hidden">
+      <h1>So sorry! Looks like we don't have an available rooms that fit your criteria. Please try another search.</h1>
+    </article>
+    <article id="manager-landing-page" class="hidden">
       <p id="todays-date"></p>
       <p id="total-rooms-available"></p>
       <p id="total-revenue"></p>
       <p id="occupation-percentage"></p>
-    </section>
+    </article>
   </body>
 </html>

@@ -86,7 +86,7 @@ describe('Hotel', () => {
   })
 
   it('should filter out any invalid data', () => {
-    expect(hotel.filterAndSortData(testBookings)).to.deep.equal(testBookings.slice(0, -1));
+    expect(hotel.filterData(testBookings)).to.deep.equal(testBookings.slice(0, -1));
   })
 
   it('should hold an array of all bookings for a given date', () => {
@@ -94,7 +94,15 @@ describe('Hotel', () => {
   })
 
   it('should know the total number of rooms available for a given day', () => {
-    expect(hotel.roomsAvailableForDay).to.equal(2);
+    expect(hotel.roomsAvailableForDay.length).to.equal(2);
+  })
+
+  it('should be able to filter rooms by type', () => {
+    expect(hotel.filterRoomsByType('bungalow')).to.deep.equal([testRooms[2]]);
+  })
+
+  it('should know which rooms are available for a given day', () => {
+    expect(hotel.roomsAvailableForDay).to.deep.equal([testRooms[1], testRooms[2]]);
   })
 
   it('should know the percentage of rooms booked for a given day', () => {

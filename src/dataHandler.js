@@ -4,7 +4,7 @@ import Room from './Room.js';
 import Booking from './Booking.js';
 import Hotel from './Hotel.js';
 
-const dataFetcher = {
+const dataHandler = {
   retrieveUserData() {
     return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
     .then(response => response.json())
@@ -37,7 +37,22 @@ const dataFetcher = {
     const bookingData = await this.retrieveAndInstantiateBookingData();
 
     return new Hotel(roomData, bookingData, date);
+  },
+
+  async postBookingData(userID, date, roomNumber) {
+    console.log('posting');
+    const bookingData = {userID: userID, date: date, roomNumber: roomNumber};
+    return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bookingData)
+    })
+      .then(response => response.json())
+      .then(statusCode => console.log(statusCode))
+      .catch(error => console.error(error));
   }
 }
 
-export default dataFetcher;
+export default dataHandler;
