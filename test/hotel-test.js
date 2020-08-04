@@ -97,6 +97,10 @@ describe('Hotel', () => {
     expect(hotel.roomsAvailableForDay.length).to.equal(2);
   })
 
+  it('should be able to filter rooms by type', () => {
+    expect(hotel.filterRoomsByType('bungalow')).to.deep.equal([testRooms[2]]);
+  })
+
   it('should know which rooms are available for a given day', () => {
     expect(hotel.roomsAvailableForDay).to.deep.equal([testRooms[1], testRooms[2]]);
   })

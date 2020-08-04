@@ -41,6 +41,12 @@ class Hotel {
       })
     })
   }
+
+  filterRoomsByType(type) {
+    return this.roomsAvailableForDay.filter(room => {
+      return room.roomType === type;
+    })
+  }
 }
 
 export default Hotel;
