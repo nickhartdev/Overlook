@@ -21,13 +21,18 @@ const buttonHandler = async (event) => {
   } else if (event.target.id === 'home-link') {
     domUpdates.displayLandingPage();
   } else if (event.target.id === 'booking-search-btn') {
-    const date = domUpdates.getDateFromForm();
+    domUpdates.date = domUpdates.getDateFromForm();
     const roomType = domUpdates.getRoomTypeFromForm();
-    checkAndDisplayAvailableRooms(date, roomType);
+    checkAndDisplayAvailableRooms(domUpdates.date, roomType);
   } else if (event.target.classList.contains('more-info-btn')) {
     getAndDisplayRoomMatch(event.target.id);
   } else if (event.target.id === 'back-to-search-link') {
     domUpdates.displayUserBookingPage();
+  } else if (event.target.classList.contains('room-booking-btn')) {
+    const userID = loginHandler.validateCustomerID(domUpdates.currentUser).customerID;
+    const roomNumber = event.target.id;
+    const date = domUpdates.date;
+    // dataHandler.bookRoom();
   }
 }
 

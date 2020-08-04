@@ -4,6 +4,7 @@ import moment from 'moment';
 class DOMUpdates {
   constructor() {
     this.currentUser = null;
+    this.date = null;
   }
 
   checkLoginResponse(handler = loginHandler) {
@@ -48,11 +49,11 @@ class DOMUpdates {
     this.changeElementsVisibility('show', ['#room-booking-page', '#back-to-search-link']);
     this.changeElementsVisibility('hide', ['#customer-booking-page', '#available-rooms']);
 
-    roomBookingPage.innerHTML = `
-      <h1>${room.roomType}</h1>
+    roomBookingPage.innerHTML =
+    ` <h1>For ${moment(this.date).format('dddd, MMMM do YYYY')}</h1>
+      <p>${room.roomType}</p>
       <p>${room.roomNumber}</p>
-      <button id="room-booking-btn">Book</button>
-    `
+      <button class="room-booking-btn" id="${room.number}">Book</button>`
   }
 
   changeElementsVisibility(visibilityChange, elementSelectors) {

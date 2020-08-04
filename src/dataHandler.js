@@ -37,6 +37,20 @@ const dataHandler = {
     const bookingData = await this.retrieveAndInstantiateBookingData();
 
     return new Hotel(roomData, bookingData, date);
+  },
+
+  async bookRoom(user, date, room) {
+    // const bookingData = {userID: , date: , roomNumber: }
+    return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bookingData)
+    })
+      .then(response => response.json())
+      .then(statusCode => console.log(statusCode))
+      .catch(error => console.error(error));
   }
 }
 
