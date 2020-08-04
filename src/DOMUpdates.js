@@ -64,7 +64,8 @@ class DOMUpdates {
       '#date-selector-header',
       '#date-selector',
       '#booking-search-btn',
-      '#room-type-tags'
+      '#room-type-tags',
+      '#clear-search-btn'
     ]);
     this.changeElementsVisibility('hide', [
       '#customer-landing-page',
@@ -83,7 +84,8 @@ class DOMUpdates {
     ]);
     this.changeElementsVisibility('hide', [
       '#customer-booking-page',
-      '#available-rooms'
+      '#available-rooms',
+      '#clear-search-btn'
     ]);
 
     roomBookingPage.innerHTML =
@@ -154,7 +156,19 @@ class DOMUpdates {
     return roomType;
   }
 
+  resetSearchForm() {
+    const roomTypeButtons = document.querySelectorAll('input[name="room-type"]');
+    const datePicker = document.querySelector('#date-selector');
+
+    datePicker.value = '';
+    roomTypeButtons.forEach(button => {
+      button.checked = false;
+    });
+    this.changeElementsVisibility('hide', ['#available-rooms']);
+  }
+
   populateAvailableRooms(availableRooms = []) {
+    this.changeElementsVisibility('show', ['#available-rooms']);
     const availableRoomsSection = document.querySelector('#available-rooms');
     availableRoomsSection.innerHTML = '';
     availableRooms.forEach(room => {

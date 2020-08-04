@@ -30,6 +30,8 @@ const buttonHandler = async (event) => {
     domUpdates.displayUserBookingPage();
   } else if (event.target.classList.contains('room-booking-btn')) {
     bookRoom(event);
+  } else if (event.target.id === 'clear-search-btn') {
+    domUpdates.resetSearchForm()
   }
 }
 
