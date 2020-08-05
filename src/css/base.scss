@@ -6,11 +6,24 @@
 @import 'room-booking-page';
 @import 'manager-landing-page';
 @import 'media-queries';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Slab:wght@400;700&display=swap');
 
 * {
   margin: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+}
+
+body {
+  background-image: url(../images/landing-page.jpg);
+  background-position: -300px;
+}
+
+h1, h2 {
+  font-family: 'Roboto Slab', serif;
+}
+
+p, legend, label {
+  font-family: 'Open Sans', sans-serif;
 }
 
 .hidden {
