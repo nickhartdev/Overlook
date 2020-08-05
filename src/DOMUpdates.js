@@ -54,10 +54,13 @@ class DOMUpdates {
       ]);
       this.hideAllCards('.available-room-card');
     } else if (this.currentUser === 'manager') {
-      this.changeElementsVisibility('show', ['#manager-landing-page']);
+      this.changeElementsVisibility('show', ['#manager-landing-page', 'nav']);
       this.changeElementsVisibility('hide', [
         '#log-in-form',
-        'fieldset'
+        'fieldset',
+        '#customer-booking-link',
+        '#home-link',
+        '#back-to-search-link'
       ]);
     }
   }

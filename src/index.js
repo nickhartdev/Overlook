@@ -22,6 +22,7 @@ const buttonHandler = async (event) => {
     refreshCustomerApp(domUpdates.currentUser);
   } else if (event.target.id === 'booking-search-btn') {
     domUpdates.date = domUpdates.getDateFromForm();
+    console.log(domUpdates.date);
     const roomType = domUpdates.getRoomTypeFromForm();
     checkAndDisplayAvailableRooms(domUpdates.date, roomType);
   } else if (event.target.classList.contains('more-info-btn')) {
@@ -46,6 +47,7 @@ const logIn = async () => {
 
 const checkAndDisplayAvailableRooms = async (date, roomType) => {
   const hotelData = await dataHandler.retrieveHotelDataForDay(date);
+  console.log(hotelData);
   if (roomType) {
     const roomsByType = hotelData.filterRoomsByType(roomType);
     roomsByType === [] ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(roomsByType, date);
