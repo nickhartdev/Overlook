@@ -1,3 +1,7 @@
+import './images/junior-suite.jpg'
+import './images/residential-suite.jpg'
+import './images/suite.jpg'
+import './images/single-room.jpg'
 import './css/base.scss';
 import Hotel from './Hotel.js';
 import DOMUpdates from './DOMUpdates.js';

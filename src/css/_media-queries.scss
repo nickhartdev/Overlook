@@ -6,3 +6,7 @@
   @include card--sm();
   @include log-in-page--sm();
 }
+
+@media (min-width: 401px) and (max-width: 900px) {
+  @include card--md();
+}

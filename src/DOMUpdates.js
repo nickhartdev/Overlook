@@ -143,7 +143,7 @@ class DOMUpdates {
 
   updateWelcomeMessage(customer = {name: '- uh oh. Looks like we had an error'}) {
     const welcomeMessage = document.querySelector('#welcome-message');
-    welcomeMessage.innerHTML = `Welcome ${customer.name.split(' ')[0]}.`;
+    welcomeMessage.innerHTML = `Welcome ${this.getFirstWord(customer.name)}.`;
   }
 
   displayCustomerExpenditures(customer = {totalExpenditures: 0}) {
@@ -156,13 +156,32 @@ class DOMUpdates {
     customerBookings.innerHTML = '';
     bookedRooms.forEach(bookedRoom => {
       customerBookings.innerHTML += `
-      <section role="figure" class="customer-booking booking-card card">
-        <p role="heading">${bookedRoom.dateBooked}</p>
-        <p>Room ${bookedRoom.number}</p>
-        <p>${this.capitalizeFirstLetter(bookedRoom.roomType)}</p>
+      <section role="figure" class="customer-booking booking-card card ${this.getFirstWord(bookedRoom.roomType)}">
+        <p role="heading" class="booking-date-text">${bookedRoom.dateBooked}</p>
+        <p class="booking-description">${this.capitalizeFirstLetter(bookedRoom.roomType)}</p>
       </section>
       `
     })
+    this.addRoomImages();
+  }
+
+  addRoomImages() {
+    const roomCards = document.querySelectorAll('.card');
+    roomCards.forEach(card => {
+      if (card.classList.contains('junior')) {
+        card.style.backgroundImage = "url('./images/junior-suite.jpg')"
+      } else if (card.classList.contains('suite')) {
+        card.style.backgroundImage = "url('./images/suite.jpg')"
+      } else if (card.classList.contains('residential')) {
+        card.style.backgroundImage = "url('./images/residential-suite.jpg')"
+      } else {
+        card.style.backgroundImage = "url('./images/single-room.jpg')"
+      }
+    })
+  }
+
+  getFirstWord(text) {
+    return text.split(' ')[0];
   }
 
   capitalizeFirstLetter(text) {
