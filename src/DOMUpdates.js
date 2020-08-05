@@ -26,12 +26,15 @@ class DOMUpdates {
 
   hideError() {
     const errorMessage = document.querySelector('#error-message');
-    if (!errorMessage.classList.contains('hidden')) errorMessage.classList.add('hidden');
+    if (!errorMessage.classList.contains('hidden')) {
+      errorMessage.classList.add('hidden');
+    }
   }
 
   displayLandingPage() {
     this.changeBackgroundImage('none');
     if (this.currentUser.includes('customer')) {
+      this.hideAllCards('.available-room-card');
       this.changeElementsVisibility('show', [
         '#customer-landing-page',
         'nav',
@@ -54,7 +57,6 @@ class DOMUpdates {
         '#apology-page',
         '#room-info-popup'
       ]);
-      this.hideAllCards('.available-room-card');
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page', 'nav']);
       this.changeElementsVisibility('hide', [
@@ -65,6 +67,31 @@ class DOMUpdates {
         '#home-link',
       ]);
     }
+  }
+
+  displayLoginPage() {
+    this.currentUser = null;
+    this.date = null;
+    this.changeBackgroundImage('url(../images/landing-page.jpg)')
+    this.changeElementsVisibility('show', ['fieldset', '#log-in-form', '#log-in-message']);
+    this.changeElementsVisibility('hide', [
+      '#customer-landing-page',
+      'nav',
+      '#customer-booking-link',
+      '#customer-bookings',
+      '#customer-expenditure',
+      '#customer-booking-page',
+      '#home-link',
+      '#search-page-header',
+      '#date-selector',
+      '#booking-search-btn',
+      '#room-search-form',
+      '#available-rooms',
+      '#clear-search-btn',
+      '#apology-page',
+      '#room-info-popup',
+      '#manager-landing-page'
+    ]);
   }
 
   displayUserBookingPage() {
@@ -92,11 +119,11 @@ class DOMUpdates {
 
   displayRoomInfoPopUp(room = {roomType: 'Uh oh. Looks like we had an error'}) {
     const roomInfoPopUp = document.querySelector('#room-info-popup');
+
     this.changeElementsVisibility('show', [
       '#room-info-popup',
       '#body-blackout'
     ]);
-
     roomInfoPopUp.innerHTML =
       `<h1 id="booking-page-header">More about room ${room.number}:</h1>
       <p class="booking-popup-text">This room is one of our ${room.roomType}s.</p>
@@ -122,7 +149,12 @@ class DOMUpdates {
 
   displayApologyPage() {
     this.changeElementsVisibility('show', ['#apology-page']);
-    this.changeElementsVisibility('hide', ['#available-rooms', '#customer-booking-page', '#room-search-form', '#search-page-header']);
+    this.changeElementsVisibility('hide', [
+      '#available-rooms',
+      '#customer-booking-page',
+      '#room-search-form',
+      '#search-page-header'
+    ]);
   }
 
   changeElementsVisibility(visibilityChange, elementSelectors) {
@@ -143,7 +175,7 @@ class DOMUpdates {
 
   displayCustomerExpenditures(customer = {totalExpenditures: 0}) {
     const customerExpenditure = document.querySelector('#customer-expenditure');
-    customerExpenditure.innerHTML = `Your current total for all bookings is ${customer.totalExpenditures}.`
+    customerExpenditure.innerHTML = `Your current total for all of your bookings so far is ${customer.totalExpenditures}.`
   }
 
   populateCustomerBookings(bookedRooms = []) {

@@ -25,10 +25,7 @@ const buttonHandler = async (event) => {
   } else if (event.target.id === 'home-link') {
     refreshCustomerApp(domUpdates.currentUser);
   } else if (event.target.id === 'booking-search-btn') {
-    domUpdates.date = domUpdates.getDateFromForm();
-    console.log(domUpdates.date);
-    const roomType = domUpdates.getRoomTypeFromForm();
-    checkAndDisplayAvailableRooms(domUpdates.date, roomType);
+    checkAndDisplayAvailableRooms(domUpdates.getRoomTypeFromForm());
   } else if (event.target.classList.contains('more-info-btn')) {
     getAndDisplayRoomMatch(event.target.id);
   } else if (event.target.id === 'back-to-search-link') {
@@ -37,6 +34,8 @@ const buttonHandler = async (event) => {
     bookRoom(event);
   } else if (event.target.id === 'clear-search-btn') {
     domUpdates.resetSearchForm()
+  } else if (event.target.id === 'log-out-btn') {
+    domUpdates.displayLoginPage();
   }
 }
 
@@ -49,7 +48,8 @@ const logIn = async () => {
   }
 }
 
-const checkAndDisplayAvailableRooms = async (date, roomType) => {
+const checkAndDisplayAvailableRooms = async (roomType) => {
+  const date = domUpdates.getDateFromForm()
   const hotelData = await dataHandler.retrieveHotelDataForDay(date);
   if (roomType) {
     const roomsByType = hotelData.filterRoomsByType(roomType);
@@ -72,6 +72,7 @@ const bookRoom = (event) => {
   const date = domUpdates.date;
   const roomNumber = parseInt(event.target.id);
   dataHandler.postBookingData(userID, date, roomNumber);
+  domUpdates.displayUserBookingPage();
   alert(`Room ${roomNumber} booked!`);
 }
 
