@@ -61,12 +61,6 @@ describe('Hotel', () => {
         date: '2020/08/01',
         roomNumber: 18,
         roomServiceCharges: []
-      }),
-      new Booking({
-        id: '90jsaova90uj0rio',
-        userID: 2,
-        date: '2020/08/02',
-        roomServiceCharges: []
       })
     ]
     hotel = new Hotel(testRooms, testBookings, '2020/08/02');
@@ -82,11 +76,7 @@ describe('Hotel', () => {
 
   it('should contain all instances of Room and Booking', () => {
     expect(hotel.rooms).to.deep.equal(testRooms);
-    expect(hotel.bookings).to.deep.equal(testBookings.slice(0, -1));
-  })
-
-  it('should filter out any invalid data', () => {
-    expect(hotel.filterData(testBookings, 'Booking')).to.deep.equal(testBookings.slice(0, -1));
+    expect(hotel.bookings).to.deep.equal(testBookings);
   })
 
   it('should hold an array of all bookings for a given date', () => {

@@ -81,7 +81,7 @@ describe('domUpdate', () => {
   it('should show the manager\'s login screen when their credentials are correct', () => {
     domUpdates.currentUser = 'manager';
     domUpdates.displayLandingPage();
-    expect(document.querySelector).to.have.been.called(3);
+    expect(document.querySelector).to.have.been.called(7);
     expect(document.querySelector).to.have.been.called.with('#log-in-form');
     expect(document.querySelector).to.have.been.called.with('#manager-landing-page');
     expect(document.querySelector).to.have.been.called.with('fieldset');
