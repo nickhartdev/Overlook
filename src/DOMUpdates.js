@@ -30,6 +30,7 @@ class DOMUpdates {
   }
 
   displayLandingPage() {
+    this.changeBackgroundImage('none');
     if (this.currentUser.includes('customer')) {
       this.changeElementsVisibility('show', [
         '#customer-landing-page',
@@ -40,6 +41,7 @@ class DOMUpdates {
       ]);
       this.changeElementsVisibility('hide', [
         '#log-in-form',
+        '#log-in-message',
         '#customer-booking-page',
         '#home-link',
         '#back-to-search-link',
@@ -57,6 +59,7 @@ class DOMUpdates {
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page', 'nav']);
       this.changeElementsVisibility('hide', [
+        '#log-in-message',
         '#log-in-form',
         'fieldset',
         '#customer-booking-link',
@@ -117,6 +120,11 @@ class DOMUpdates {
     })
   }
 
+  changeBackgroundImage(content) {
+    const body = document.querySelector('body');
+    body.style.background = content
+  }
+
   displayApologyPage() {
     this.changeElementsVisibility('show', ['#apology-page', '#back-to-search-link']);
     this.changeElementsVisibility('hide', ['#available-rooms', '#customer-booking-page', '#room-search-form', '#search-page-header']);
@@ -135,12 +143,12 @@ class DOMUpdates {
 
   updateWelcomeMessage(customer = {name: '- uh oh. Looks like we had an error'}) {
     const welcomeMessage = document.querySelector('#welcome-message');
-    welcomeMessage.innerHTML = `Welcome ${customer.name}`;
+    welcomeMessage.innerHTML = `Welcome ${customer.name.split(' ')[0]}.`;
   }
 
   displayCustomerExpenditures(customer = {totalExpenditures: 0}) {
     const customerExpenditure = document.querySelector('#customer-expenditure');
-    customerExpenditure.innerHTML = `Your total for all bookings is ${customer.totalExpenditures}.`
+    customerExpenditure.innerHTML = `Your current total for all bookings is ${customer.totalExpenditures}.`
   }
 
   populateCustomerBookings(bookedRooms = []) {
@@ -151,10 +159,20 @@ class DOMUpdates {
       <section role="figure" class="customer-booking booking-card card">
         <p role="heading">${bookedRoom.dateBooked}</p>
         <p>Room ${bookedRoom.number}</p>
-        <p>${bookedRoom.roomType}</p>
+        <p>${this.capitalizeFirstLetter(bookedRoom.roomType)}</p>
       </section>
       `
     })
+  }
+
+  capitalizeFirstLetter(text) {
+    const words = text.toLowerCase().split(' ');
+    const newPhrase = []
+    words.forEach(word => {
+      const capitalizedWord = word.charAt(0).toUpperCase() + word.substring(1);
+      newPhrase.push(capitalizedWord);
+    })
+    return newPhrase.join(' ');
   }
 
   getDateFromForm() {
