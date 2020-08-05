@@ -2,16 +2,12 @@ import moment from 'moment';
 
 class Hotel {
   constructor(rooms, bookings, date) {
-    this.rooms = this.filterData(rooms);
-    this.bookings = this.filterData(bookings);
+    this.rooms = rooms;
+    this.bookings = bookings;
     this.bookingsForDay = this.findBookingsForDay(date);
     this.occupationPercentageForDay = this.findPercentageOfRoomsBookedForDay(date);
     this.revenueForDay = this.findRevenueForDay(date);
     this.roomsAvailableForDay = this.findRoomsAvailableForDay(date);
-  }
-
-  filterData(dataSet) {
-    return dataSet.filter(data => !Object.values(data).includes(null));
   }
 
   findBookingsForDay(date = moment().format('YYYY/MM/DD')) {

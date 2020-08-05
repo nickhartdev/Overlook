@@ -50,14 +50,18 @@ class DOMUpdates {
         '#booking-search-btn',
         '#room-search-form',
         '#available-rooms',
-        '#clear-search-btn'
+        '#clear-search-btn',
+        '#apology-page'
       ]);
       this.hideAllCards('.available-room-card');
     } else if (this.currentUser === 'manager') {
-      this.changeElementsVisibility('show', ['#manager-landing-page']);
+      this.changeElementsVisibility('show', ['#manager-landing-page', 'nav']);
       this.changeElementsVisibility('hide', [
         '#log-in-form',
-        'fieldset'
+        'fieldset',
+        '#customer-booking-link',
+        '#home-link',
+        '#back-to-search-link'
       ]);
     }
   }
@@ -80,7 +84,8 @@ class DOMUpdates {
       '#customer-bookings',
       '#customer-expenditure',
       '#available-rooms',
-      '#back-to-search-link'
+      '#back-to-search-link',
+      '#apology-page'
     ]);
   }
 
@@ -114,7 +119,7 @@ class DOMUpdates {
 
   displayApologyPage() {
     this.changeElementsVisibility('show', ['#apology-page', '#back-to-search-link']);
-    this.changeElementsVisibility('hide', ['#available-rooms', '#customer-booking-page']);
+    this.changeElementsVisibility('hide', ['#available-rooms', '#customer-booking-page', '#room-search-form', '#search-page-header']);
   }
 
   changeElementsVisibility(visibilityChange, elementSelectors) {
