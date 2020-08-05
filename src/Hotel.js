@@ -26,7 +26,7 @@ class Hotel {
     return bookingsForDay.reduce((totalRevenue, booking) => {
       const roomMatch = this.rooms.find(room => room.number = booking.roomNumber);
       totalRevenue += roomMatch.costPerNight;
-      return totalRevenue;
+      return parseFloat(totalRevenue.toFixed(2));
     }, 0);
   }
 
