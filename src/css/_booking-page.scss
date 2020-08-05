@@ -77,7 +77,11 @@ input[type="radio"] {
   border-radius: 3%;
   background: white;
   width: 60%;
-  height: 350px;
+  height: 325px;
+}
+
+#booking-page-header {
+  padding: 1em 0 0 1.5em;
 }
 
 .booking-popup-text {
@@ -86,7 +90,7 @@ input[type="radio"] {
 }
 
 .room-booking-btn {
-  margin-left: 3em;
+  margin-left: 2.25em;
   margin-top: 2em;
 }
 
