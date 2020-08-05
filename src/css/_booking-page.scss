@@ -47,6 +47,20 @@
   flex-flow: row wrap;
 }
 
+.room-description {
+  position: absolute;
+  font-size: 1.5em;
+  left: .75rem;
+  color: white;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .5);
+}
+
+.more-info-btn {
+  position: absolute;
+  top: 9em;
+  left: 1em;
+}
+
 input[type="radio"] {
   margin-left: 1em;
 }
@@ -78,5 +92,4 @@ input[type="radio"] {
     padding: 1em;
     width: 75%;
   }
-
 }

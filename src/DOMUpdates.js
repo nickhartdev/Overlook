@@ -234,12 +234,12 @@ class DOMUpdates {
     availableRoomsSection.innerHTML = '';
     availableRooms.forEach(room => {
       availableRoomsSection.innerHTML += `
-      <section role="figure" class="available-room-card card">
-        <h1>${room.roomType}</h1>
-        <p>${room.number}</p>
+      <section role="figure" class="available-room-card card ${this.getFirstWord(room.roomType)}">
+        <h1 class="room-description">${this.capitalizeFirstLetter(room.roomType)}</h1>
         <button type="button" class="more-info-btn" id="${room.number}">More Info</button>
       </section>
       `
+    this.addRoomImages();
     })
   }
 

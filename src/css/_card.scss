@@ -24,12 +24,7 @@
 
 @mixin card--sm() {
   .card {
-    width: 95%;
-  }
-}
-
-@mixin card--md() {
-  .card {
-    width: 95%;
+    width: 75%;
+    margin: 1em auto;
   }
 }

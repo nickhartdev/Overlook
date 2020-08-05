@@ -14,7 +14,9 @@
 }
 
 body {
-  background: url(../images/landing-page.jpg) no-repeat center center fixed;
+  background: url(../images/landing-page.jpg);
+  background-size: 2500px 1800px;
+  background-repeat: no-repeat;
 }
 
 h1, h2 {
@@ -23,6 +25,12 @@ h1, h2 {
 
 p, legend, label, button {
   font-family: 'Open Sans', sans-serif;
+}
+
+button {
+  background-color: black;
+  color: white;
+  border: none;
 }
 
 .hidden {
