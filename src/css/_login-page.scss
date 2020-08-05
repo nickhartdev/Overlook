@@ -1,6 +1,6 @@
 #log-in-form > h1 {
   color: white;
-  padding: 1.5em 0 0 0;
+  padding: 2.5em 0 0 0;
   text-shadow: 0 1px 8px rgba(0, 0, 0, .5);
 }
 
@@ -48,4 +48,10 @@
 #error-message {
   margin-left: 1.75em;
   font-size: .8em;
+}
+
+@mixin log-in-page--sm() {
+  #log-in-form > h1 {
+    text-align: center;
+  }
 }
