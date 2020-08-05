@@ -44,8 +44,6 @@ class DOMUpdates {
         '#log-in-message',
         '#customer-booking-page',
         '#home-link',
-        '#back-to-search-link',
-        '#room-booking-page',
         'fieldset',
         '#search-page-header',
         '#date-selector',
@@ -53,7 +51,8 @@ class DOMUpdates {
         '#room-search-form',
         '#available-rooms',
         '#clear-search-btn',
-        '#apology-page'
+        '#apology-page',
+        '#room-info-popup'
       ]);
       this.hideAllCards('.available-room-card');
     } else if (this.currentUser === 'manager') {
@@ -64,7 +63,6 @@ class DOMUpdates {
         'fieldset',
         '#customer-booking-link',
         '#home-link',
-        '#back-to-search-link'
       ]);
     }
   }
@@ -83,34 +81,31 @@ class DOMUpdates {
     this.changeElementsVisibility('hide', [
       '#customer-landing-page',
       '#customer-booking-link',
-      '#room-booking-page',
       '#customer-bookings',
       '#customer-expenditure',
       '#available-rooms',
-      '#back-to-search-link',
-      '#apology-page'
+      '#apology-page',
+      '#room-info-popup',
+      '#body-blackout'
     ]);
   }
 
-  displayRoomBookingPage(room = {roomType: 'Uh oh. Looks like we had an error'}) {
-    const roomBookingPage = document.querySelector('#room-booking-page');
+  displayRoomInfoPopUp(room = {roomType: 'Uh oh. Looks like we had an error'}) {
+    const roomInfoPopUp = document.querySelector('#room-info-popup');
     this.changeElementsVisibility('show', [
-      '#room-booking-page',
-      '#back-to-search-link'
+      '#room-info-popup',
+      '#body-blackout'
     ]);
-    this.changeElementsVisibility('hide', [
-      '#customer-booking-page',
-      '#available-rooms',
-      '#clear-search-btn',
-      '#search-page-header',
-      '#room-search-form'
-    ]);
-    this.hideAllCards('.available-room-card');
 
-    roomBookingPage.innerHTML =
-    ` <h1 id="booking-page-header">For ${moment(this.date).format('dddd, MMMM do YYYY')}</h1>
-      <p class="booking-page-text">${room.roomType}</p>
-      <button class="room-booking-btn" id="${room.number}">Book</button>`;
+    roomInfoPopUp.innerHTML =
+      `<h1 id="booking-page-header">More about room ${room.number}:</h1>
+      <p class="booking-popup-text">This room is one of our ${room.roomType}s.</p>
+      <p class="booking-popup-text">Bed size(s): ${this.capitalizeFirstLetter(room.bedSize)}</p>
+      <p class="booking-popup-text">Number of beds: ${room.numBeds}</p>
+      <p class="booking-popup-text">Cost per night: $${room.costPerNight}</p>
+      <p class="booking-popup-text">Would you like to book this room for ${moment(this.date).format('dddd, MMMM do YYYY')}?</p>
+      <button class="room-booking-btn" id="${room.number}">Book</button>
+      <button type="button" id="back-to-search-link">Back to your search</button>`;
   }
 
   hideAllCards(cardSelector) {
@@ -126,7 +121,7 @@ class DOMUpdates {
   }
 
   displayApologyPage() {
-    this.changeElementsVisibility('show', ['#apology-page', '#back-to-search-link']);
+    this.changeElementsVisibility('show', ['#apology-page']);
     this.changeElementsVisibility('hide', ['#available-rooms', '#customer-booking-page', '#room-search-form', '#search-page-header']);
   }
 

@@ -64,7 +64,7 @@ const getAndDisplayRoomMatch = async (roomNumber) => {
   const rooms = await dataHandler.retrieveAndInstantiateRoomData();
   const roomMatch = rooms.find(room => room.number == roomNumber);
 
-  domUpdates.displayRoomBookingPage(roomMatch);
+  domUpdates.displayRoomInfoPopUp(roomMatch);
 }
 
 const bookRoom = (event) => {
