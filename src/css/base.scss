@@ -1,7 +1,7 @@
 @import 'nav';
 @import 'login-page';
 @import 'customer-landing-page';
-@import 'booking-page';
+@import 'room-search-page';
 @import 'card';
 @import 'room-booking-page';
 @import 'manager-landing-page';
@@ -17,7 +17,6 @@
 body {
   background: url(../images/landing-page.jpg);
   background-repeat: no-repeat;
-  background-size: 2560px 1800px;
   background-position: center;
 }
 

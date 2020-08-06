@@ -55,7 +55,8 @@ class DOMUpdates {
         '#available-rooms',
         '#clear-search-btn',
         '#apology-page',
-        '#room-info-popup'
+        '#room-info-popup',
+        '#search-placeholder-text'
       ]);
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page', 'nav']);
@@ -90,11 +91,12 @@ class DOMUpdates {
       '#clear-search-btn',
       '#apology-page',
       '#room-info-popup',
-      '#manager-landing-page'
+      '#manager-landing-page',
+      '#search-placeholder-text'
     ]);
   }
 
-  displayUserBookingPage() {
+  displayUserBookingPage(revisit) {
     this.changeElementsVisibility('show', [
       '#customer-booking-page',
       '#home-link',
@@ -115,6 +117,11 @@ class DOMUpdates {
       '#room-info-popup',
       '#body-blackout'
     ]);
+    if (revisit) {
+      this.changeElementsVisibility('hide', ['#search-placeholder-text']);
+    } else {
+      this.changeElementsVisibility('show', ['#search-placeholder-text']);
+    }
   }
 
   displayRoomInfoPopUp(room = {roomType: 'Uh oh. Looks like we had an error'}) {
@@ -248,6 +255,7 @@ class DOMUpdates {
     const datePicker = document.querySelector('#date-selector');
 
     this.changeElementsVisibility('hide', ['#available-rooms']);
+    this.changeElementsVisibility('show', ['#search-placeholder-text']);
     this.hideAllCards('.available-room-card')
     datePicker.value = '';
     roomTypeButtons.forEach(button => {
@@ -257,6 +265,7 @@ class DOMUpdates {
 
   populateAvailableRooms(availableRooms = []) {
     this.changeElementsVisibility('show', ['#available-rooms']);
+    this.changeElementsVisibility('hide', ['#search-placeholder-text']);
     const availableRoomsSection = document.querySelector('#available-rooms');
     availableRoomsSection.innerHTML = '';
     availableRooms.forEach(room => {

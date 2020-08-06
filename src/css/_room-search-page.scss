@@ -41,6 +41,13 @@
   margin: 1em;
 }
 
+#search-placeholder-text {
+  grid-area: 2 / 2;
+  text-align: center;
+  margin: 2em auto;
+  color: gray;
+}
+
 #available-rooms {
   grid-area: 2 / 2;
   display: flex;
@@ -83,5 +90,15 @@ input[type="radio"] {
     margin: .75em;
     padding: 1em;
     width: 75%;
+  }
+
+  #search-placeholder-text {
+    margin: 6em 1em;
+  }
+}
+
+@mixin search-placeholder-text--sm() {
+  #search-placeholder-text {
+    margin: 3em 1em;
   }
 }
