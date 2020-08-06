@@ -10,6 +10,9 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  border-radius: .5em;
+  animation-name: fadein;
+  animation-duration: .5s;
 }
 
 .card > p {

@@ -92,8 +92,9 @@ class DOMUpdates {
       '#apology-page',
       '#room-info-popup',
       '#manager-landing-page',
-      '#search-placeholder-text'
+      '#search-placeholder-text',
     ]);
+    this.hideAllCards('.card');
   }
 
   displayUserBookingPage(revisit) {

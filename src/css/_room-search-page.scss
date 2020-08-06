@@ -18,6 +18,7 @@
 #booking-search-btn, #clear-search-btn {
   width: 200px;
   margin-left: 2.8em;
+  border-radius: 1em;
 }
 
 #clear-search-btn {
@@ -54,10 +55,20 @@
   flex-flow: row wrap;
 }
 
+.room-description {
+  position: absolute;
+  top: .6em;
+  left: .75rem;
+  font-size: 1.5em;
+}
+
 .more-info-btn {
   position: absolute;
-  top: 9em;
+  top: 7em;
   left: 1em;
+  width: 6em;
+  height: 3em;
+  border-radius: 1em;
 }
 
 input[type="radio"] {

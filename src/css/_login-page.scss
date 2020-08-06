@@ -1,7 +1,9 @@
-#log-in-form > h1 {
+#log-in-message {
   color: white;
   padding: 2.5em 0 0 0;
   text-shadow: 0 1px 8px rgba(0, 0, 0, .5);
+  animation-name: fadein;
+  animation-duration: 1s;
 }
 
 #log-in-form {
@@ -20,6 +22,8 @@
   border-radius: 3%;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 2px 8px 1px rgba(0, 0, 0, .5);
+  animation-name: fadein;
+  animation-duration: 1s;
 }
 
 #login-cta {

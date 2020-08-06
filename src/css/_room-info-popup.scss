@@ -3,11 +3,13 @@
   top: 20vh;
   margin-left: 20%;
   z-index: 50;
-  border-radius: 3%;
+  border-radius: 1em;
   background: white;
   width: 60%;
-  height: 325px;
+  height: 300px;
   overflow: scroll;
+  animation-name: fadein;
+  animation-duration: .5s;
 }
 
 #booking-page-header {
@@ -22,6 +24,15 @@
 .room-booking-btn {
   margin-left: 2.25em;
   margin-top: 2em;
+  width: 4em;
+  height: 2em;
+  border-radius: .5em;
+}
+
+#back-to-search-link {
+  width: 11em;
+  height: 2em;
+  border-radius: .5em;
 }
 
 .room-description {
@@ -42,23 +53,21 @@
   background: rgba(0, 0, 0, .5);
   height: 1000%;
   width: 100%;
+  animation-name: fadein;
+  animation-duration: .5s;
 }
 
 @mixin popup--sm() {
-  #room-info-popup {
-    height: 300px;
-  }
-
   #room-popup-text {
     font-size: .5em;
   }
 
   #room-booking-btn {
-    margin-left: 2em;
+    margin-left: 0em 0em 1em 2em;
     width: 75%;
   }
 
   #back-to-search-link {
-    margin-left: 2em;
+    margin: 1em 0 1em 2em;
   }
 }
