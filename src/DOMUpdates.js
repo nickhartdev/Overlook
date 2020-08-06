@@ -90,7 +90,8 @@ class DOMUpdates {
       '#clear-search-btn',
       '#apology-page',
       '#room-info-popup',
-      '#manager-landing-page'
+      '#manager-landing-page',
+      '#search-placeholder-text'
     ]);
   }
 
@@ -103,7 +104,8 @@ class DOMUpdates {
       '#date-selector',
       '#booking-search-btn',
       '#room-search-form',
-      '#clear-search-btn'
+      '#clear-search-btn',
+      '#search-placeholder-text'
     ]);
     this.changeElementsVisibility('hide', [
       '#customer-landing-page',
@@ -257,6 +259,7 @@ class DOMUpdates {
 
   populateAvailableRooms(availableRooms = []) {
     this.changeElementsVisibility('show', ['#available-rooms']);
+    this.changeElementsVisibility('hide', ['#search-placeholder-text']);
     const availableRoomsSection = document.querySelector('#available-rooms');
     availableRoomsSection.innerHTML = '';
     availableRooms.forEach(room => {
