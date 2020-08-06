@@ -29,7 +29,7 @@ const buttonHandler = async (event) => {
   } else if (event.target.classList.contains('more-info-btn')) {
     getAndDisplayRoomMatch(event.target.id);
   } else if (event.target.id === 'back-to-search-link') {
-    domUpdates.displayUserBookingPage();
+    domUpdates.displayUserBookingPage('revisit');
   } else if (event.target.classList.contains('room-booking-btn')) {
     bookRoom(event);
   } else if (event.target.id === 'clear-search-btn') {
@@ -72,7 +72,7 @@ const bookRoom = (event) => {
   const date = domUpdates.date;
   const roomNumber = parseInt(event.target.id);
   dataHandler.postBookingData(userID, date, roomNumber);
-  domUpdates.displayUserBookingPage();
+  domUpdates.displayUserBookingPage('revisit');
   alert(`Room ${roomNumber} booked!`);
 }
 

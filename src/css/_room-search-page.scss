@@ -42,7 +42,9 @@
 }
 
 #search-placeholder-text {
-  
+  grid-area: 2 / 2;
+  margin: 1em auto;
+  color: gray;
 }
 
 #available-rooms {
@@ -87,5 +89,9 @@ input[type="radio"] {
     margin: .75em;
     padding: 1em;
     width: 75%;
+  }
+
+  #search-placeholder-text {
+    margin: 6em auto;
   }
 }
