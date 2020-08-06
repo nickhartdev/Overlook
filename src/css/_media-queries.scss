@@ -6,3 +6,7 @@
   @include log-in-page--md();
   @include popup--sm();
 }
+
+@media (max-width: 450px) {
+  @include search-placeholder-text--sm();
+}

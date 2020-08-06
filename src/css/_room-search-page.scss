@@ -43,7 +43,8 @@
 
 #search-placeholder-text {
   grid-area: 2 / 2;
-  margin: 1em auto;
+  text-align: center;
+  margin: 2em auto;
   color: gray;
 }
 
@@ -92,6 +93,12 @@ input[type="radio"] {
   }
 
   #search-placeholder-text {
-    margin: 6em auto;
+    margin: 6em 1em;
+  }
+}
+
+@mixin search-placeholder-text--sm() {
+  #search-placeholder-text {
+    margin: 3em 1em;
   }
 }

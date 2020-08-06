@@ -73,6 +73,7 @@ const bookRoom = (event) => {
   const roomNumber = parseInt(event.target.id);
   dataHandler.postBookingData(userID, date, roomNumber);
   domUpdates.displayUserBookingPage('revisit');
+  console.log('posting');
   alert(`Room ${roomNumber} booked!`);
 }
 
