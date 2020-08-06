@@ -49,14 +49,14 @@ const logIn = async () => {
 }
 
 const checkAndDisplayAvailableRooms = async (roomType) => {
-  const date = domUpdates.getDateFromForm()
-  const hotelData = await dataHandler.retrieveHotelDataForDay(date);
+  domUpdates.date = domUpdates.getDateFromForm()
+  const hotelData = await dataHandler.retrieveHotelDataForDay(domUpdates.date);
   if (roomType) {
     const roomsByType = hotelData.filterRoomsByType(roomType);
-    roomsByType.length === 0 ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(roomsByType, date);
+    roomsByType.length === 0 ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(roomsByType, domUpdates.date);
   } else {
     const availableRooms = hotelData.roomsAvailableForDay;
-    availableRooms.length === 0 ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(availableRooms, date);
+    availableRooms.length === 0 ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(availableRooms, domUpdates.date);
   }
 }
 
