@@ -26,11 +26,15 @@ class DOMUpdates {
 
   hideError() {
     const errorMessage = document.querySelector('#error-message');
-    if (!errorMessage.classList.contains('hidden')) errorMessage.classList.add('hidden');
+    if (!errorMessage.classList.contains('hidden')) {
+      errorMessage.classList.add('hidden');
+    }
   }
 
   displayLandingPage() {
+    this.changeBackgroundImage('none');
     if (this.currentUser.includes('customer')) {
+      this.hideAllCards('.available-room-card');
       this.changeElementsVisibility('show', [
         '#customer-landing-page',
         'nav',
@@ -40,10 +44,9 @@ class DOMUpdates {
       ]);
       this.changeElementsVisibility('hide', [
         '#log-in-form',
+        '#log-in-message',
         '#customer-booking-page',
         '#home-link',
-        '#back-to-search-link',
-        '#room-booking-page',
         'fieldset',
         '#search-page-header',
         '#date-selector',
@@ -51,19 +54,44 @@ class DOMUpdates {
         '#room-search-form',
         '#available-rooms',
         '#clear-search-btn',
-        '#apology-page'
+        '#apology-page',
+        '#room-info-popup'
       ]);
-      this.hideAllCards('.available-room-card');
     } else if (this.currentUser === 'manager') {
       this.changeElementsVisibility('show', ['#manager-landing-page', 'nav']);
       this.changeElementsVisibility('hide', [
+        '#log-in-message',
         '#log-in-form',
         'fieldset',
         '#customer-booking-link',
         '#home-link',
-        '#back-to-search-link'
       ]);
     }
+  }
+
+  displayLoginPage() {
+    this.currentUser = null;
+    this.date = null;
+    this.changeBackgroundImage('url(../images/landing-page.jpg)')
+    this.changeElementsVisibility('show', ['fieldset', '#log-in-form', '#log-in-message']);
+    this.changeElementsVisibility('hide', [
+      '#customer-landing-page',
+      'nav',
+      '#customer-booking-link',
+      '#customer-bookings',
+      '#customer-expenditure',
+      '#customer-booking-page',
+      '#home-link',
+      '#search-page-header',
+      '#date-selector',
+      '#booking-search-btn',
+      '#room-search-form',
+      '#available-rooms',
+      '#clear-search-btn',
+      '#apology-page',
+      '#room-info-popup',
+      '#manager-landing-page'
+    ]);
   }
 
   displayUserBookingPage() {
@@ -80,34 +108,31 @@ class DOMUpdates {
     this.changeElementsVisibility('hide', [
       '#customer-landing-page',
       '#customer-booking-link',
-      '#room-booking-page',
       '#customer-bookings',
       '#customer-expenditure',
       '#available-rooms',
-      '#back-to-search-link',
-      '#apology-page'
+      '#apology-page',
+      '#room-info-popup',
+      '#body-blackout'
     ]);
   }
 
-  displayRoomBookingPage(room = {roomType: 'Uh oh. Looks like we had an error'}) {
-    const roomBookingPage = document.querySelector('#room-booking-page');
-    this.changeElementsVisibility('show', [
-      '#room-booking-page',
-      '#back-to-search-link'
-    ]);
-    this.changeElementsVisibility('hide', [
-      '#customer-booking-page',
-      '#available-rooms',
-      '#clear-search-btn',
-      '#search-page-header',
-      '#room-search-form'
-    ]);
-    this.hideAllCards('.available-room-card');
+  displayRoomInfoPopUp(room = {roomType: 'Uh oh. Looks like we had an error'}) {
+    const roomInfoPopUp = document.querySelector('#room-info-popup');
 
-    roomBookingPage.innerHTML =
-    ` <h1 id="booking-page-header">For ${moment(this.date).format('dddd, MMMM do YYYY')}</h1>
-      <p class="booking-page-text">${room.roomType}</p>
-      <button class="room-booking-btn" id="${room.number}">Book</button>`;
+    this.changeElementsVisibility('show', [
+      '#room-info-popup',
+      '#body-blackout'
+    ]);
+    roomInfoPopUp.innerHTML =
+      `<h1 id="booking-page-header">More about room ${room.number}:</h1>
+      <p class="room-popup-text">This room is one of our ${room.roomType}s.</p>
+      <p class="room-popup-text">Bed size(s): ${this.capitalizeFirstLetter(room.bedSize)}</p>
+      <p class="room-popup-text">Number of beds: ${room.numBeds}</p>
+      <p class="room-popup-text">Cost per night: $${room.costPerNight}</p>
+      <p class="room-popup-text">Would you like to book this room for ${moment(this.date).format('dddd, MMMM do YYYY')}?</p>
+      <button class="room-booking-btn" id="${room.number}">Book</button>
+      <button type="button" id="back-to-search-link">Back to your search</button>`;
   }
 
   hideAllCards(cardSelector) {
@@ -117,9 +142,19 @@ class DOMUpdates {
     })
   }
 
+  changeBackgroundImage(content) {
+    const body = document.querySelector('body');
+    body.style.background = content
+  }
+
   displayApologyPage() {
-    this.changeElementsVisibility('show', ['#apology-page', '#back-to-search-link']);
-    this.changeElementsVisibility('hide', ['#available-rooms', '#customer-booking-page', '#room-search-form', '#search-page-header']);
+    this.changeElementsVisibility('show', ['#apology-page']);
+    this.changeElementsVisibility('hide', [
+      '#available-rooms',
+      '#customer-booking-page',
+      '#room-search-form',
+      '#search-page-header'
+    ]);
   }
 
   changeElementsVisibility(visibilityChange, elementSelectors) {
@@ -135,12 +170,12 @@ class DOMUpdates {
 
   updateWelcomeMessage(customer = {name: '- uh oh. Looks like we had an error'}) {
     const welcomeMessage = document.querySelector('#welcome-message');
-    welcomeMessage.innerHTML = `Welcome ${customer.name}`;
+    welcomeMessage.innerHTML = `Welcome ${this.getFirstWord(customer.name)}.`;
   }
 
   displayCustomerExpenditures(customer = {totalExpenditures: 0}) {
     const customerExpenditure = document.querySelector('#customer-expenditure');
-    customerExpenditure.innerHTML = `Your total for all bookings is ${customer.totalExpenditures}.`
+    customerExpenditure.innerHTML = `Your current total for all of your bookings so far is ${customer.totalExpenditures}.`
   }
 
   populateCustomerBookings(bookedRooms = []) {
@@ -148,13 +183,42 @@ class DOMUpdates {
     customerBookings.innerHTML = '';
     bookedRooms.forEach(bookedRoom => {
       customerBookings.innerHTML += `
-      <section role="figure" class="customer-booking booking-card card">
-        <p role="heading">${bookedRoom.dateBooked}</p>
-        <p>Room ${bookedRoom.number}</p>
-        <p>${bookedRoom.roomType}</p>
+      <section role="figure" class="customer-booking booking-card card ${this.getFirstWord(bookedRoom.roomType)}">
+        <p role="heading" class="booking-date-text">${bookedRoom.dateBooked}</p>
+        <p class="booking-description">${this.capitalizeFirstLetter(bookedRoom.roomType)}</p>
       </section>
       `
     })
+    this.addRoomImages();
+  }
+
+  addRoomImages() {
+    const roomCards = document.querySelectorAll('.card');
+    roomCards.forEach(card => {
+      if (card.classList.contains('junior')) {
+        card.style.backgroundImage = "url('./images/junior-suite.jpg')"
+      } else if (card.classList.contains('suite')) {
+        card.style.backgroundImage = "url('./images/suite.jpg')"
+      } else if (card.classList.contains('residential')) {
+        card.style.backgroundImage = "url('./images/residential-suite.jpg')"
+      } else {
+        card.style.backgroundImage = "url('./images/single-room.jpg')"
+      }
+    })
+  }
+
+  getFirstWord(text) {
+    return text.split(' ')[0];
+  }
+
+  capitalizeFirstLetter(text) {
+    const words = text.toLowerCase().split(' ');
+    const newPhrase = []
+    words.forEach(word => {
+      const capitalizedWord = word.charAt(0).toUpperCase() + word.substring(1);
+      newPhrase.push(capitalizedWord);
+    })
+    return newPhrase.join(' ');
   }
 
   getDateFromForm() {
@@ -197,18 +261,18 @@ class DOMUpdates {
     availableRoomsSection.innerHTML = '';
     availableRooms.forEach(room => {
       availableRoomsSection.innerHTML += `
-      <section role="figure" class="available-room-card card">
-        <h1>${room.roomType}</h1>
-        <p>${room.number}</p>
+      <section role="figure" class="available-room-card card ${this.getFirstWord(room.roomType)}">
+        <h1 class="room-description">${this.capitalizeFirstLetter(room.roomType)}</h1>
         <button type="button" class="more-info-btn" id="${room.number}">More Info</button>
       </section>
       `
+    this.addRoomImages();
     })
   }
 
   displayTodaysDate() {
     const todaysDate = document.querySelector('#todays-date');
-    todaysDate.innerHTML = `${moment().format('MM/DD/YYYY')}`;
+    todaysDate.innerHTML = `Info for ${moment().format('MM/DD/YYYY')}:`;
   }
 
   displayNumberOfRoomsAvailableForDay(numberOfRooms = 0) {

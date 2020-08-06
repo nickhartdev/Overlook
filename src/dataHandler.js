@@ -35,7 +35,6 @@ const dataHandler = {
   async retrieveHotelDataForDay(date = moment().format('YYYY/MM/DD')) {
     const roomData = await this.retrieveAndInstantiateRoomData();
     const bookingData = await this.retrieveAndInstantiateBookingData();
-    console.log(bookingData);
 
     return new Hotel(roomData, bookingData, date);
   },

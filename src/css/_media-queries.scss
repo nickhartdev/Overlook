@@ -1,7 +1,9 @@
 @import 'booking-page';
 @import 'card';
 
-@media (max-width: 400px) {
-  @include customer-booking-page--sm();
-  @include card--sm();
+@media (max-width: 1050px) {
+  @include customer-booking-page--md();
+  @include card--md();
+  @include log-in-page--md();
+  @include popup--sm();
 }

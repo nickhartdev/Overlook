@@ -1,3 +1,7 @@
+import './images/junior-suite.jpg'
+import './images/residential-suite.jpg'
+import './images/suite.jpg'
+import './images/single-room.jpg'
 import './css/base.scss';
 import Hotel from './Hotel.js';
 import DOMUpdates from './DOMUpdates.js';
@@ -21,10 +25,7 @@ const buttonHandler = async (event) => {
   } else if (event.target.id === 'home-link') {
     refreshCustomerApp(domUpdates.currentUser);
   } else if (event.target.id === 'booking-search-btn') {
-    domUpdates.date = domUpdates.getDateFromForm();
-    console.log(domUpdates.date);
-    const roomType = domUpdates.getRoomTypeFromForm();
-    checkAndDisplayAvailableRooms(domUpdates.date, roomType);
+    checkAndDisplayAvailableRooms(domUpdates.getRoomTypeFromForm());
   } else if (event.target.classList.contains('more-info-btn')) {
     getAndDisplayRoomMatch(event.target.id);
   } else if (event.target.id === 'back-to-search-link') {
@@ -33,6 +34,8 @@ const buttonHandler = async (event) => {
     bookRoom(event);
   } else if (event.target.id === 'clear-search-btn') {
     domUpdates.resetSearchForm()
+  } else if (event.target.id === 'log-out-btn') {
+    domUpdates.displayLoginPage();
   }
 }
 
@@ -45,14 +48,15 @@ const logIn = async () => {
   }
 }
 
-const checkAndDisplayAvailableRooms = async (date, roomType) => {
-  const hotelData = await dataHandler.retrieveHotelDataForDay(date);
+const checkAndDisplayAvailableRooms = async (roomType) => {
+  domUpdates.date = domUpdates.getDateFromForm()
+  const hotelData = await dataHandler.retrieveHotelDataForDay(domUpdates.date);
   if (roomType) {
     const roomsByType = hotelData.filterRoomsByType(roomType);
-    roomsByType.length === 0 ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(roomsByType, date);
+    roomsByType.length === 0 ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(roomsByType, domUpdates.date);
   } else {
     const availableRooms = hotelData.roomsAvailableForDay;
-    availableRooms.length === 0 ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(availableRooms, date);
+    availableRooms.length === 0 ? domUpdates.displayApologyPage() : domUpdates.populateAvailableRooms(availableRooms, domUpdates.date);
   }
 }
 
@@ -60,7 +64,7 @@ const getAndDisplayRoomMatch = async (roomNumber) => {
   const rooms = await dataHandler.retrieveAndInstantiateRoomData();
   const roomMatch = rooms.find(room => room.number == roomNumber);
 
-  domUpdates.displayRoomBookingPage(roomMatch);
+  domUpdates.displayRoomInfoPopUp(roomMatch);
 }
 
 const bookRoom = (event) => {
@@ -68,6 +72,7 @@ const bookRoom = (event) => {
   const date = domUpdates.date;
   const roomNumber = parseInt(event.target.id);
   dataHandler.postBookingData(userID, date, roomNumber);
+  domUpdates.displayUserBookingPage();
   alert(`Room ${roomNumber} booked!`);
 }
 

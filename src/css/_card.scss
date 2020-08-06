@@ -1,19 +1,28 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   margin: .5em;
-  padding: 1em;
-  width: 125px;
-  height: 100px;
-  border: 1px solid black;
+  width: 48%;
+  min-width: 200px;
+  height: 150px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-// Mobile view
+.card > p {
+  padding: .25rem 0 0 1rem;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 1);
+  color: white;
+}
 
-@mixin card--sm() {
+@mixin card--md() {
   .card {
-    width: 80%;
-    margin: auto;
-    margin-top: 1em;
+    width: 75%;
+    margin: 1em auto;
   }
 }

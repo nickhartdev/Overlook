@@ -8,14 +8,15 @@
     <nav class="hidden">
       <button type="button" id="home-link">Home</button>
       <button type="button" id="customer-booking-link">Book a room</button>
-      <button type="button" id="back-to-search-link">Back to your search</button>
+      <button type="button" id="log-out-btn">Log out</button>
     </nav>
     <form id="log-in-form">
+      <h1 id="log-in-message">Welcome to Overlook.</h1>
       <fieldset>
-        <legend>Welcome to Overlook</legend>
+        <legend id="login-cta">Log in to book a stay with us.</legend>
         <label for="username" class="log-in-label">Username:</label>
         <input type="text" id="username" class="log-in-field"></input>
-        <label for="password" value="overlook2020" class="log-in-label">Password:</label>
+        <label for="password" class="log-in-label">Password:</label>
         <input type="password" id="password" class="log-in-field"></input>
         <button id="log-in-btn" type="button">Log in</button>
         <p id="error-message" class="hidden">Invalid username/password</p>
@@ -55,19 +56,20 @@
               <label for="single">Single Room</label>
             </div>
           </fieldset>
-          <div role="group">
+          <div role="group" id="search-button-container">
             <button type="button" id="booking-search-btn" class="hidden">Search</button>
             <button type="button" id="clear-search-btn" class="hidden">Clear Search</button>
           </div>
         </form>
         <section id="available-rooms" class="hidden"></section>
+        <section id="room-info-popup" class="hidden"></section>
+        <section id="body-blackout" class="hidden"></section>
       </article>
-      <article id="room-booking-page" class="hidden"></article>
       <article id="apology-page" class="hidden">
         <h1>So sorry! Looks like we don't have an available rooms that fit your criteria. Please try another search.</h1>
       </article>
       <article id="manager-landing-page" class="hidden">
-        <p id="todays-date"></p>
+        <h1 id="todays-date"></h1>
         <p id="total-rooms-available"></p>
         <p id="total-revenue"></p>
         <p id="occupation-percentage"></p>
