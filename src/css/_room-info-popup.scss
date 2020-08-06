@@ -7,13 +7,14 @@
   background: white;
   width: 60%;
   height: 325px;
+  overflow: scroll;
 }
 
 #booking-page-header {
   padding: 1em 0 0 1.5em;
 }
 
-.booking-popup-text {
+.room-popup-text {
   padding: 1em 3em 0 2.5em;
   font-size: .8em;
 }
@@ -41,4 +42,23 @@
   background: rgba(0, 0, 0, .5);
   height: 1000%;
   width: 100%;
+}
+
+@mixin popup--sm() {
+  #room-info-popup {
+    height: 300px;
+  }
+
+  #room-popup-text {
+    font-size: .5em;
+  }
+
+  #room-booking-btn {
+    margin-left: 2em;
+    width: 75%;
+  }
+
+  #back-to-search-link {
+    margin-left: 2em;
+  }
 }

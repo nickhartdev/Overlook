@@ -126,11 +126,11 @@ class DOMUpdates {
     ]);
     roomInfoPopUp.innerHTML =
       `<h1 id="booking-page-header">More about room ${room.number}:</h1>
-      <p class="booking-popup-text">This room is one of our ${room.roomType}s.</p>
-      <p class="booking-popup-text">Bed size(s): ${this.capitalizeFirstLetter(room.bedSize)}</p>
-      <p class="booking-popup-text">Number of beds: ${room.numBeds}</p>
-      <p class="booking-popup-text">Cost per night: $${room.costPerNight}</p>
-      <p class="booking-popup-text">Would you like to book this room for ${moment(this.date).format('dddd, MMMM do YYYY')}?</p>
+      <p class="room-popup-text">This room is one of our ${room.roomType}s.</p>
+      <p class="room-popup-text">Bed size(s): ${this.capitalizeFirstLetter(room.bedSize)}</p>
+      <p class="room-popup-text">Number of beds: ${room.numBeds}</p>
+      <p class="room-popup-text">Cost per night: $${room.costPerNight}</p>
+      <p class="room-popup-text">Would you like to book this room for ${moment(this.date).format('dddd, MMMM do YYYY')}?</p>
       <button class="room-booking-btn" id="${room.number}">Book</button>
       <button type="button" id="back-to-search-link">Back to your search</button>`;
   }
@@ -272,7 +272,7 @@ class DOMUpdates {
 
   displayTodaysDate() {
     const todaysDate = document.querySelector('#todays-date');
-    todaysDate.innerHTML = `${moment().format('MM/DD/YYYY')}`;
+    todaysDate.innerHTML = `Info for ${moment().format('MM/DD/YYYY')}:`;
   }
 
   displayNumberOfRoomsAvailableForDay(numberOfRooms = 0) {

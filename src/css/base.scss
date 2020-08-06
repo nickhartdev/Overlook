@@ -5,6 +5,7 @@
 @import 'card';
 @import 'room-booking-page';
 @import 'manager-landing-page';
+@import 'room-info-popup';
 @import 'media-queries';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Slab:wght@400;700&display=swap');
 
@@ -15,7 +16,6 @@
 
 body {
   background: url(../images/landing-page.jpg);
-  background-size: 2500px 1800px;
   background-repeat: no-repeat;
 }
 
