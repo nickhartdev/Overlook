@@ -1,5 +1,4 @@
 import Data from './Data.js';
-
 class Booking extends Data {
   constructor(bookingData) {
     super();
