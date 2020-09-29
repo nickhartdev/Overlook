@@ -14,7 +14,7 @@ class User extends Data {
 
   filterAndSortBookings(bookings = []) {
     const filteredBookings = bookings.filter(booking => booking.userID === this.id);
-    return filteredBookings.sort((a, b) => a.date - b.date);
+    return filteredBookings.sort((a, b) => b.date - a.date);
   }
 
   calculateTotalExpenditures(roomsData = []) {
@@ -35,7 +35,7 @@ class User extends Data {
       roomsList.push(roomData);
       return roomsList;
     }, []);
-    return bookedRooms.sort((a, b) => new Date(a.dateBooked) - new Date(b.dateBooked));
+    return bookedRooms.sort((a, b) => new Date(b.dateBooked) - new Date(a.dateBooked));
   }
 }
 
